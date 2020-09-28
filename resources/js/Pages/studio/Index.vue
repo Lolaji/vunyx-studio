@@ -15,25 +15,27 @@
 
                             <!-- Interactive Editing Video Section -->
                             <div class="interactive-main col-md-12">
-                                <video-section>
-                                    <template #interactiveContainer>
-                                        <!-- <a 
-                                            :href="interactiveElementData.buyNow.href"
-                                            class="btn interactive-element" 
-                                            :style="interactiveElementData.buyNow.style">{{interactiveElementData.buyNow.title}}</a> -->
+                                <video-section
+                                    @ready="playerReady"
+                                    @get-current-time="getVideoCurrentTime">
+                                        <template #interactiveContainer>
+                                            <!-- <a 
+                                                :href="interactiveElementData.buyNow.href"
+                                                class="btn interactive-element" 
+                                                :style="interactiveElementData.buyNow.style">{{interactiveElementData.buyNow.title}}</a> -->
 
-                                            <div ref="iElement" v-for="(ie, key) in interactiveElementData" :key="key">
-                                                <!-- <link-button v-if="ie.type == 'button'"
-                                                    :href="ie.href"                                                    
-                                                    :style="ie.style"
-                                                    :title="ie.title"></link-button> -->
+                                                <div ref="iElement" v-for="(ie, key) in interactiveElementData" :key="key">
+                                                    <!-- <link-button v-if="ie.type == 'button'"
+                                                        :href="ie.href"                                                    
+                                                        :style="ie.style"
+                                                        :title="ie.title"></link-button> -->
 
-                                                <i-element
-                                                    :type="ie.type"
-                                                    :href="ie.href"
-                                                    :styles="ie.style">{{ie.text}}</i-element>
-                                            </div>
-                                    </template>
+                                                    <i-element
+                                                        :type="ie.type"
+                                                        :href="ie.href"
+                                                        :styles="ie.style">{{ie.text}}</i-element>
+                                                </div>
+                                        </template>
                                 </video-section>
 
                                 <!-- Interactive Data Section -->
@@ -41,7 +43,7 @@
                                     <div class="interactive-data-section col-md-12">
                                         <!-- Interactive Timeline Ruler -->
                                         <div class="row mb-3">
-                                            <div class="col-md-3"></div>
+                                            <div class="col-md-3">&nbsp;</div>
                                             <div class="col-md-6 pl-0 pr-0">
                                                 <!-- <div class="row">
                                                     <div class="interactive-timeline ruler">
@@ -52,7 +54,7 @@
                                                 </div> -->
                                                 <ion-slider></ion-slider>
                                             </div>
-                                            <div class="col-md-3"></div>
+                                            <div class="col-md-3">&nbsp;</div>
                                         </div>
 
                                         <!-- Interactive Timeline data position -->
@@ -61,12 +63,20 @@
                                             <div class="col-md-12">
                                                 
                                                 <div 
-                                                    class="col-md-12 layer mb-1 pb-0" 
+                                                    class="row layer mb-0 pb-0" 
                                                     v-for="(e, index) in interactiveElementData" 
                                                     :key="index" 
-                                                    @click="editIE(index)" :class="{active: (index == layerIndex)}">
-                                                        <div class="row">
+                                                    :class="{active: (index == layerIndex)}">
+                                                        <!-- <div class="row"> -->
                                                             <div class="col-md-3">
+                                                                <div class="layer-btn">
+                                                                    <button 
+                                                                        @click="editIE(index)"
+                                                                        class="btn btn-xs btn-primary"><i class="fa fa-pencil-alt"></i></button>
+                                                                    <button 
+                                                                        @click="removeLayer(index)"
+                                                                        class="btn btn-xs btn-danger"><i class="fa fa-trash-alt"></i></button>
+                                                                </div>
                                                                 <div class="layer-name pt-1 pl-1">
                                                                     <span class="icon"><i class="fa fa-link"></i></span>
                                                                     <span class="title">{{e.title}}</span>
@@ -88,7 +98,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        <!-- </div> -->
                                                 </div>
                                             
                                             </div>
@@ -126,6 +136,7 @@
                                     </nav>
                                 </div>
                                 <div class="ie-body">
+
                                     <div class="tab-content" v-if="layerIndex != null">
 
                                         <div class="tab-panel pt-2 fade show active" id="interactive-panel" role="tabpanel" aria-labelledby="interactive-tab">
@@ -142,18 +153,27 @@
 
                                             <div class="form-group form-inline">
                                                 <label class="label col-3" for="">Action</label>
-                                                <select class="form-control col-md-5">
-                                                    <option value="">Action 1</option>
-                                                    <option value="">Action 2</option>
-                                                    <option value="">Action 3</option>
-                                                    <option value="">Action 4</option>
-                                                    <option value="">Action 5</option>
+                                                <select v-model="interactiveElementData[layerIndex].action" class="form-control col-md-5">
+                                                    <option value="1">Link to external webpage</option>
+                                                    <option value="2">Link to specific time</option>
                                                 </select>
                                             </div>
 
-                                            <div class="form-group form-inline">
+                                            <div class="form-group form-inline" v-if="interactiveElementData[layerIndex].action == 1">
                                                 <label class="label col-3" for="">Hypertext</label>
                                                 <input type="url" v-model="interactiveElementData[layerIndex].href" class="form-control" placeholder="https://vunyx.com">
+                                            </div>
+
+                                            <div v-else>
+                                                <div class="form-group form-inline">
+                                                    <label class="label col-3" for="">From</label>
+                                                    <input type="url" v-model="interactiveElementData[layerIndex].time.from" class="form-control" placeholder="https://vunyx.com">
+                                                </div>
+
+                                                <div class="form-group form-inline">
+                                                    <label class="label col-3" for="">To</label>
+                                                    <input type="url" v-model="interactiveElementData[layerIndex].time.to" class="form-control" placeholder="https://vunyx.com">
+                                                </div>
                                             </div>
                                             
                                             <!-- <div class="form-group">
@@ -193,14 +213,17 @@
                                                         <span class="icon float-right"><i class="fa fa-angle-down"></i></span>
                                                     </li>
                                                     <div class="content collapse" id="background">
-                                                        <div class="form-group form-inline">
-                                                            <label class="label col-4" for="">Text Color</label>
-                                                            <input type="text" v-model="interactiveElementData[layerIndex].style.color" class="form-control">
-                                                        </div>
-                                                        <div class="form-group form-inline">
-                                                            <label class="label col-4" for="">Background Color</label>
-                                                            <input type="text" v-model="interactiveElementData[layerIndex].style.backgroundColor" class="form-control">
-                                                        </div>
+                                                        <text-color-picker
+                                                            class="pt-1"
+                                                            :model="interactiveElementData[layerIndex].style.color">
+                                                                <template #label>Text Color</template>
+                                                        </text-color-picker>
+
+                                                        <bg-color-picker
+                                                            class="pt-1"
+                                                            :model="interactiveElementData[layerIndex].style.backgroundColor">
+                                                            <template #label>Background</template>
+                                                        </bg-color-picker>
                                                     </div>
                                                 </div>
                                                 <div>
@@ -249,6 +272,8 @@
     
     import VideoSection from '../../components/VideoSec';
     import IElement from '../../components/interactive-elements/IElement';
+    import TextColorPicker from '../../components/ColorPicker';
+    import BgColorPicker from '../../components/ColorPicker';
 
     // import LinkButton from '../../components/interactive-elements/LinkButton';
     // const LinkButtonClass = Vue.extend(LinkButton);
@@ -260,21 +285,29 @@
             InteractiveSidebar,
             IonSlider,
             VideoSection,
-            IElement
+            IElement,
+            TextColorPicker,
+            BgColorPicker
         },
         data() {
             return {
                 layerIndex: null,
+                video: {
+                    instance: null,
+                    currentTime: ''
+                },
                 //Interactive element Styles
                 interactiveElementData: [
                     {
                         type: 'link',
                         title: 'Buy Now Link',
                         text: 'Buy Now',
+                        action: 1,
                         href: '#',
                         style: {
                             top: '20%',
                             left: '30%',
+                            color: '#444',
                             border: '1px solid #23f6f6',
                             borderRadius: '0',
                             backgroundColor: '#23f6f6',
@@ -288,6 +321,7 @@
                         type: 'link',
                         title: 'Back Link',
                         text: 'Go Back',
+                        action: 1,
                         href: '#',
                         style: {
                             top: '40%',
@@ -308,12 +342,17 @@
         },
         methods: {
             createInteractiveElement (elemType) {
+                //pause the video if playing
+                if (this.video.instance.getPlayerState() == 1)
+                    this.video.instance.pauseVideo();
+                
                 switch(elemType){
                     case 'link':
                         this.interactiveElementData.push({
                             type: 'link',
                             title: 'Buy Now Link',
                             text: 'Buy Now',
+                            action: 1,
                             href: '#',
                             style: {
                                 top: '2%',
@@ -324,8 +363,8 @@
                                 backgroundColor: 'transparent'
                             },
                             time: {
-                                from: '00:00:00.00',
-                                to: '00:01:00.00'
+                                from: (!_.isEmpty (this.video.currentTime))? this.video.currentTime : '00:00:00.00',
+                                to: (!_.isEmpty (this.video.currentTime))? this.video.currentTime : '00:00:00.00'
                             }
                         })
                         break;
@@ -335,7 +374,12 @@
                 }
             },
             editIE (index) {
+                // Get the index of this.interactiveElementData
                 this.layerIndex = index;
+            },
+            removeLayer(index) {
+                console.log(index)
+                this.interactiveElementData.splice(index, 1);
             },
             insertElement() {
                 let instance = new LinkButtonClass({
@@ -353,6 +397,12 @@
             },
             isLayerExist(index){
                 // return this.interactiveElementData
+            },
+            getVideoCurrentTime(time){
+                this.video.currentTime = time;
+            },
+            playerReady(player) {
+                this.video.instance = player
             }
         },
         mounted() {

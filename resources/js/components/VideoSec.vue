@@ -149,7 +149,7 @@
         methods: {
             onPlayerReady(player) {
                 this.playerInstance = player;
-                
+                this.$emit('ready', player);
             },
             playPause() {
                 let playPauseIconClass = this.$refs.playPauseIcon.classList;
@@ -194,10 +194,12 @@
             updateSeekBarTime(update=false){
                 if (update){
                     this.seekBarTimeInterval = setInterval( () => {
-                        // console.log(this.playerInstance.getCurrentTime());
+                        let curTime = this.spanTime(this.playerInstance.getCurrentTime()).text
+                        console.log(this.playerInstance.getCurrentTime());
+                        this.$emit( 'get-current-time', curTime);
                         this.seekBarValue = this.playerInstance.getCurrentTime();
-                        this.timeText.current = this.spanTime(this.playerInstance.getCurrentTime()).text;
-                    }, 500);
+                        this.timeText.current = curTime;
+                    }, 100);
                 } else {
                     clearInterval(this.seekBarTimeInterval);
                 }
@@ -244,8 +246,8 @@
             spanTime(time, paramType='seconds'){
                 let timeConv = new Date(time * 1000).toISOString().substr(11, 8);
                 let split = timeConv.split(':');
-                console.log(split);
-                return {                    
+                // console.log(split);
+                return {
                     h: split[0],
                     m: split[1],
                     s: split[2],
@@ -256,9 +258,7 @@
 
             }
         },
-        mounted(){
-            
-        }
+
     };
 </script>
 

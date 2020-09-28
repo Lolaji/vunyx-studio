@@ -36266,6 +36266,18 @@ html.os-html>.os-host>.os-scrollbar{
   -webkit-transition: 0.4s;
 }
 
+.interactive-data-section > .interactive-layer-container .layer .layer-btn {
+  position: absolute;
+  left: 65%;
+  top: 2px;
+  z-index: 2;
+  opacity: 0;
+}
+
+.interactive-data-section > .interactive-layer-container .layer .layer-btn button {
+  font-size: 8px;
+}
+
 .interactive-data-section > .interactive-layer-container .layer .layer-name {
   padding: 15px 0 10px;
   font-size: 14px;
@@ -36309,11 +36321,14 @@ html.os-html>.os-host>.os-scrollbar{
   /* font-size: 13px; */
 }
 
+.interactive-data-section > .interactive-layer-container .layer:hover .layer-btn {
+  opacity: 1;
+}
+
 .interactive-data-section > .interactive-layer-container .layer:hover,
 .interactive-data-section > .interactive-layer-container .layer.active {
-  border: 1px solid #e4e4e4;
   border-radius: 25px;
-  box-shadow: 4px 0 3px rgba(0, 0, 0, 0.2);
+  border: 1px solid #dad8d8;
 }
 
 .interactive-timeline {
