@@ -1,0 +1,163 @@
+.content-wrapper {
+    margin-top: 0;
+    padding-top: 0;
+}
+.content.no-mp {
+    margin: 0;
+    padding: 0;
+}
+
+.main-header {
+    border-bottom: 1px solid #515155;
+}
+
+.interactive-container {
+    padding: 0;
+    margin: 0;
+    height: 91.4vh;
+    overflow-y: hidden;
+}
+
+/* Interactive Main Style */
+.interactive-main {}
+
+/* Interactive Editor Style */
+.interactive-editor{}
+
+/* interactive-editor children */
+.ie-header{
+  padding: 7px;
+  border-bottom: 1px solid #515155;
+}
+.ie-header .nav .nav-link {
+  color: #ffffff;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.ie-header .nav .nav-link.active {
+  color: #e1c238;
+  border-radius: 80px;
+  border: 1px solid #e1c238;
+}
+
+.ie-body {
+  height: 76.6vh;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.ie-footer {
+  padding: 10px 15px;
+  background: #2a2929;
+}
+
+.video-section {
+    max-height: 50%;
+    padding: 4px 0;
+}
+
+.video-screen {
+    height: 300px;
+    background: #606262;
+}
+
+.video-control {
+    height: 40px;
+    margin-top: 1px;
+    background: #2a2929;
+}
+
+.video-control > .image {
+    height: 40px;
+    width: 40px;
+}
+
+.interactive-data-section {
+    height: 40vh;
+    padding-top: 20px;
+}
+.interactive-timeline {
+  height: 15px;
+  width: 100%;
+  padding: 0;
+  border-radius: 20px;
+}
+.interactive-timeline.ruler {
+  display: flex;  
+  background: #3e3f3f;
+}
+.interactive-timeline.ruler .tick {
+  height: 10px;
+  display: block;
+  width: 2px;
+}
+
+.interactive-timeline.ruler .tick::before {
+  top: 0;
+  left: 0;
+  position: absolute;
+  background: #6a6c6d;
+}
+
+.interactive-timeline.ruler .tick.level-1 {
+  margin-left: 1%;
+}
+
+.interactive-data-section > .interactive-layer-container {
+  height: 31.6vh;
+  /* padding: 2px; */
+  overflow-y: auto;
+  /* background: #e1c238 */
+}
+.interactive-layer-container .layer .layer-name {
+  padding: 15px 0 10px;
+  font-size: 14px;
+}
+.interactive-timeline.interactive-position {
+  border: 1px solid #e1c238;
+} 
+.interactive-timeline.interactive-position span.time-position {
+  width: 10%;
+  height: 14px;
+  top: 1;
+  left: 23%;
+  position: absolute;
+  background-color: #e1c238;
+}
+.interactive-layer-container .layer .time-input .form-control {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  background: #e1c238;
+  padding: 0px 8px 2px;
+  height: 15px;
+  border-radius: 20px;
+  border: 1px solid #e1c238;
+
+  transition: .4s;
+  -moz-transition: .4s;
+  -webkit-transition: .4s;
+}
+.interactive-layer-container .layer.active {
+  border: 1px solid #e4e4e4;
+  border-radius: 25px;
+  box-shadow: 4px 0 3px rgba(0, 0, 0, 0.2);
+}
+.interactive-layer-container .layer .time-input .form-control:focus {
+  color: #e1c238;
+  background: #ffffff;
+
+  transition: .4s;
+  -moz-transition: .4s;
+  -webkit-transition: .4s;
+}
+.interactive-layer-container .layer .time-input .form-control::placeholder {
+  color: #ffffff;
+  /* font-size: 13px; */
+}
+.interactive-layer-container .layer .time-input 
+
+.main-footer {
+    margin-top: 0;
+}
