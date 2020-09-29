@@ -52,7 +52,9 @@
                                                         <span class="tick" v-for="i in 99" :key="i" :style="'margin-left:'+i+'%'"></span>
                                                     </div>
                                                 </div> -->
-                                                <ion-slider></ion-slider>
+                                                <ion-slider
+                                                    skin="square"
+                                                    :grid="true"></ion-slider>
                                             </div>
                                             <div class="col-md-3">&nbsp;</div>
                                         </div>
@@ -73,6 +75,9 @@
                                                                     <button 
                                                                         @click="editIE(index)"
                                                                         class="btn btn-xs btn-primary"><i class="fa fa-pencil-alt"></i></button>
+                                                                    <!-- <button 
+                                                                        @click="showHide(index)"
+                                                                        class="btn btn-xs btn-primary"><i class="fa fa-pencil-alt"></i></button> -->
                                                                     <button 
                                                                         @click="removeLayer(index)"
                                                                         class="btn btn-xs btn-danger"><i class="fa fa-trash-alt"></i></button>
@@ -139,40 +144,64 @@
 
                                     <div class="tab-content" v-if="layerIndex != null">
 
-                                        <div class="tab-panel pt-2 fade show active" id="interactive-panel" role="tabpanel" aria-labelledby="interactive-tab">
+                                        <div class="tab-panel pt-2 fade show active px-3" id="interactive-panel" role="tabpanel" aria-labelledby="interactive-tab">
                                             
-                                            <div class="form-group form-inline">
-                                                <label class="label col-3" for="">Title</label>
-                                                <input type="text" v-model="interactiveElementData[layerIndex].title" class="form-control">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="label col-3" for="">Title</label>
+                                                    <div class="col-8">
+                                                        <input type="text" v-model="interactiveElementData[layerIndex].title" class="form-control">
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                            <div class="form-group form-inline">
-                                                <label class="label col-3" for="">Text</label>
-                                                <input type="text" v-model="interactiveElementData[layerIndex].text" class="form-control">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="label col-3" for="">Text</label>
+                                                    <div class="col-8">
+                                                        <input type="text" v-model="interactiveElementData[layerIndex].text" class="form-control">
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                            <div class="form-group form-inline">
-                                                <label class="label col-3" for="">Action</label>
-                                                <select v-model="interactiveElementData[layerIndex].action" class="form-control col-md-5">
-                                                    <option value="1">Link to external webpage</option>
-                                                    <option value="2">Link to specific time</option>
-                                                </select>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="label col-3" for="">Action</label>
+                                                    <div class="col-8">
+                                                        <select v-model="interactiveElementData[layerIndex].action" class="form-control">
+                                                            <option value="1">Link to external webpage</option>
+                                                            <option value="2">Link to specific time</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                            <div class="form-group form-inline" v-if="interactiveElementData[layerIndex].action == 1">
-                                                <label class="label col-3" for="">Hypertext</label>
-                                                <input type="url" v-model="interactiveElementData[layerIndex].href" class="form-control" placeholder="https://vunyx.com">
+                                            <div class="form-group" v-if="interactiveElementData[layerIndex].action == 1">
+                                                <div class="row">
+                                                    <label class="label col-3" for="">Hypertext</label>
+                                                    <div class="col-8">
+                                                        <input type="url" v-model="interactiveElementData[layerIndex].href" class="form-control" placeholder="https://vunyx.com">
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div v-else>
-                                                <div class="form-group form-inline">
-                                                    <label class="label col-3" for="">From</label>
-                                                    <input type="url" v-model="interactiveElementData[layerIndex].time.from" class="form-control" placeholder="https://vunyx.com">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <label class="label col-3" for="">From</label>
+                                                        <div class="col-8">
+                                                            <input type="url" v-model="interactiveElementData[layerIndex].time.from" class="form-control" placeholder="https://vunyx.com">  
+                                                        </div>
+                                                    </div>
                                                 </div>
 
-                                                <div class="form-group form-inline">
-                                                    <label class="label col-3" for="">To</label>
-                                                    <input type="url" v-model="interactiveElementData[layerIndex].time.to" class="form-control" placeholder="https://vunyx.com">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <label class="label col-3" for="">To</label>
+                                                        <div class="col-8">
+                                                            <input type="url" v-model="interactiveElementData[layerIndex].time.to" class="form-control" placeholder="https://vunyx.com">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             
@@ -196,43 +225,156 @@
                                                     </li>
                                                     <div class="content collapse show" id="position">
 
-                                                        <div class="form-group form-inline">
-                                                            <label class="label col-3" for="">X</label>
-                                                            <input type="text" v-model="interactiveElementData[layerIndex].style.left" class="form-control">
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <label class="label col-1 pt-1" for="">X</label>
+                                                                <div class="col-8">
+                                                                    <div class="input-group ie">
+                                                                        <input type="text" v-model="ieStyle.left" class="form-control col-4">
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text vx-text-color">{{measurement.percent}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
 
-                                                        <div class="form-group form-inline">
-                                                            <label class="label col-3" for="">Y</label>
-                                                            <input type="text" v-model="interactiveElementData[layerIndex].style.top" class="form-control">
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <label class="label col-1 pt-1" for="">Y</label>
+                                                                <div class="col-8">
+                                                                    <div class="input-group ie">
+                                                                        <input type="text" v-model="ieStyle.top" class="form-control col-4">
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text vx-text-color">{{measurement.percent}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div>
                                                     <li class="list-group-item" data-toggle="collapse" data-target="#background">
-                                                        Color
+                                                        Text &amp; Background
                                                         <span class="icon float-right"><i class="fa fa-angle-down"></i></span>
                                                     </li>
                                                     <div class="content collapse" id="background">
                                                         <text-color-picker
-                                                            class="pt-1"
-                                                            :model="interactiveElementData[layerIndex].style.color">
+                                                            id="textColor"
+                                                            class="py-1"
+                                                            :model="ieStyle.color"
+                                                            @change="value => {ieStyle.color = value}">
                                                                 <template #label>Text Color</template>
                                                         </text-color-picker>
 
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <label for="" class="col-4 label">Size</label>
+                                                                <div class="col-8">
+                                                                    <div class="input-group ie">
+                                                                        <input type="text" v-model="ieStyle.fontSize" class="form-control col-4">
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text vx-text-color">px</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <label for="" class="col-4 label">Weight</label>
+                                                                <div class="col-8">
+                                                                    <div class="input-group ie">
+                                                                        <select v-model="ieStyle.fontWeight" class="form-control col-6">
+                                                                            <option value="100">100</option>
+                                                                            <option value="200">200</option>
+                                                                            <option value="300">300</option>
+                                                                            <option value="400">400</option>
+                                                                            <option value="500">500</option>
+                                                                            <option value="600">600</option>
+                                                                            <option value="700">700</option>
+                                                                            <option value="800">800</option>
+                                                                            <option value="900">900</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                         <bg-color-picker
-                                                            class="pt-1"
-                                                            :model="interactiveElementData[layerIndex].style.backgroundColor">
-                                                            <template #label>Background</template>
+                                                            id="bgColor"
+                                                            class=""
+                                                            :model="ieStyle.backgroundColor"
+                                                            @change="value => { ieStyle.backgroundColor = value}">
+                                                                <template #label>Background</template>
                                                         </bg-color-picker>
                                                     </div>
                                                 </div>
+
                                                 <div>
-                                                    <li class="list-group-item" data-toggle="collapse" data-target="#padding">
-                                                        Padding
+                                                    <li class="list-group-item" data-toggle="collapse" data-target="#border">
+                                                        Border
                                                         <span class="icon float-right"><i class="fa fa-angle-down"></i></span>
                                                     </li>
-                                                    <div class="content collapse" id="padding">
-                                                        Editor Form Here
+                                                    <div class="content collapse" id="border">
+
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <label class="label col-4 pt-1" for="">Radius</label>
+                                                                <div class="col-8">
+                                                                    <div class="input-group ie">
+                                                                        <input type="text" v-model="ieStyle.borderRadius" class="form-control col-4">
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text vx-text-color">{{measurement.percent}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <label for="" class="col-4 label">Width</label>
+                                                                <div class="col-8">
+                                                                    <div class="input-group ie">
+                                                                        <input type="text" v-model="ieStyle.borderWidth" class="form-control col-4">
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text vx-text-color">px</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <text-color-picker
+                                                            id="borderColor"
+                                                            class=""
+                                                            :model="ieStyle.borderColor"
+                                                            @change="value => {ieStyle.borderColor = value}">
+                                                                <template #label>Color</template>
+                                                        </text-color-picker>
+
+                                                        <!-- Border Style -->
+                                                        <div class="form-group my-2">
+                                                            <div class="row">
+                                                                <label for="" class="col-4 label">Style</label>
+                                                                <div class="col-8">
+                                                                    <div class="input-group ie">
+                                                                        <select v-model="ieStyle.borderStyle" class="form-control col-6">
+                                                                            <option value="">None</option>
+                                                                            <option value="solid">Solid</option>
+                                                                            <option value="dotted">Dotted</option>
+                                                                            <option value="double">Double</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--/ Border Style -->
+
                                                     </div>
                                                 </div>
                                                 
@@ -264,7 +406,7 @@
 </template>
 
 <script>
-    import Vue from 'vue';
+    
     import StudioLayout from '../../Layouts/StudioLayout';
     import InteractiveSidebar from '../../components/InteractiveSidebar';
 
@@ -274,6 +416,10 @@
     import IElement from '../../components/interactive-elements/IElement';
     import TextColorPicker from '../../components/ColorPicker';
     import BgColorPicker from '../../components/ColorPicker';
+
+    import 'vue-range-component/dist/vue-range-slider.css';
+    import VPositionSlider from 'vue-range-component';
+    import HPositionSlider from 'vue-range-component';
 
     // import LinkButton from '../../components/interactive-elements/LinkButton';
     // const LinkButtonClass = Vue.extend(LinkButton);
@@ -287,7 +433,9 @@
             VideoSection,
             IElement,
             TextColorPicker,
-            BgColorPicker
+            BgColorPicker,
+            VPositionSlider,
+            HPositionSlider
         },
         data() {
             return {
@@ -295,6 +443,25 @@
                 video: {
                     instance: null,
                     currentTime: ''
+                },
+                measurement: {
+                    px: 'px',
+                    percent: '%'
+                },
+                ieStyle: {
+                    top: '20',
+                    left: '30',
+                    color: '#444',
+
+                    borderWidth: '1',
+                    borderColor: '#23f6f6',
+                    borderStyle: 'solid',
+                    borderRadius: '0',
+
+                    fontSize: '',
+                    fontWeight: '',
+
+                    backgroundColor: '#23f6f6',
                 },
                 //Interactive element Styles
                 interactiveElementData: [
@@ -308,8 +475,15 @@
                             top: '20%',
                             left: '30%',
                             color: '#444',
-                            border: '1px solid #23f6f6',
+
+                            fontSize: '15px',
+                            fontWeight: '500',
+
+                            borderWidth: '1px',
+                            borderColor: '#23f6f6',
+                            borderStyle: 'solid',
                             borderRadius: '0',
+
                             backgroundColor: '#23f6f6',
                         },
                         time: {
@@ -327,8 +501,15 @@
                             top: '40%',
                             left: '2%',
                             color: '#fff',
-                            // border: '1px solid #e4e4e4',
+
+                            fontSize: '15px',
+                            fontWeight: '500',
+                            
+                            borderWidth: '',
+                            borderColor: '',
+                            borderStyle: '',
                             borderRadius: '40%',
+
                             backgroundColor: '#444',
 
                         },
@@ -338,6 +519,38 @@
                         }
                     }
                 ]
+            }
+        },
+        watch: {
+            ieStyle: {
+                handler(nData, oData){
+                    if ( ! _.isNull(this.layerIndex) ) {
+
+                        let selectedIEStyle = this.interactiveElementData[this.layerIndex].style,
+                            px = this.measurement.px,
+                            percent = this.measurement.percent;
+
+                        Object.entries(selectedIEStyle).forEach(([index, value]) => {
+
+                            switch(index){
+                                case 'left':
+                                case 'top':
+                                case 'borderRadius':
+                                    selectedIEStyle[index] = nData[index]+percent;
+                                    break;
+                                case 'borderWidth':
+                                case 'fontSize':
+                                    selectedIEStyle[index] = nData[index]+px;
+                                    break;
+                                default:
+                                    selectedIEStyle[index] = nData[index];
+                                    break;
+                            }
+
+                        });
+                    }
+                },
+                deep: true
             }
         },
         methods: {
@@ -358,8 +571,15 @@
                                 top: '2%',
                                 left: '2%',
                                 color: 'red',
-                                border: '1px solid #23f6f6',
+
+                                fontSize: '15px',
+                                fontWeight: '500',
+                                
+                                borderWidth: '1px',
+                                borderColor: '#23f6f6',
+                                borderStyle: 'solid',
                                 borderRadius: '0',
+
                                 backgroundColor: 'transparent'
                             },
                             time: {
@@ -376,6 +596,11 @@
             editIE (index) {
                 // Get the index of this.interactiveElementData
                 this.layerIndex = index;
+
+                Object.entries(this.interactiveElementData[index].style).forEach(([index, value]) => {
+                    this.ieStyle[index] = value.replace(/(px|\%)?$/, '');
+                    console.log(value.replace(/(px|\%)?$/, ''));
+                });
             },
             removeLayer(index) {
                 console.log(index)
@@ -406,7 +631,7 @@
             }
         },
         mounted() {
-            // this.insertElement()
+            
         }
     }
 </script>

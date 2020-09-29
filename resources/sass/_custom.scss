@@ -1,3 +1,35 @@
+
+$vunyxColor: #e1c238;
+
+.vx-text-color {
+  color: $vunyxColor;
+}
+
+.vx-bg-color {
+  color: #ffffff;
+  background: $vunyxColor;
+}
+
+.input-group {
+  &.ie {
+      .form-control {
+          &:focus {
+              & + .input-group-append {
+                  .input-group-text {
+                      border: 1px solid #e1c238;
+                  }
+              }
+          }
+      }
+      .input-group-append {
+          .input-group-text {
+              background: #414141;
+              border: 1px solid #515155;
+          }
+      }
+  }
+}
+
 .content-wrapper {
     margin-top: 0;
     padding-top: 0;

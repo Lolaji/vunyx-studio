@@ -18,6 +18,10 @@
                     return ['flat', 'big', 'modern', 'sharp', 'round', 'square'].indexOf(val) > -1;
                 }
             },
+            type: {
+                type: String,
+                default: () => 'single',
+            },
             min: {
                 type: [Number, String],
                 default: () => 0
@@ -25,21 +29,62 @@
             max: {
                 type: [Number, String],
                 default: () => 100
+            },
+            step: {
+                type: [String, Number],
+                default: () => 1
+            },
+            hideFromTo: {
+                type: Boolean,
+                default: () => true,
+            },
+            grid: {
+                type: Boolean,
+                default: () => false
+            },
+            gridNum: {
+                type: [Number, String],
+                default: () => 6
+            },
+            gridSnap: {
+                type: Boolean,
+                default: () => false
+            }
+        },
+        methods: {
+            start(data) {
+                this.$emit('start', data);
+            },
+            change(data){
+                this.$emit('change', data);
+            },
+            update(data) {
+                this.$emit('update', data);
+            },
+            finish(data){
+                this.$emit('finish', data);
             }
 
         },
         mounted() {
             $(this.$el).ionRangeSlider({
-                skin: 'square', // flat, big, modern, sharp, round, square
-                min: '00',
-                max: '30',
-                type: 'single',
-                step: 0.1,
+                skin: this.skin, // flat, big, modern, sharp, round, square
+                min: this.min,
+                max: this.max,
+                type: this.type,
+                step: this.step,
                 // hide_min_max: true,
-                hide_from_to: true,
-                grid: true,
-                grid_num: 6,        // default 4 (set number of grid cells)
-                grid_snap: false 
+                hide_from_to: this.hideFromTo,
+                grid: this.grid,
+                grid_num: this.gridNum,        // default 4 (set number of grid cells)
+                grid_snap: this.gridSnap,
+
+                
+                // Events
+                onStart: this.start,
+                onChange: this.change,
+                onUpdate: this.update,
+                onFinish: this.finish,
             });
         }
     }

@@ -4171,14 +4171,27 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Layouts_StudioLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layouts/StudioLayout */ "./resources/js/Layouts/StudioLayout.vue");
-/* harmony import */ var _components_InteractiveSidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/InteractiveSidebar */ "./resources/js/components/InteractiveSidebar.vue");
-/* harmony import */ var _components_IonRangeSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/IonRangeSlider */ "./resources/js/components/IonRangeSlider.vue");
-/* harmony import */ var _components_VideoSec__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/VideoSec */ "./resources/js/components/VideoSec.vue");
-/* harmony import */ var _components_interactive_elements_IElement__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/interactive-elements/IElement */ "./resources/js/components/interactive-elements/IElement.vue");
-/* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/ColorPicker */ "./resources/js/components/ColorPicker.vue");
+/* harmony import */ var _Layouts_StudioLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/StudioLayout */ "./resources/js/Layouts/StudioLayout.vue");
+/* harmony import */ var _components_InteractiveSidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/InteractiveSidebar */ "./resources/js/components/InteractiveSidebar.vue");
+/* harmony import */ var _components_IonRangeSlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/IonRangeSlider */ "./resources/js/components/IonRangeSlider.vue");
+/* harmony import */ var _components_VideoSec__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/VideoSec */ "./resources/js/components/VideoSec.vue");
+/* harmony import */ var _components_interactive_elements_IElement__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/interactive-elements/IElement */ "./resources/js/components/interactive-elements/IElement.vue");
+/* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/ColorPicker */ "./resources/js/components/ColorPicker.vue");
+/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-range-component/dist/vue-range-slider.css */ "./node_modules/vue-range-component/dist/vue-range-slider.css");
+/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vue_range_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-range-component */ "./node_modules/vue-range-component/dist/vue-range-slider.esm.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 //
 //
 //
@@ -4444,6 +4457,150 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -4457,13 +4614,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['page_title'],
   components: {
-    StudioLayout: _Layouts_StudioLayout__WEBPACK_IMPORTED_MODULE_1__["default"],
-    InteractiveSidebar: _components_InteractiveSidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
-    IonSlider: _components_IonRangeSlider__WEBPACK_IMPORTED_MODULE_3__["default"],
-    VideoSection: _components_VideoSec__WEBPACK_IMPORTED_MODULE_4__["default"],
-    IElement: _components_interactive_elements_IElement__WEBPACK_IMPORTED_MODULE_5__["default"],
-    TextColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_6__["default"],
-    BgColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_6__["default"]
+    StudioLayout: _Layouts_StudioLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
+    InteractiveSidebar: _components_InteractiveSidebar__WEBPACK_IMPORTED_MODULE_1__["default"],
+    IonSlider: _components_IonRangeSlider__WEBPACK_IMPORTED_MODULE_2__["default"],
+    VideoSection: _components_VideoSec__WEBPACK_IMPORTED_MODULE_3__["default"],
+    IElement: _components_interactive_elements_IElement__WEBPACK_IMPORTED_MODULE_4__["default"],
+    TextColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_5__["default"],
+    BgColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_5__["default"],
+    VPositionSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_7__["default"],
+    HPositionSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   data: function data() {
     return {
@@ -4471,6 +4630,22 @@ __webpack_require__.r(__webpack_exports__);
       video: {
         instance: null,
         currentTime: ''
+      },
+      measurement: {
+        px: 'px',
+        percent: '%'
+      },
+      ieStyle: {
+        top: '20',
+        left: '30',
+        color: '#444',
+        borderWidth: '1',
+        borderColor: '#23f6f6',
+        borderStyle: 'solid',
+        borderRadius: '0',
+        fontSize: '',
+        fontWeight: '',
+        backgroundColor: '#23f6f6'
       },
       //Interactive element Styles
       interactiveElementData: [{
@@ -4483,7 +4658,11 @@ __webpack_require__.r(__webpack_exports__);
           top: '20%',
           left: '30%',
           color: '#444',
-          border: '1px solid #23f6f6',
+          fontSize: '15px',
+          fontWeight: '500',
+          borderWidth: '1px',
+          borderColor: '#23f6f6',
+          borderStyle: 'solid',
           borderRadius: '0',
           backgroundColor: '#23f6f6'
         },
@@ -4501,7 +4680,11 @@ __webpack_require__.r(__webpack_exports__);
           top: '40%',
           left: '2%',
           color: '#fff',
-          // border: '1px solid #e4e4e4',
+          fontSize: '15px',
+          fontWeight: '500',
+          borderWidth: '',
+          borderColor: '',
+          borderStyle: '',
           borderRadius: '40%',
           backgroundColor: '#444'
         },
@@ -4511,6 +4694,40 @@ __webpack_require__.r(__webpack_exports__);
         }
       }]
     };
+  },
+  watch: {
+    ieStyle: {
+      handler: function handler(nData, oData) {
+        if (!_.isNull(this.layerIndex)) {
+          var selectedIEStyle = this.interactiveElementData[this.layerIndex].style,
+              px = this.measurement.px,
+              percent = this.measurement.percent;
+          Object.entries(selectedIEStyle).forEach(function (_ref) {
+            var _ref2 = _slicedToArray(_ref, 2),
+                index = _ref2[0],
+                value = _ref2[1];
+
+            switch (index) {
+              case 'left':
+              case 'top':
+              case 'borderRadius':
+                selectedIEStyle[index] = nData[index] + percent;
+                break;
+
+              case 'borderWidth':
+              case 'fontSize':
+                selectedIEStyle[index] = nData[index] + px;
+                break;
+
+              default:
+                selectedIEStyle[index] = nData[index];
+                break;
+            }
+          });
+        }
+      },
+      deep: true
+    }
   },
   methods: {
     createInteractiveElement: function createInteractiveElement(elemType) {
@@ -4529,7 +4746,11 @@ __webpack_require__.r(__webpack_exports__);
               top: '2%',
               left: '2%',
               color: 'red',
-              border: '1px solid #23f6f6',
+              fontSize: '15px',
+              fontWeight: '500',
+              borderWidth: '1px',
+              borderColor: '#23f6f6',
+              borderStyle: 'solid',
               borderRadius: '0',
               backgroundColor: 'transparent'
             },
@@ -4545,8 +4766,18 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     editIE: function editIE(index) {
+      var _this = this;
+
       // Get the index of this.interactiveElementData
       this.layerIndex = index;
+      Object.entries(this.interactiveElementData[index].style).forEach(function (_ref3) {
+        var _ref4 = _slicedToArray(_ref3, 2),
+            index = _ref4[0],
+            value = _ref4[1];
+
+        _this.ieStyle[index] = value.replace(/(px|\%)?$/, '');
+        console.log(value.replace(/(px|\%)?$/, ''));
+      });
     },
     removeLayer: function removeLayer(index) {
       console.log(index);
@@ -4572,8 +4803,7 @@ __webpack_require__.r(__webpack_exports__);
       this.video.instance = player;
     }
   },
-  mounted: function mounted() {// this.insertElement()
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -4612,6 +4842,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    id: {
+      type: String
+    },
     model: {
       type: String
     },
@@ -4619,13 +4852,23 @@ __webpack_require__.r(__webpack_exports__);
       type: [String, Object]
     }
   },
+  data: function data() {
+    return {
+      value: ''
+    };
+  },
   mounted: function mounted() {
     var _this = this;
 
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker();
-    $('.my-colorpicker2').on('colorpickerChange', function (event) {
-      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+    var id = '#' + this.id;
+
+    if (this.model) {
+      $(id + ' .my-colorpicker .fa-square').css('color', this.model);
+    }
+
+    $(id + ' .my-colorpicker').colorpicker();
+    $(id + ' .my-colorpicker').on('colorpickerChange', function (event) {
+      $(id + ' .my-colorpicker .fa-square').css('color', event.color.toString());
 
       _this.$emit('change', event.color.toString());
     });
@@ -4752,6 +4995,12 @@ __webpack_require__.r(__webpack_exports__);
         return ['flat', 'big', 'modern', 'sharp', 'round', 'square'].indexOf(val) > -1;
       }
     },
+    type: {
+      type: String,
+      "default": function _default() {
+        return 'single';
+      }
+    },
     min: {
       type: [Number, String],
       "default": function _default() {
@@ -4763,22 +5012,71 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return 100;
       }
+    },
+    step: {
+      type: [String, Number],
+      "default": function _default() {
+        return 1;
+      }
+    },
+    hideFromTo: {
+      type: Boolean,
+      "default": function _default() {
+        return true;
+      }
+    },
+    grid: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    gridNum: {
+      type: [Number, String],
+      "default": function _default() {
+        return 6;
+      }
+    },
+    gridSnap: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    }
+  },
+  methods: {
+    start: function start(data) {
+      this.$emit('start', data);
+    },
+    change: function change(data) {
+      this.$emit('change', data);
+    },
+    update: function update(data) {
+      this.$emit('update', data);
+    },
+    finish: function finish(data) {
+      this.$emit('finish', data);
     }
   },
   mounted: function mounted() {
     $(this.$el).ionRangeSlider({
-      skin: 'square',
+      skin: this.skin,
       // flat, big, modern, sharp, round, square
-      min: '00',
-      max: '30',
-      type: 'single',
-      step: 0.1,
+      min: this.min,
+      max: this.max,
+      type: this.type,
+      step: this.step,
       // hide_min_max: true,
-      hide_from_to: true,
-      grid: true,
-      grid_num: 6,
+      hide_from_to: this.hideFromTo,
+      grid: this.grid,
+      grid_num: this.gridNum,
       // default 4 (set number of grid cells)
-      grid_snap: false
+      grid_snap: this.gridSnap,
+      // Events
+      onStart: this.start,
+      onChange: this.change,
+      onUpdate: this.update,
+      onFinish: this.finish
     });
   }
 });
@@ -5221,25 +5519,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ColorPicker.vue?vue&type=style&index=0&id=023f0f94&lang=scss&scoped=true&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/dist/cjs.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ColorPicker.vue?vue&type=style&index=0&id=023f0f94&lang=scss&scoped=true& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".input-group.color .form-control:focus + .input-group-append .input-group-text[data-v-023f0f94] {\n  border: 1px solid #e1c238;\n}\n.input-group.color .input-group-append .input-group-text[data-v-023f0f94] {\n  background: #414141;\n  border: 1px solid #515155;\n}", ""]);
-
-// exports
-
 
 /***/ }),
 
@@ -57458,36 +57737,6 @@ try {
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ColorPicker.vue?vue&type=style&index=0&id=023f0f94&lang=scss&scoped=true&":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/dist/cjs.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ColorPicker.vue?vue&type=style&index=0&id=023f0f94&lang=scss&scoped=true& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--8-2!../../../node_modules/sass-loader/dist/cjs.js??ref--8-3!../../../node_modules/vue-loader/lib??vue-loader-options!./ColorPicker.vue?vue&type=style&index=0&id=023f0f94&lang=scss&scoped=true& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ColorPicker.vue?vue&type=style&index=0&id=023f0f94&lang=scss&scoped=true&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/IonRangeSlider.vue?vue&type=style&index=0&lang=scss&":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/dist/cjs.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/IonRangeSlider.vue?vue&type=style&index=0&lang=scss& ***!
@@ -62309,7 +62558,11 @@ var render = function() {
                                 _c(
                                   "div",
                                   { staticClass: "col-md-6 pl-0 pr-0" },
-                                  [_c("ion-slider")],
+                                  [
+                                    _c("ion-slider", {
+                                      attrs: { skin: "square", grid: true }
+                                    })
+                                  ],
                                   1
                                 ),
                                 _vm._v(" "),
@@ -62611,7 +62864,7 @@ var render = function() {
                                 "div",
                                 {
                                   staticClass:
-                                    "tab-panel pt-2 fade show active",
+                                    "tab-panel pt-2 fade show active px-3",
                                   attrs: {
                                     id: "interactive-panel",
                                     role: "tabpanel",
@@ -62619,10 +62872,8 @@ var render = function() {
                                   }
                                 },
                                 [
-                                  _c(
-                                    "div",
-                                    { staticClass: "form-group form-inline" },
-                                    [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("div", { staticClass: "row" }, [
                                       _c(
                                         "label",
                                         {
@@ -62632,49 +62883,49 @@ var render = function() {
                                         [_vm._v("Title")]
                                       ),
                                       _vm._v(" "),
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
+                                      _c("div", { staticClass: "col-8" }, [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.interactiveElementData[
+                                                  _vm.layerIndex
+                                                ].title,
+                                              expression:
+                                                "interactiveElementData[layerIndex].title"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: { type: "text" },
+                                          domProps: {
                                             value:
                                               _vm.interactiveElementData[
                                                 _vm.layerIndex
-                                              ].title,
-                                            expression:
-                                              "interactiveElementData[layerIndex].title"
-                                          }
-                                        ],
-                                        staticClass: "form-control",
-                                        attrs: { type: "text" },
-                                        domProps: {
-                                          value:
-                                            _vm.interactiveElementData[
-                                              _vm.layerIndex
-                                            ].title
-                                        },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
+                                              ].title
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.interactiveElementData[
+                                                  _vm.layerIndex
+                                                ],
+                                                "title",
+                                                $event.target.value
+                                              )
                                             }
-                                            _vm.$set(
-                                              _vm.interactiveElementData[
-                                                _vm.layerIndex
-                                              ],
-                                              "title",
-                                              $event.target.value
-                                            )
                                           }
-                                        }
-                                      })
-                                    ]
-                                  ),
+                                        })
+                                      ])
+                                    ])
+                                  ]),
                                   _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "form-group form-inline" },
-                                    [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("div", { staticClass: "row" }, [
                                       _c(
                                         "label",
                                         {
@@ -62684,49 +62935,49 @@ var render = function() {
                                         [_vm._v("Text")]
                                       ),
                                       _vm._v(" "),
-                                      _c("input", {
-                                        directives: [
-                                          {
-                                            name: "model",
-                                            rawName: "v-model",
+                                      _c("div", { staticClass: "col-8" }, [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.interactiveElementData[
+                                                  _vm.layerIndex
+                                                ].text,
+                                              expression:
+                                                "interactiveElementData[layerIndex].text"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: { type: "text" },
+                                          domProps: {
                                             value:
                                               _vm.interactiveElementData[
                                                 _vm.layerIndex
-                                              ].text,
-                                            expression:
-                                              "interactiveElementData[layerIndex].text"
-                                          }
-                                        ],
-                                        staticClass: "form-control",
-                                        attrs: { type: "text" },
-                                        domProps: {
-                                          value:
-                                            _vm.interactiveElementData[
-                                              _vm.layerIndex
-                                            ].text
-                                        },
-                                        on: {
-                                          input: function($event) {
-                                            if ($event.target.composing) {
-                                              return
+                                              ].text
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.interactiveElementData[
+                                                  _vm.layerIndex
+                                                ],
+                                                "text",
+                                                $event.target.value
+                                              )
                                             }
-                                            _vm.$set(
-                                              _vm.interactiveElementData[
-                                                _vm.layerIndex
-                                              ],
-                                              "text",
-                                              $event.target.value
-                                            )
                                           }
-                                        }
-                                      })
-                                    ]
-                                  ),
+                                        })
+                                      ])
+                                    ])
+                                  ]),
                                   _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "form-group form-inline" },
-                                    [
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("div", { staticClass: "row" }, [
                                       _c(
                                         "label",
                                         {
@@ -62736,75 +62987,77 @@ var render = function() {
                                         [_vm._v("Action")]
                                       ),
                                       _vm._v(" "),
-                                      _c(
-                                        "select",
-                                        {
-                                          directives: [
-                                            {
-                                              name: "model",
-                                              rawName: "v-model",
-                                              value:
-                                                _vm.interactiveElementData[
-                                                  _vm.layerIndex
-                                                ].action,
-                                              expression:
-                                                "interactiveElementData[layerIndex].action"
-                                            }
-                                          ],
-                                          staticClass: "form-control col-md-5",
-                                          on: {
-                                            change: function($event) {
-                                              var $$selectedVal = Array.prototype.filter
-                                                .call(
-                                                  $event.target.options,
-                                                  function(o) {
-                                                    return o.selected
-                                                  }
+                                      _c("div", { staticClass: "col-8" }, [
+                                        _c(
+                                          "select",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm.interactiveElementData[
+                                                    _vm.layerIndex
+                                                  ].action,
+                                                expression:
+                                                  "interactiveElementData[layerIndex].action"
+                                              }
+                                            ],
+                                            staticClass: "form-control",
+                                            on: {
+                                              change: function($event) {
+                                                var $$selectedVal = Array.prototype.filter
+                                                  .call(
+                                                    $event.target.options,
+                                                    function(o) {
+                                                      return o.selected
+                                                    }
+                                                  )
+                                                  .map(function(o) {
+                                                    var val =
+                                                      "_value" in o
+                                                        ? o._value
+                                                        : o.value
+                                                    return val
+                                                  })
+                                                _vm.$set(
+                                                  _vm.interactiveElementData[
+                                                    _vm.layerIndex
+                                                  ],
+                                                  "action",
+                                                  $event.target.multiple
+                                                    ? $$selectedVal
+                                                    : $$selectedVal[0]
                                                 )
-                                                .map(function(o) {
-                                                  var val =
-                                                    "_value" in o
-                                                      ? o._value
-                                                      : o.value
-                                                  return val
-                                                })
-                                              _vm.$set(
-                                                _vm.interactiveElementData[
-                                                  _vm.layerIndex
-                                                ],
-                                                "action",
-                                                $event.target.multiple
-                                                  ? $$selectedVal
-                                                  : $$selectedVal[0]
-                                              )
+                                              }
                                             }
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "option",
-                                            { attrs: { value: "1" } },
-                                            [_vm._v("Link to external webpage")]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "option",
-                                            { attrs: { value: "2" } },
-                                            [_vm._v("Link to specific time")]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  ),
+                                          },
+                                          [
+                                            _c(
+                                              "option",
+                                              { attrs: { value: "1" } },
+                                              [
+                                                _vm._v(
+                                                  "Link to external webpage"
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              { attrs: { value: "2" } },
+                                              [_vm._v("Link to specific time")]
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ])
+                                  ]),
                                   _vm._v(" "),
                                   _vm.interactiveElementData[_vm.layerIndex]
                                     .action == 1
-                                    ? _c(
-                                        "div",
-                                        {
-                                          staticClass: "form-group form-inline"
-                                        },
-                                        [
+                                    ? _c("div", { staticClass: "form-group" }, [
+                                        _c("div", { staticClass: "row" }, [
                                           _c(
                                             "label",
                                             {
@@ -62814,64 +63067,7 @@ var render = function() {
                                             [_vm._v("Hypertext")]
                                           ),
                                           _vm._v(" "),
-                                          _c("input", {
-                                            directives: [
-                                              {
-                                                name: "model",
-                                                rawName: "v-model",
-                                                value:
-                                                  _vm.interactiveElementData[
-                                                    _vm.layerIndex
-                                                  ].href,
-                                                expression:
-                                                  "interactiveElementData[layerIndex].href"
-                                              }
-                                            ],
-                                            staticClass: "form-control",
-                                            attrs: {
-                                              type: "url",
-                                              placeholder: "https://vunyx.com"
-                                            },
-                                            domProps: {
-                                              value:
-                                                _vm.interactiveElementData[
-                                                  _vm.layerIndex
-                                                ].href
-                                            },
-                                            on: {
-                                              input: function($event) {
-                                                if ($event.target.composing) {
-                                                  return
-                                                }
-                                                _vm.$set(
-                                                  _vm.interactiveElementData[
-                                                    _vm.layerIndex
-                                                  ],
-                                                  "href",
-                                                  $event.target.value
-                                                )
-                                              }
-                                            }
-                                          })
-                                        ]
-                                      )
-                                    : _c("div", [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "form-group form-inline"
-                                          },
-                                          [
-                                            _c(
-                                              "label",
-                                              {
-                                                staticClass: "label col-3",
-                                                attrs: { for: "" }
-                                              },
-                                              [_vm._v("From")]
-                                            ),
-                                            _vm._v(" "),
+                                          _c("div", { staticClass: "col-8" }, [
                                             _c("input", {
                                               directives: [
                                                 {
@@ -62880,9 +63076,9 @@ var render = function() {
                                                   value:
                                                     _vm.interactiveElementData[
                                                       _vm.layerIndex
-                                                    ].time.from,
+                                                    ].href,
                                                   expression:
-                                                    "interactiveElementData[layerIndex].time.from"
+                                                    "interactiveElementData[layerIndex].href"
                                                 }
                                               ],
                                               staticClass: "form-control",
@@ -62894,7 +63090,7 @@ var render = function() {
                                                 value:
                                                   _vm.interactiveElementData[
                                                     _vm.layerIndex
-                                                  ].time.from
+                                                  ].href
                                               },
                                               on: {
                                                 input: function($event) {
@@ -62904,71 +63100,154 @@ var render = function() {
                                                   _vm.$set(
                                                     _vm.interactiveElementData[
                                                       _vm.layerIndex
-                                                    ].time,
-                                                    "from",
+                                                    ],
+                                                    "href",
                                                     $event.target.value
                                                   )
                                                 }
                                               }
                                             })
+                                          ])
+                                        ])
+                                      ])
+                                    : _c("div", [
+                                        _c(
+                                          "div",
+                                          { staticClass: "form-group" },
+                                          [
+                                            _c("div", { staticClass: "row" }, [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass: "label col-3",
+                                                  attrs: { for: "" }
+                                                },
+                                                [_vm._v("From")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-8" },
+                                                [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value:
+                                                          _vm
+                                                            .interactiveElementData[
+                                                            _vm.layerIndex
+                                                          ].time.from,
+                                                        expression:
+                                                          "interactiveElementData[layerIndex].time.from"
+                                                      }
+                                                    ],
+                                                    staticClass: "form-control",
+                                                    attrs: {
+                                                      type: "url",
+                                                      placeholder:
+                                                        "https://vunyx.com"
+                                                    },
+                                                    domProps: {
+                                                      value:
+                                                        _vm
+                                                          .interactiveElementData[
+                                                          _vm.layerIndex
+                                                        ].time.from
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.$set(
+                                                          _vm
+                                                            .interactiveElementData[
+                                                            _vm.layerIndex
+                                                          ].time,
+                                                          "from",
+                                                          $event.target.value
+                                                        )
+                                                      }
+                                                    }
+                                                  })
+                                                ]
+                                              )
+                                            ])
                                           ]
                                         ),
                                         _vm._v(" "),
                                         _c(
                                           "div",
-                                          {
-                                            staticClass:
-                                              "form-group form-inline"
-                                          },
+                                          { staticClass: "form-group" },
                                           [
-                                            _c(
-                                              "label",
-                                              {
-                                                staticClass: "label col-3",
-                                                attrs: { for: "" }
-                                              },
-                                              [_vm._v("To")]
-                                            ),
-                                            _vm._v(" "),
-                                            _c("input", {
-                                              directives: [
+                                            _c("div", { staticClass: "row" }, [
+                                              _c(
+                                                "label",
                                                 {
-                                                  name: "model",
-                                                  rawName: "v-model",
-                                                  value:
-                                                    _vm.interactiveElementData[
-                                                      _vm.layerIndex
-                                                    ].time.to,
-                                                  expression:
-                                                    "interactiveElementData[layerIndex].time.to"
-                                                }
-                                              ],
-                                              staticClass: "form-control",
-                                              attrs: {
-                                                type: "url",
-                                                placeholder: "https://vunyx.com"
-                                              },
-                                              domProps: {
-                                                value:
-                                                  _vm.interactiveElementData[
-                                                    _vm.layerIndex
-                                                  ].time.to
-                                              },
-                                              on: {
-                                                input: function($event) {
-                                                  if ($event.target.composing) {
-                                                    return
-                                                  }
-                                                  _vm.$set(
-                                                    _vm.interactiveElementData[
-                                                      _vm.layerIndex
-                                                    ].time,
-                                                    "to",
-                                                    $event.target.value
-                                                  )
-                                                }
-                                              }
-                                            })
+                                                  staticClass: "label col-3",
+                                                  attrs: { for: "" }
+                                                },
+                                                [_vm._v("To")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "col-8" },
+                                                [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value:
+                                                          _vm
+                                                            .interactiveElementData[
+                                                            _vm.layerIndex
+                                                          ].time.to,
+                                                        expression:
+                                                          "interactiveElementData[layerIndex].time.to"
+                                                      }
+                                                    ],
+                                                    staticClass: "form-control",
+                                                    attrs: {
+                                                      type: "url",
+                                                      placeholder:
+                                                        "https://vunyx.com"
+                                                    },
+                                                    domProps: {
+                                                      value:
+                                                        _vm
+                                                          .interactiveElementData[
+                                                          _vm.layerIndex
+                                                        ].time.to
+                                                    },
+                                                    on: {
+                                                      input: function($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.$set(
+                                                          _vm
+                                                            .interactiveElementData[
+                                                            _vm.layerIndex
+                                                          ].time,
+                                                          "to",
+                                                          $event.target.value
+                                                        )
+                                                      }
+                                                    }
+                                                  })
+                                                ]
+                                              )
+                                            ])
                                           ]
                                         )
                                       ])
@@ -63022,119 +63301,211 @@ var render = function() {
                                         [
                                           _c(
                                             "div",
-                                            {
-                                              staticClass:
-                                                "form-group form-inline"
-                                            },
+                                            { staticClass: "form-group" },
                                             [
                                               _c(
-                                                "label",
-                                                {
-                                                  staticClass: "label col-3",
-                                                  attrs: { for: "" }
-                                                },
-                                                [_vm._v("X")]
-                                              ),
-                                              _vm._v(" "),
-                                              _c("input", {
-                                                directives: [
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value:
-                                                      _vm
-                                                        .interactiveElementData[
-                                                        _vm.layerIndex
-                                                      ].style.left,
-                                                    expression:
-                                                      "interactiveElementData[layerIndex].style.left"
-                                                  }
-                                                ],
-                                                staticClass: "form-control",
-                                                attrs: { type: "text" },
-                                                domProps: {
-                                                  value:
-                                                    _vm.interactiveElementData[
-                                                      _vm.layerIndex
-                                                    ].style.left
-                                                },
-                                                on: {
-                                                  input: function($event) {
-                                                    if (
-                                                      $event.target.composing
-                                                    ) {
-                                                      return
-                                                    }
-                                                    _vm.$set(
-                                                      _vm
-                                                        .interactiveElementData[
-                                                        _vm.layerIndex
-                                                      ].style,
-                                                      "left",
-                                                      $event.target.value
-                                                    )
-                                                  }
-                                                }
-                                              })
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "label",
+                                                    {
+                                                      staticClass:
+                                                        "label col-1 pt-1",
+                                                      attrs: { for: "" }
+                                                    },
+                                                    [_vm._v("X")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-8" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group ie"
+                                                        },
+                                                        [
+                                                          _c("input", {
+                                                            directives: [
+                                                              {
+                                                                name: "model",
+                                                                rawName:
+                                                                  "v-model",
+                                                                value:
+                                                                  _vm.ieStyle
+                                                                    .left,
+                                                                expression:
+                                                                  "ieStyle.left"
+                                                              }
+                                                            ],
+                                                            staticClass:
+                                                              "form-control col-4",
+                                                            attrs: {
+                                                              type: "text"
+                                                            },
+                                                            domProps: {
+                                                              value:
+                                                                _vm.ieStyle.left
+                                                            },
+                                                            on: {
+                                                              input: function(
+                                                                $event
+                                                              ) {
+                                                                if (
+                                                                  $event.target
+                                                                    .composing
+                                                                ) {
+                                                                  return
+                                                                }
+                                                                _vm.$set(
+                                                                  _vm.ieStyle,
+                                                                  "left",
+                                                                  $event.target
+                                                                    .value
+                                                                )
+                                                              }
+                                                            }
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "input-group-append"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "input-group-text vx-text-color"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      _vm
+                                                                        .measurement
+                                                                        .percent
+                                                                    )
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
                                             ]
                                           ),
                                           _vm._v(" "),
                                           _c(
                                             "div",
-                                            {
-                                              staticClass:
-                                                "form-group form-inline"
-                                            },
+                                            { staticClass: "form-group" },
                                             [
                                               _c(
-                                                "label",
-                                                {
-                                                  staticClass: "label col-3",
-                                                  attrs: { for: "" }
-                                                },
-                                                [_vm._v("Y")]
-                                              ),
-                                              _vm._v(" "),
-                                              _c("input", {
-                                                directives: [
-                                                  {
-                                                    name: "model",
-                                                    rawName: "v-model",
-                                                    value:
-                                                      _vm
-                                                        .interactiveElementData[
-                                                        _vm.layerIndex
-                                                      ].style.top,
-                                                    expression:
-                                                      "interactiveElementData[layerIndex].style.top"
-                                                  }
-                                                ],
-                                                staticClass: "form-control",
-                                                attrs: { type: "text" },
-                                                domProps: {
-                                                  value:
-                                                    _vm.interactiveElementData[
-                                                      _vm.layerIndex
-                                                    ].style.top
-                                                },
-                                                on: {
-                                                  input: function($event) {
-                                                    if (
-                                                      $event.target.composing
-                                                    ) {
-                                                      return
-                                                    }
-                                                    _vm.$set(
-                                                      _vm
-                                                        .interactiveElementData[
-                                                        _vm.layerIndex
-                                                      ].style,
-                                                      "top",
-                                                      $event.target.value
-                                                    )
-                                                  }
-                                                }
-                                              })
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "label",
+                                                    {
+                                                      staticClass:
+                                                        "label col-1 pt-1",
+                                                      attrs: { for: "" }
+                                                    },
+                                                    [_vm._v("Y")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-8" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group ie"
+                                                        },
+                                                        [
+                                                          _c("input", {
+                                                            directives: [
+                                                              {
+                                                                name: "model",
+                                                                rawName:
+                                                                  "v-model",
+                                                                value:
+                                                                  _vm.ieStyle
+                                                                    .top,
+                                                                expression:
+                                                                  "ieStyle.top"
+                                                              }
+                                                            ],
+                                                            staticClass:
+                                                              "form-control col-4",
+                                                            attrs: {
+                                                              type: "text"
+                                                            },
+                                                            domProps: {
+                                                              value:
+                                                                _vm.ieStyle.top
+                                                            },
+                                                            on: {
+                                                              input: function(
+                                                                $event
+                                                              ) {
+                                                                if (
+                                                                  $event.target
+                                                                    .composing
+                                                                ) {
+                                                                  return
+                                                                }
+                                                                _vm.$set(
+                                                                  _vm.ieStyle,
+                                                                  "top",
+                                                                  $event.target
+                                                                    .value
+                                                                )
+                                                              }
+                                                            }
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "input-group-append"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "input-group-text vx-text-color"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      _vm
+                                                                        .measurement
+                                                                        .percent
+                                                                    )
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
                                             ]
                                           )
                                         ]
@@ -63153,7 +63524,7 @@ var render = function() {
                                         },
                                         [
                                           _vm._v(
-                                            "\n                                                    Color\n                                                    "
+                                            "\n                                                    Text & Background\n                                                    "
                                           ),
                                           _c(
                                             "span",
@@ -63175,12 +63546,15 @@ var render = function() {
                                         },
                                         [
                                           _c("text-color-picker", {
-                                            staticClass: "pt-1",
+                                            staticClass: "py-1",
                                             attrs: {
-                                              model:
-                                                _vm.interactiveElementData[
-                                                  _vm.layerIndex
-                                                ].style.color
+                                              id: "textColor",
+                                              model: _vm.ieStyle.color
+                                            },
+                                            on: {
+                                              change: function(value) {
+                                                _vm.ieStyle.color = value
+                                              }
                                             },
                                             scopedSlots: _vm._u(
                                               [
@@ -63200,13 +63574,299 @@ var render = function() {
                                             )
                                           }),
                                           _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "form-group" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "label",
+                                                    {
+                                                      staticClass:
+                                                        "col-4 label",
+                                                      attrs: { for: "" }
+                                                    },
+                                                    [_vm._v("Size")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-8" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group ie"
+                                                        },
+                                                        [
+                                                          _c("input", {
+                                                            directives: [
+                                                              {
+                                                                name: "model",
+                                                                rawName:
+                                                                  "v-model",
+                                                                value:
+                                                                  _vm.ieStyle
+                                                                    .fontSize,
+                                                                expression:
+                                                                  "ieStyle.fontSize"
+                                                              }
+                                                            ],
+                                                            staticClass:
+                                                              "form-control col-4",
+                                                            attrs: {
+                                                              type: "text"
+                                                            },
+                                                            domProps: {
+                                                              value:
+                                                                _vm.ieStyle
+                                                                  .fontSize
+                                                            },
+                                                            on: {
+                                                              input: function(
+                                                                $event
+                                                              ) {
+                                                                if (
+                                                                  $event.target
+                                                                    .composing
+                                                                ) {
+                                                                  return
+                                                                }
+                                                                _vm.$set(
+                                                                  _vm.ieStyle,
+                                                                  "fontSize",
+                                                                  $event.target
+                                                                    .value
+                                                                )
+                                                              }
+                                                            }
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "input-group-append"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "input-group-text vx-text-color"
+                                                                },
+                                                                [_vm._v("px")]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "form-group" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "label",
+                                                    {
+                                                      staticClass:
+                                                        "col-4 label",
+                                                      attrs: { for: "" }
+                                                    },
+                                                    [_vm._v("Weight")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-8" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group ie"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "select",
+                                                            {
+                                                              directives: [
+                                                                {
+                                                                  name: "model",
+                                                                  rawName:
+                                                                    "v-model",
+                                                                  value:
+                                                                    _vm.ieStyle
+                                                                      .fontWeight,
+                                                                  expression:
+                                                                    "ieStyle.fontWeight"
+                                                                }
+                                                              ],
+                                                              staticClass:
+                                                                "form-control col-6",
+                                                              on: {
+                                                                change: function(
+                                                                  $event
+                                                                ) {
+                                                                  var $$selectedVal = Array.prototype.filter
+                                                                    .call(
+                                                                      $event
+                                                                        .target
+                                                                        .options,
+                                                                      function(
+                                                                        o
+                                                                      ) {
+                                                                        return o.selected
+                                                                      }
+                                                                    )
+                                                                    .map(
+                                                                      function(
+                                                                        o
+                                                                      ) {
+                                                                        var val =
+                                                                          "_value" in
+                                                                          o
+                                                                            ? o._value
+                                                                            : o.value
+                                                                        return val
+                                                                      }
+                                                                    )
+                                                                  _vm.$set(
+                                                                    _vm.ieStyle,
+                                                                    "fontWeight",
+                                                                    $event
+                                                                      .target
+                                                                      .multiple
+                                                                      ? $$selectedVal
+                                                                      : $$selectedVal[0]
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value: "100"
+                                                                  }
+                                                                },
+                                                                [_vm._v("100")]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value: "200"
+                                                                  }
+                                                                },
+                                                                [_vm._v("200")]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value: "300"
+                                                                  }
+                                                                },
+                                                                [_vm._v("300")]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value: "400"
+                                                                  }
+                                                                },
+                                                                [_vm._v("400")]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value: "500"
+                                                                  }
+                                                                },
+                                                                [_vm._v("500")]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value: "600"
+                                                                  }
+                                                                },
+                                                                [_vm._v("600")]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value: "700"
+                                                                  }
+                                                                },
+                                                                [_vm._v("700")]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value: "800"
+                                                                  }
+                                                                },
+                                                                [_vm._v("800")]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value: "900"
+                                                                  }
+                                                                },
+                                                                [_vm._v("900")]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
                                           _c("bg-color-picker", {
-                                            staticClass: "pt-1",
                                             attrs: {
-                                              model:
-                                                _vm.interactiveElementData[
-                                                  _vm.layerIndex
-                                                ].style.backgroundColor
+                                              id: "bgColor",
+                                              model: _vm.ieStyle.backgroundColor
+                                            },
+                                            on: {
+                                              change: function(value) {
+                                                _vm.ieStyle.backgroundColor = value
+                                              }
                                             },
                                             scopedSlots: _vm._u(
                                               [
@@ -63237,12 +63897,12 @@ var render = function() {
                                           staticClass: "list-group-item",
                                           attrs: {
                                             "data-toggle": "collapse",
-                                            "data-target": "#padding"
+                                            "data-target": "#border"
                                           }
                                         },
                                         [
                                           _vm._v(
-                                            "\n                                                    Padding\n                                                    "
+                                            "\n                                                    Border\n                                                    "
                                           ),
                                           _c(
                                             "span",
@@ -63260,13 +63920,391 @@ var render = function() {
                                         "div",
                                         {
                                           staticClass: "content collapse",
-                                          attrs: { id: "padding" }
+                                          attrs: { id: "border" }
                                         },
                                         [
-                                          _vm._v(
-                                            "\n                                                    Editor Form Here\n                                                "
+                                          _c(
+                                            "div",
+                                            { staticClass: "form-group" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "label",
+                                                    {
+                                                      staticClass:
+                                                        "label col-4 pt-1",
+                                                      attrs: { for: "" }
+                                                    },
+                                                    [_vm._v("Radius")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-8" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group ie"
+                                                        },
+                                                        [
+                                                          _c("input", {
+                                                            directives: [
+                                                              {
+                                                                name: "model",
+                                                                rawName:
+                                                                  "v-model",
+                                                                value:
+                                                                  _vm.ieStyle
+                                                                    .borderRadius,
+                                                                expression:
+                                                                  "ieStyle.borderRadius"
+                                                              }
+                                                            ],
+                                                            staticClass:
+                                                              "form-control col-4",
+                                                            attrs: {
+                                                              type: "text"
+                                                            },
+                                                            domProps: {
+                                                              value:
+                                                                _vm.ieStyle
+                                                                  .borderRadius
+                                                            },
+                                                            on: {
+                                                              input: function(
+                                                                $event
+                                                              ) {
+                                                                if (
+                                                                  $event.target
+                                                                    .composing
+                                                                ) {
+                                                                  return
+                                                                }
+                                                                _vm.$set(
+                                                                  _vm.ieStyle,
+                                                                  "borderRadius",
+                                                                  $event.target
+                                                                    .value
+                                                                )
+                                                              }
+                                                            }
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "input-group-append"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "input-group-text vx-text-color"
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      _vm
+                                                                        .measurement
+                                                                        .percent
+                                                                    )
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "form-group" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "label",
+                                                    {
+                                                      staticClass:
+                                                        "col-4 label",
+                                                      attrs: { for: "" }
+                                                    },
+                                                    [_vm._v("Width")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-8" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group ie"
+                                                        },
+                                                        [
+                                                          _c("input", {
+                                                            directives: [
+                                                              {
+                                                                name: "model",
+                                                                rawName:
+                                                                  "v-model",
+                                                                value:
+                                                                  _vm.ieStyle
+                                                                    .borderWidth,
+                                                                expression:
+                                                                  "ieStyle.borderWidth"
+                                                              }
+                                                            ],
+                                                            staticClass:
+                                                              "form-control col-4",
+                                                            attrs: {
+                                                              type: "text"
+                                                            },
+                                                            domProps: {
+                                                              value:
+                                                                _vm.ieStyle
+                                                                  .borderWidth
+                                                            },
+                                                            on: {
+                                                              input: function(
+                                                                $event
+                                                              ) {
+                                                                if (
+                                                                  $event.target
+                                                                    .composing
+                                                                ) {
+                                                                  return
+                                                                }
+                                                                _vm.$set(
+                                                                  _vm.ieStyle,
+                                                                  "borderWidth",
+                                                                  $event.target
+                                                                    .value
+                                                                )
+                                                              }
+                                                            }
+                                                          }),
+                                                          _vm._v(" "),
+                                                          _c(
+                                                            "div",
+                                                            {
+                                                              staticClass:
+                                                                "input-group-append"
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "input-group-text vx-text-color"
+                                                                },
+                                                                [_vm._v("px")]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("text-color-picker", {
+                                            attrs: {
+                                              id: "borderColor",
+                                              model: _vm.ieStyle.borderColor
+                                            },
+                                            on: {
+                                              change: function(value) {
+                                                _vm.ieStyle.borderColor = value
+                                              }
+                                            },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "label",
+                                                  fn: function() {
+                                                    return [_vm._v("Color")]
+                                                  },
+                                                  proxy: true
+                                                }
+                                              ],
+                                              null,
+                                              false,
+                                              3087181446
+                                            )
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            { staticClass: "form-group my-2" },
+                                            [
+                                              _c(
+                                                "div",
+                                                { staticClass: "row" },
+                                                [
+                                                  _c(
+                                                    "label",
+                                                    {
+                                                      staticClass:
+                                                        "col-4 label",
+                                                      attrs: { for: "" }
+                                                    },
+                                                    [_vm._v("Style")]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-8" },
+                                                    [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "input-group ie"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "select",
+                                                            {
+                                                              directives: [
+                                                                {
+                                                                  name: "model",
+                                                                  rawName:
+                                                                    "v-model",
+                                                                  value:
+                                                                    _vm.ieStyle
+                                                                      .borderStyle,
+                                                                  expression:
+                                                                    "ieStyle.borderStyle"
+                                                                }
+                                                              ],
+                                                              staticClass:
+                                                                "form-control col-6",
+                                                              on: {
+                                                                change: function(
+                                                                  $event
+                                                                ) {
+                                                                  var $$selectedVal = Array.prototype.filter
+                                                                    .call(
+                                                                      $event
+                                                                        .target
+                                                                        .options,
+                                                                      function(
+                                                                        o
+                                                                      ) {
+                                                                        return o.selected
+                                                                      }
+                                                                    )
+                                                                    .map(
+                                                                      function(
+                                                                        o
+                                                                      ) {
+                                                                        var val =
+                                                                          "_value" in
+                                                                          o
+                                                                            ? o._value
+                                                                            : o.value
+                                                                        return val
+                                                                      }
+                                                                    )
+                                                                  _vm.$set(
+                                                                    _vm.ieStyle,
+                                                                    "borderStyle",
+                                                                    $event
+                                                                      .target
+                                                                      .multiple
+                                                                      ? $$selectedVal
+                                                                      : $$selectedVal[0]
+                                                                  )
+                                                                }
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value: ""
+                                                                  }
+                                                                },
+                                                                [_vm._v("None")]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "solid"
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Solid"
+                                                                  )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "dotted"
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Dotted"
+                                                                  )
+                                                                ]
+                                                              ),
+                                                              _vm._v(" "),
+                                                              _c(
+                                                                "option",
+                                                                {
+                                                                  attrs: {
+                                                                    value:
+                                                                      "double"
+                                                                  }
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    "Double"
+                                                                  )
+                                                                ]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
                                           )
-                                        ]
+                                        ],
+                                        1
                                       )
                                     ])
                                   ])
@@ -63330,10 +64368,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94&scoped=true&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94& ***!
+  \**************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -63345,33 +64383,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-12 mb-1", class: _vm.classes }, [
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "label",
-        { staticClass: "col-4 lable pt-1", attrs: { for: "" } },
-        [_vm._t("label", [_vm._v("Color")])],
-        2
-      ),
-      _vm._v(" "),
-      _vm._m(0)
-    ])
-  ])
+  return _c(
+    "div",
+    {
+      staticClass: "form-group mb-1",
+      class: _vm.classes,
+      attrs: { id: _vm.id }
+    },
+    [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "label",
+          { staticClass: "col-4 lable pt-1", attrs: { for: "" } },
+          [_vm._t("label", [_vm._v("Color")])],
+          2
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-8" }, [
+          _c("div", { staticClass: "input-group ie my-colorpicker" }, [
+            _c("input", {
+              staticClass: "form-control col-5",
+              attrs: { type: "text" },
+              domProps: { value: _vm.model }
+            }),
+            _vm._v(" "),
+            _vm._m(0)
+          ])
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-8" }, [
-      _c("div", { staticClass: "input-group color my-colorpicker2" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "text" } }),
-        _vm._v(" "),
-        _c("div", { staticClass: "input-group-append" }, [
-          _c("span", { staticClass: "input-group-text" }, [
-            _c("i", { staticClass: "fas fa-square" })
-          ])
-        ])
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-square" })
       ])
     ])
   }
@@ -94414,11 +95464,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ColorPicker_vue_vue_type_template_id_023f0f94_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColorPicker.vue?vue&type=template&id=023f0f94&scoped=true& */ "./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94&scoped=true&");
+/* harmony import */ var _ColorPicker_vue_vue_type_template_id_023f0f94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColorPicker.vue?vue&type=template&id=023f0f94& */ "./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94&");
 /* harmony import */ var _ColorPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ColorPicker.vue?vue&type=script&lang=js& */ "./resources/js/components/ColorPicker.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _ColorPicker_vue_vue_type_style_index_0_id_023f0f94_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ColorPicker.vue?vue&type=style&index=0&id=023f0f94&lang=scss&scoped=true& */ "./resources/js/components/ColorPicker.vue?vue&type=style&index=0&id=023f0f94&lang=scss&scoped=true&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -94426,13 +95474,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _ColorPicker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ColorPicker_vue_vue_type_template_id_023f0f94_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ColorPicker_vue_vue_type_template_id_023f0f94_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _ColorPicker_vue_vue_type_template_id_023f0f94___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ColorPicker_vue_vue_type_template_id_023f0f94___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "023f0f94",
+  null,
   null
   
 )
@@ -94458,35 +95506,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ColorPicker.vue?vue&type=style&index=0&id=023f0f94&lang=scss&scoped=true&":
-/*!***********************************************************************************************************!*\
-  !*** ./resources/js/components/ColorPicker.vue?vue&type=style&index=0&id=023f0f94&lang=scss&scoped=true& ***!
-  \***********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_id_023f0f94_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--8-2!../../../node_modules/sass-loader/dist/cjs.js??ref--8-3!../../../node_modules/vue-loader/lib??vue-loader-options!./ColorPicker.vue?vue&type=style&index=0&id=023f0f94&lang=scss&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ColorPicker.vue?vue&type=style&index=0&id=023f0f94&lang=scss&scoped=true&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_id_023f0f94_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_id_023f0f94_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_id_023f0f94_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_id_023f0f94_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_2_node_modules_sass_loader_dist_cjs_js_ref_8_3_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_style_index_0_id_023f0f94_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94&scoped=true&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94&scoped=true& ***!
-  \********************************************************************************************/
+/***/ "./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94& ***!
+  \********************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_023f0f94_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ColorPicker.vue?vue&type=template&id=023f0f94&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_023f0f94_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_023f0f94___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ColorPicker.vue?vue&type=template&id=023f0f94& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ColorPicker.vue?vue&type=template&id=023f0f94&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_023f0f94___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_023f0f94_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_023f0f94___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
