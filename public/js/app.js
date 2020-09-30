@@ -4171,15 +4171,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Layouts_StudioLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/StudioLayout */ "./resources/js/Layouts/StudioLayout.vue");
-/* harmony import */ var _components_InteractiveSidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/InteractiveSidebar */ "./resources/js/components/InteractiveSidebar.vue");
-/* harmony import */ var _components_IonRangeSlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/IonRangeSlider */ "./resources/js/components/IonRangeSlider.vue");
-/* harmony import */ var _components_VideoSec__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/VideoSec */ "./resources/js/components/VideoSec.vue");
-/* harmony import */ var _components_interactive_elements_IElement__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/interactive-elements/IElement */ "./resources/js/components/interactive-elements/IElement.vue");
-/* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/ColorPicker */ "./resources/js/components/ColorPicker.vue");
-/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-range-component/dist/vue-range-slider.css */ "./node_modules/vue-range-component/dist/vue-range-slider.css");
-/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var vue_range_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-range-component */ "./node_modules/vue-range-component/dist/vue-range-slider.esm.js");
+/* harmony import */ var _plugin_Date__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../plugin/Date */ "./resources/js/plugin/Date.js");
+/* harmony import */ var _Layouts_StudioLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layouts/StudioLayout */ "./resources/js/Layouts/StudioLayout.vue");
+/* harmony import */ var _components_InteractiveSidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/InteractiveSidebar */ "./resources/js/components/InteractiveSidebar.vue");
+/* harmony import */ var _components_IonRangeSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/IonRangeSlider */ "./resources/js/components/IonRangeSlider.vue");
+/* harmony import */ var _components_VideoSec__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/VideoSec */ "./resources/js/components/VideoSec.vue");
+/* harmony import */ var _components_interactive_elements_IElement__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/interactive-elements/IElement */ "./resources/js/components/interactive-elements/IElement.vue");
+/* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/ColorPicker */ "./resources/js/components/ColorPicker.vue");
+/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-range-component/dist/vue-range-slider.css */ "./node_modules/vue-range-component/dist/vue-range-slider.css");
+/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var vue_range_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-range-component */ "./node_modules/vue-range-component/dist/vue-range-slider.esm.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4599,6 +4600,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -4614,22 +4624,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['page_title'],
   components: {
-    StudioLayout: _Layouts_StudioLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    InteractiveSidebar: _components_InteractiveSidebar__WEBPACK_IMPORTED_MODULE_1__["default"],
-    IonSlider: _components_IonRangeSlider__WEBPACK_IMPORTED_MODULE_2__["default"],
-    VideoSection: _components_VideoSec__WEBPACK_IMPORTED_MODULE_3__["default"],
-    IElement: _components_interactive_elements_IElement__WEBPACK_IMPORTED_MODULE_4__["default"],
-    TextColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_5__["default"],
-    BgColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_5__["default"],
-    VPositionSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_7__["default"],
-    HPositionSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_7__["default"]
+    StudioLayout: _Layouts_StudioLayout__WEBPACK_IMPORTED_MODULE_1__["default"],
+    InteractiveSidebar: _components_InteractiveSidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
+    IonSlider: _components_IonRangeSlider__WEBPACK_IMPORTED_MODULE_3__["default"],
+    VideoSection: _components_VideoSec__WEBPACK_IMPORTED_MODULE_4__["default"],
+    IElement: _components_interactive_elements_IElement__WEBPACK_IMPORTED_MODULE_5__["default"],
+    TextColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_6__["default"],
+    BgColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_6__["default"],
+    VPositionSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_8__["default"],
+    HPositionSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   data: function data() {
     return {
       layerIndex: null,
       video: {
         instance: null,
-        currentTime: ''
+        currentTime: '',
+        duration: 0
       },
       measurement: {
         px: 'px',
@@ -4692,7 +4703,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           from: '00:00:30.00',
           to: '00:02:30.00'
         }
-      }]
+      }],
+      //timeline
+      timelineInstance: null
     };
   },
   watch: {
@@ -4769,18 +4782,18 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var _this = this;
 
       // Get the index of this.interactiveElementData
-      this.layerIndex = index;
+      this.layerIndex = index; // Populate the this.ieStyle data property
+
       Object.entries(this.interactiveElementData[index].style).forEach(function (_ref3) {
         var _ref4 = _slicedToArray(_ref3, 2),
             index = _ref4[0],
             value = _ref4[1];
 
         _this.ieStyle[index] = value.replace(/(px|\%)?$/, '');
-        console.log(value.replace(/(px|\%)?$/, ''));
       });
     },
     removeLayer: function removeLayer(index) {
-      console.log(index);
+      this.layerIndex = null;
       this.interactiveElementData.splice(index, 1);
     },
     insertElement: function insertElement() {
@@ -4797,10 +4810,29 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     isLayerExist: function isLayerExist(index) {// return this.interactiveElementData
     },
     getVideoCurrentTime: function getVideoCurrentTime(time) {
-      this.video.currentTime = time;
+      this.video.currentTime = time; //update timeline slider
+
+      this.timelineInstance.update({
+        from: this.video.instance.getCurrentTime()
+      });
     },
     playerReady: function playerReady(player) {
       this.video.instance = player;
+    },
+    videoPlaying: function videoPlaying(player) {
+      this.video.duration = player.getDuration(); //update timeline slider
+
+      this.timelineInstance.update({
+        max: player.getDuration()
+      });
+    },
+    // timeline
+    timelineReady: function timelineReady(instance) {
+      this.timelineInstance = instance;
+    },
+    prettify: function prettify(sec) {
+      var time = _plugin_Date__WEBPACK_IMPORTED_MODULE_0__["default"].spanTime(sec);
+      return time.text;
     }
   },
   mounted: function mounted() {}
@@ -4866,6 +4898,7 @@ __webpack_require__.r(__webpack_exports__);
       $(id + ' .my-colorpicker .fa-square').css('color', this.model);
     }
 
+    console.log(this.model);
     $(id + ' .my-colorpicker').colorpicker();
     $(id + ' .my-colorpicker').on('colorpickerChange', function (event) {
       $(id + ' .my-colorpicker .fa-square').css('color', event.color.toString());
@@ -4986,15 +5019,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    skin: {
-      type: String,
-      "default": function _default() {
-        return "round";
-      },
-      validator: function validator(val) {
-        return ['flat', 'big', 'modern', 'sharp', 'round', 'square'].indexOf(val) > -1;
-      }
-    },
     type: {
       type: String,
       "default": function _default() {
@@ -5013,13 +5037,28 @@ __webpack_require__.r(__webpack_exports__);
         return 100;
       }
     },
+    from: {
+      type: [Number, String],
+      "default": function _default() {
+        return 0;
+      }
+    },
+    to: {
+      type: [Number, String],
+      "default": function _default() {
+        return 100;
+      }
+    },
     step: {
       type: [String, Number],
       "default": function _default() {
         return 1;
       }
     },
-    hideFromTo: {
+    value: {
+      type: [Number, Array]
+    },
+    keyboard: {
       type: Boolean,
       "default": function _default() {
         return true;
@@ -5034,7 +5073,7 @@ __webpack_require__.r(__webpack_exports__);
     gridNum: {
       type: [Number, String],
       "default": function _default() {
-        return 6;
+        return 4;
       }
     },
     gridSnap: {
@@ -5042,7 +5081,148 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return false;
       }
+    },
+    gridMargin: {
+      type: Boolean,
+      "default": function _default() {
+        return true;
+      }
+    },
+    dragInterval: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    minInterval: {
+      type: Number
+    },
+    maxInterval: {
+      type: Number
+    },
+    fromFixed: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    fromMin: {
+      type: Number
+    },
+    fromMax: {
+      type: Number
+    },
+    fromShadow: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    toFixed: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    toMin: {
+      type: Number
+    },
+    toMax: {
+      type: Number
+    },
+    toShadow: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    skin: {
+      type: String,
+      "default": function _default() {
+        return "round";
+      },
+      validator: function validator(val) {
+        return ['flat', 'big', 'modern', 'sharp', 'round', 'square'].indexOf(val) > -1;
+      }
+    },
+    hideMinMax: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    hideFromTo: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    forceEdges: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    extraClasses: {
+      type: String
+    },
+    block: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    //Prettify numbers
+    prettifyEnabled: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    prettifySeparator: {
+      type: String,
+      "default": function _default() {
+        return " ";
+      }
+    },
+    prettify: {
+      type: Function
+    },
+    prefix: {
+      type: String // default: () => "—"
+
+    },
+    postfix: {
+      type: String // default: () => "—"
+
+    },
+    maxPostfix: {
+      type: String // default: () => "—"
+
+    },
+    decorateBoth: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    },
+    valuesSeparator: {
+      type: String,
+      "default": function _default() {
+        return " ; ";
+      }
+    },
+    disable: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
     }
+  },
+  data: function data() {
+    return {
+      sliderInstance: null
+    };
   },
   methods: {
     start: function start(data) {
@@ -5059,25 +5239,65 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    $(this.$el).ionRangeSlider({
-      skin: this.skin,
-      // flat, big, modern, sharp, round, square
+    var slider = $(this.$el);
+    slider.ionRangeSlider({
+      type: this.type,
       min: this.min,
       max: this.max,
-      type: this.type,
+      from: this.from,
+      to: this.to,
+      // Advance setup
+      value: this.value,
       step: this.step,
-      // hide_min_max: true,
-      hide_from_to: this.hideFromTo,
+      keyboard: this.keyboard,
+      // Grid Setup
       grid: this.grid,
       grid_num: this.gridNum,
       // default 4 (set number of grid cells)
       grid_snap: this.gridSnap,
-      // Events
+      grid_margin: this.gridMargin,
+      //Interval Setup
+      drag_interval: this.dragInterval,
+      min_interval: this.minInterval,
+      max_interval: this.maxInterval,
+      //Handles control
+      from_fixed: this.fromFixed,
+      from_min: this.fromMin,
+      from_max: this.fromMax,
+      from_shadow: this.fromShadow,
+      to_fixed: this.toFixed,
+      to_min: this.toMin,
+      to_max: this.toMax,
+      to_shadow: this.toShadow,
+      // UI Control
+      skin: this.skin,
+      // flat, big, modern, sharp, round, square
+      hide_min_max: this.hideMinMax,
+      hide_from_to: this.hideFromTo,
+      force_edges: this.forceEdges,
+      extra_classes: this.extraClasses,
+      block: this.block,
+      //Prettify numbers
+      prettify_enabled: this.prettifyEnabled,
+      prettify_separator: this.prettifySeparator,
+      prettify: this.prettify,
+      prefix: this.prefix,
+      postfix: this.postfix,
+      max_postfix: this.maxPostfix,
+      decorate_both: this.decorateBoth,
+      values_separator: this.valuesSeparator,
+      //Data control
+      input_values_separator: this.inputValuesSeparator,
+      disable: this.disable,
+      // Callbacks
+      scope: this.scope,
       onStart: this.start,
       onChange: this.change,
       onUpdate: this.update,
       onFinish: this.finish
     });
+    this.sliderInstance = slider.data('ionRangeSlider');
+    this.$emit('ready', this.sliderInstance);
   }
 });
 
@@ -5094,10 +5314,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-range-component/dist/vue-range-slider.css */ "./node_modules/vue-range-component/dist/vue-range-slider.css");
-/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue_range_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-range-component */ "./node_modules/vue-range-component/dist/vue-range-slider.esm.js");
-/* harmony import */ var _YoutubeIframe_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./YoutubeIframe.vue */ "./resources/js/components/YoutubeIframe.vue");
+/* harmony import */ var _plugin_Date__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../plugin/Date */ "./resources/js/plugin/Date.js");
+/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-range-component/dist/vue-range-slider.css */ "./node_modules/vue-range-component/dist/vue-range-slider.css");
+/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_range_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-range-component */ "./node_modules/vue-range-component/dist/vue-range-slider.esm.js");
+/* harmony import */ var _YoutubeIframe_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./YoutubeIframe.vue */ "./resources/js/components/YoutubeIframe.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -5194,11 +5415,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    YoutubeIframe: _YoutubeIframe_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    SeekBar: vue_range_component__WEBPACK_IMPORTED_MODULE_2__["default"],
-    VolumeSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_2__["default"]
+    YoutubeIframe: _YoutubeIframe_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    SeekBar: vue_range_component__WEBPACK_IMPORTED_MODULE_3__["default"],
+    VolumeSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   watch: {
     seekBarValue: function seekBarValue(nData, oData) {
@@ -5241,8 +5463,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       playerDuration: 0,
       playerVolume: 100,
       timeText: {
-        duration: '00:00:00',
-        current: '00:00:00'
+        duration: '00:00',
+        current: '00:00'
       }
     };
   },
@@ -5274,13 +5496,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // Triggers when the the video is played by click the video screen
       this.playerDuration = this.playerInstance.getDuration();
       this.seekBarValue = this.playerInstance.getCurrentTime();
-      this.timeText.duration = this.spanTime(this.playerInstance.getDuration()).text;
+      this.timeText.duration = _plugin_Date__WEBPACK_IMPORTED_MODULE_1__["default"].spanTime(this.playerInstance.getDuration()).text;
       var playPauseIconClass = this.$refs.playPauseIcon.classList;
       playPauseIconClass.remove('fa-play');
       playPauseIconClass.add('fa-pause'); // Changing the volume icon
 
       this.changeVolumeIcon();
       this.updateSeekBarTime(true);
+      this.$emit('playing', this.playerInstance);
     },
     paused: function paused() {
       // Triggers when the the video is played by click the video screen
@@ -5296,14 +5519,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (update) {
         this.seekBarTimeInterval = setInterval(function () {
-          var curTime = _this.spanTime(_this.playerInstance.getCurrentTime()).text;
-
-          console.log(_this.playerInstance.getCurrentTime());
-
-          _this.$emit('get-current-time', curTime);
-
+          var curTime = _plugin_Date__WEBPACK_IMPORTED_MODULE_1__["default"].spanTime(_this.playerInstance.getCurrentTime()).text;
           _this.seekBarValue = _this.playerInstance.getCurrentTime();
           _this.timeText.current = curTime;
+
+          _this.$emit('get-current-time', curTime);
         }, 100);
       } else {
         clearInterval(this.seekBarTimeInterval);
@@ -5362,18 +5582,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         volumeIcon.remove('fa-volume-down');
         volumeIcon.add('fa-volume-off');
       }
-    },
-    spanTime: function spanTime(time) {
-      var paramType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'seconds';
-      var timeConv = new Date(time * 1000).toISOString().substr(11, 8);
-      var split = timeConv.split(':'); // console.log(split);
-
-      return {
-        h: split[0],
-        m: split[1],
-        s: split[2],
-        text: timeConv
-      };
     },
     error: function error() {}
   }
@@ -62504,7 +62712,8 @@ var render = function() {
                         _c("video-section", {
                           on: {
                             ready: _vm.playerReady,
-                            "get-current-time": _vm.getVideoCurrentTime
+                            "get-current-time": _vm.getVideoCurrentTime,
+                            playing: _vm.videoPlaying
                           },
                           scopedSlots: _vm._u([
                             {
@@ -62560,7 +62769,17 @@ var render = function() {
                                   { staticClass: "col-md-6 pl-0 pr-0" },
                                   [
                                     _c("ion-slider", {
-                                      attrs: { skin: "square", grid: true }
+                                      attrs: {
+                                        skin: "square",
+                                        grid: true,
+                                        min: 0,
+                                        max: _vm.video.duration,
+                                        step: 0.01,
+                                        from: 0,
+                                        "prettify-enabled": true,
+                                        prettify: _vm.prettify
+                                      },
+                                      on: { ready: _vm.timelineReady }
                                     })
                                   ],
                                   1
@@ -62844,15 +63063,15 @@ var render = function() {
                             {
                               staticClass: "nav-link",
                               attrs: {
-                                id: "customization-tab",
-                                href: "#customization-panel",
+                                id: "design-tab",
+                                href: "#design-panel",
                                 role: "tab",
                                 "data-toggle": "tab",
-                                "aria-controls": "customization-panel",
+                                "aria-controls": "design-panel",
                                 "aria-selected": "false"
                               }
                             },
-                            [_vm._v("Customization")]
+                            [_vm._v("Design")]
                           )
                         ])
                       ]),
@@ -63259,9 +63478,9 @@ var render = function() {
                                 {
                                   staticClass: "tab-panel fade",
                                   attrs: {
-                                    id: "customization-panel",
+                                    id: "design-panel",
                                     role: "tabpanel",
-                                    "aria-describedby": "customization-tab"
+                                    "aria-describedby": "design-tab"
                                   }
                                 },
                                 [
@@ -64760,7 +64979,7 @@ var render = function() {
               "dot-size": 10,
               min: 0.0,
               max: _vm.playerDuration,
-              step: 0.1,
+              step: 0.01,
               tooltip: false,
               "bg-style": _vm.seekBarSetting.bgStyle,
               "slider-style": _vm.seekBarSetting.sliderStyle,
@@ -95955,6 +96174,56 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IElement_vue_vue_type_template_id_67575425___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/plugin/Date.js":
+/*!*************************************!*\
+  !*** ./resources/js/plugin/Date.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var DateObj = /*#__PURE__*/function () {
+  function DateObj() {
+    _classCallCheck(this, DateObj);
+  }
+
+  _createClass(DateObj, [{
+    key: "spanTime",
+    value: function spanTime(time) {
+      var paramType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'seconds';
+      var result = {},
+          h = '';
+      var timeConv = new Date(time * 1000).toISOString().substr(11, 8);
+      var split = timeConv.split(':');
+      result = {
+        h: split[0],
+        m: split[1],
+        s: split[2]
+      };
+      if (parseInt(result.h) > 0) h = result.h + ':';
+      result['text'] = h + result.m + ':' + result.s;
+      return result;
+    }
+  }]);
+
+  return DateObj;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new DateObj());
 
 /***/ }),
 

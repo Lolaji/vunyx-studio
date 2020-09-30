@@ -11,13 +11,6 @@
 
     export default {
         props: {
-            skin: {
-                type: String,
-                default: () => "round",
-                validator: function validator(val) {
-                    return ['flat', 'big', 'modern', 'sharp', 'round', 'square'].indexOf(val) > -1;
-                }
-            },
             type: {
                 type: String,
                 default: () => 'single',
@@ -30,13 +23,24 @@
                 type: [Number, String],
                 default: () => 100
             },
+            from: {
+                type: [Number, String],
+                default: () => 0
+            },
+            to: {
+                type: [Number, String],
+                default: () => 100
+            },
             step: {
                 type: [String, Number],
                 default: () => 1
             },
-            hideFromTo: {
+            value: {
+                type: [Number, Array],
+            },
+            keyboard: {
                 type: Boolean,
-                default: () => true,
+                default: () => true
             },
             grid: {
                 type: Boolean,
@@ -44,11 +48,124 @@
             },
             gridNum: {
                 type: [Number, String],
-                default: () => 6
+                default: () => 4
             },
             gridSnap: {
                 type: Boolean,
                 default: () => false
+            },
+            gridMargin: {
+                type: Boolean,
+                default: () => true
+            },
+            dragInterval: {
+                type: Boolean,
+                default: () => false
+            },
+            minInterval: {
+                type: Number,
+            },
+            maxInterval: {
+                type: Number,
+            },
+            
+            fromFixed: {
+                type: Boolean,
+                default: () => false
+            },
+            fromMin: {
+                type: Number
+            },
+            fromMax: {
+                type: Number
+            },
+            fromShadow: {
+                type: Boolean,
+                default: () => false
+            },
+            toFixed: {
+                type: Boolean,
+                default: () => false
+            },
+            toMin: {
+                type: Number
+            },
+            toMax: {
+                type: Number
+            },
+            toShadow: {
+                type: Boolean,
+                default: () => false
+            },
+
+            skin: {
+                type: String,
+                default: () => "round",
+                validator: function validator(val) {
+                    return ['flat', 'big', 'modern', 'sharp', 'round', 'square'].indexOf(val) > -1;
+                }
+            },
+            hideMinMax: {
+                type: Boolean,
+                default: () => false
+            },
+            hideFromTo: {
+                type: Boolean,
+                default: () => false,
+            },
+            forceEdges: {
+                type: Boolean,
+                default: () => false,
+            },
+            extraClasses: {
+                type: String,
+            },
+            block: {
+                type: Boolean,
+                default: () => false
+            },
+
+            //Prettify numbers
+            prettifyEnabled: {
+                type: Boolean,
+                default: () => false
+            },
+            prettifySeparator: {
+                type: String,
+                default: () => " "
+            },
+            prettify: {
+                type: Function,
+            },
+            prefix: {
+                type: String,
+                // default: () => "—"
+            },
+            postfix: {
+                type: String,
+                // default: () => "—"
+            },
+            maxPostfix: {
+                type: String,
+                // default: () => "—"
+            },
+            decorateBoth: {
+                type: Boolean,
+                default: () => false
+            },
+
+            valuesSeparator: {
+                type: String,
+                default: () => " ; "
+            },
+            disable: {
+                type: Boolean,
+                default: () => false
+            }
+        },
+        data(){
+            return {
+                sliderInstance: null,
             }
         },
         methods: {
@@ -67,25 +184,75 @@
 
         },
         mounted() {
-            $(this.$el).ionRangeSlider({
-                skin: this.skin, // flat, big, modern, sharp, round, square
+            let slider = $(this.$el);
+
+            slider.ionRangeSlider({
+                type: this.type,
                 min: this.min,
                 max: this.max,
-                type: this.type,
+                from: this.from,
+                to: this.to,
+
+                // Advance setup
+                value: this.value,
                 step: this.step,
-                // hide_min_max: true,
-                hide_from_to: this.hideFromTo,
+                keyboard: this.keyboard,
+
+                // Grid Setup
                 grid: this.grid,
                 grid_num: this.gridNum,        // default 4 (set number of grid cells)
                 grid_snap: this.gridSnap,
+                grid_margin: this.gridMargin,
 
+                //Interval Setup
+                drag_interval: this.dragInterval,
+                min_interval: this.minInterval,
+                max_interval: this.maxInterval,
+
+                //Handles control
+                from_fixed: this.fromFixed,
+                from_min: this.fromMin,
+                from_max: this.fromMax,
+                from_shadow: this.fromShadow,
+                to_fixed: this.toFixed,
+                to_min: this.toMin,
+                to_max: this.toMax,
+                to_shadow: this.toShadow,
+
+                // UI Control
+                skin: this.skin, // flat, big, modern, sharp, round, square
+                hide_min_max: this.hideMinMax,
+                hide_from_to: this.hideFromTo,
+                force_edges: this.forceEdges,
+                extra_classes: this.extraClasses,
+                block: this.block,
+
+                //Prettify numbers
+                prettify_enabled: this.prettifyEnabled,
+                prettify_separator: this.prettifySeparator,
+                prettify: this.prettify,
+                prefix: this.prefix,
+                postfix: this.postfix,
+                max_postfix: this.maxPostfix,
+                decorate_both: this.decorateBoth,
+                values_separator: this.valuesSeparator,
+
+                //Data control
+                input_values_separator: this.inputValuesSeparator,
+                disable: this.disable,
                 
-                // Events
+                
+                // Callbacks
+                scope: this.scope,
                 onStart: this.start,
                 onChange: this.change,
                 onUpdate: this.update,
                 onFinish: this.finish,
             });
+
+            this.sliderInstance =  slider.data('ionRangeSlider');
+
+            this.$emit('ready', this.sliderInstance);
         }
     }
 </script>

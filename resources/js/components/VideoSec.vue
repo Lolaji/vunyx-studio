@@ -22,7 +22,7 @@
                     :dot-size="10"
                     :min="0.0"
                     :max="playerDuration"
-                    :step="0.1"
+                    :step="0.01"
                     :tooltip="false"
                     :bg-style="seekBarSetting.bgStyle"
                     :slider-style="seekBarSetting.sliderStyle"
@@ -86,6 +86,7 @@
 
 <script>
 
+    import datePlugin from '../plugin/Date';
     import 'vue-range-component/dist/vue-range-slider.css';
     import VolumeSlider from 'vue-range-component';
     import SeekBar from 'vue-range-component';
@@ -140,8 +141,8 @@
                 playerVolume: 100,
 
                 timeText: {
-                    duration: '00:00:00',
-                    current: '00:00:00'
+                    duration: '00:00',
+                    current: '00:00'
                 },
 
             }
@@ -172,7 +173,7 @@
             playing(){// Triggers when the the video is played by click the video screen
                 this.playerDuration = this.playerInstance.getDuration();
                 this.seekBarValue = this.playerInstance.getCurrentTime();
-                this.timeText.duration = this.spanTime(this.playerInstance.getDuration()).text;
+                this.timeText.duration = datePlugin.spanTime(this.playerInstance.getDuration()).text;
                 
                 let playPauseIconClass = this.$refs.playPauseIcon.classList;
                 
@@ -183,6 +184,8 @@
                 this.changeVolumeIcon();
 
                 this.updateSeekBarTime(true);
+
+                this.$emit('playing', this.playerInstance);
             },
             paused(){// Triggers when the the video is played by click the video screen
                 let playPauseIconClass = this.$refs.playPauseIcon.classList;
@@ -194,11 +197,10 @@
             updateSeekBarTime(update=false){
                 if (update){
                     this.seekBarTimeInterval = setInterval( () => {
-                        let curTime = this.spanTime(this.playerInstance.getCurrentTime()).text
-                        console.log(this.playerInstance.getCurrentTime());
-                        this.$emit( 'get-current-time', curTime);
+                        let curTime = datePlugin.spanTime(this.playerInstance.getCurrentTime()).text
                         this.seekBarValue = this.playerInstance.getCurrentTime();
                         this.timeText.current = curTime;
+                        this.$emit( 'get-current-time', curTime);
                     }, 100);
                 } else {
                     clearInterval(this.seekBarTimeInterval);
@@ -243,17 +245,7 @@
                     volumeIcon.add('fa-volume-off');
                 }
             },
-            spanTime(time, paramType='seconds'){
-                let timeConv = new Date(time * 1000).toISOString().substr(11, 8);
-                let split = timeConv.split(':');
-                // console.log(split);
-                return {
-                    h: split[0],
-                    m: split[1],
-                    s: split[2],
-                    text: timeConv
-                }
-            },
+            
             error() {
 
             }

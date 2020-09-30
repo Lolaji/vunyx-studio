@@ -41,6 +41,7 @@
             if (this.model) {
                 $(id+ ' .my-colorpicker .fa-square').css('color', this.model);
             }
+            console.log(this.model);
             $(id+ ' .my-colorpicker').colorpicker();
 
             $(id+ ' .my-colorpicker').on('colorpickerChange', (event) => {

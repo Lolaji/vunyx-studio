@@ -17,7 +17,8 @@
                             <div class="interactive-main col-md-12">
                                 <video-section
                                     @ready="playerReady"
-                                    @get-current-time="getVideoCurrentTime">
+                                    @get-current-time="getVideoCurrentTime"
+                                    @playing="videoPlaying">
                                         <template #interactiveContainer>
                                             <!-- <a 
                                                 :href="interactiveElementData.buyNow.href"
@@ -54,7 +55,14 @@
                                                 </div> -->
                                                 <ion-slider
                                                     skin="square"
-                                                    :grid="true"></ion-slider>
+                                                    :grid="true"
+                                                    :min="0"
+                                                    :max="video.duration"
+                                                    :step="0.01"
+                                                    :from="0"
+                                                    :prettify-enabled="true"
+                                                    :prettify="prettify"
+                                                    @ready="timelineReady"></ion-slider>
                                             </div>
                                             <div class="col-md-3">&nbsp;</div>
                                         </div>
@@ -132,12 +140,12 @@
 
                                         <a 
                                             class="nav-link" 
-                                            id="customization-tab" 
-                                            href="#customization-panel" 
+                                            id="design-tab" 
+                                            href="#design-panel"
                                             role="tab"
                                             data-toggle="tab"
-                                            aria-controls="customization-panel"
-                                            aria-selected="false">Customization</a>
+                                            aria-controls="design-panel"
+                                            aria-selected="false">Design</a>
                                     </nav>
                                 </div>
                                 <div class="ie-body">
@@ -215,7 +223,7 @@
                                         
                                         </div>
 
-                                        <div class="tab-panel fade" id="customization-panel" role="tabpanel" aria-describedby="customization-tab">
+                                        <div class="tab-panel fade" id="design-panel" role="tabpanel" aria-describedby="design-tab">
                                             <ul class="list-group">
                                                 
                                                 <div>
@@ -407,6 +415,8 @@
 
 <script>
     
+    import datePlugin from '../../plugin/Date';
+
     import StudioLayout from '../../Layouts/StudioLayout';
     import InteractiveSidebar from '../../components/InteractiveSidebar';
 
@@ -442,7 +452,8 @@
                 layerIndex: null,
                 video: {
                     instance: null,
-                    currentTime: ''
+                    currentTime: '',
+                    duration: 0
                 },
                 measurement: {
                     px: 'px',
@@ -518,7 +529,10 @@
                             to: '00:02:30.00'
                         }
                     }
-                ]
+                ],
+
+                //timeline
+                timelineInstance: null,
             }
         },
         watch: {
@@ -596,14 +610,13 @@
             editIE (index) {
                 // Get the index of this.interactiveElementData
                 this.layerIndex = index;
-
+                // Populate the this.ieStyle data property
                 Object.entries(this.interactiveElementData[index].style).forEach(([index, value]) => {
                     this.ieStyle[index] = value.replace(/(px|\%)?$/, '');
-                    console.log(value.replace(/(px|\%)?$/, ''));
                 });
             },
             removeLayer(index) {
-                console.log(index)
+                this.layerIndex = null;
                 this.interactiveElementData.splice(index, 1);
             },
             insertElement() {
@@ -620,14 +633,35 @@
                 this.$refs.iElement.appendChild(instance.$el);
 
             },
-            isLayerExist(index){
+            isLayerExist(index) {
                 // return this.interactiveElementData
             },
             getVideoCurrentTime(time){
                 this.video.currentTime = time;
+                //update timeline slider
+                this.timelineInstance.update({
+                    from: this.video.instance.getCurrentTime(),
+                });
             },
             playerReady(player) {
                 this.video.instance = player
+            },
+            videoPlaying(player) {
+                this.video.duration = player.getDuration();
+                
+                //update timeline slider
+                this.timelineInstance.update({
+                    max: player.getDuration(),
+                });
+            },
+
+            // timeline
+            timelineReady(instance) {
+                this.timelineInstance = instance;
+            },
+            prettify (sec) {
+                let time = datePlugin.spanTime(sec);
+                return time.text;
             }
         },
         mounted() {
