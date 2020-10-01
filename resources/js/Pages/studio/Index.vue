@@ -44,8 +44,8 @@
                                     <div class="interactive-data-section col-md-12">
                                         <!-- Interactive Timeline Ruler -->
                                         <div class="row mb-3">
-                                            <div class="col-md-3">&nbsp;</div>
-                                            <div class="col-md-6 pl-0 pr-0">
+                                            <div class="col-md-2">&nbsp;</div>
+                                            <div class="col-md-8 ie-timeline-container">
                                                 <!-- <div class="row">
                                                     <div class="interactive-timeline ruler">
                                                         <div class="slider" style="margin-left: 1%"></div>
@@ -54,6 +54,7 @@
                                                     </div>
                                                 </div> -->
                                                 <ion-slider
+                                                    extra-classes="vx-timeline"
                                                     skin="square"
                                                     :grid="true"
                                                     :min="0"
@@ -64,7 +65,7 @@
                                                     :prettify="prettify"
                                                     @ready="timelineReady"></ion-slider>
                                             </div>
-                                            <div class="col-md-3">&nbsp;</div>
+                                            <div class="col-md-2">&nbsp;</div>
                                         </div>
 
                                         <!-- Interactive Timeline data position -->
@@ -81,11 +82,11 @@
                                                             <div class="col-md-3">
                                                                 <div class="layer-btn">
                                                                     <button 
-                                                                        @click="editIE(index)"
-                                                                        class="btn btn-xs btn-primary"><i class="fa fa-pencil-alt"></i></button>
-                                                                    <!-- <button 
-                                                                        @click="showHide(index)"
-                                                                        class="btn btn-xs btn-primary"><i class="fa fa-pencil-alt"></i></button> -->
+                                                                        @click="editLayer(index)"
+                                                                        class="btn btn-xs btn-info"><i class="fa fa-pencil-alt"></i></button>
+                                                                    <button 
+                                                                        @click="cloneLayer(index, e)"
+                                                                        class="btn btn-xs btn-primary"><i class="fa fa-clone"></i></button>
                                                                     <button 
                                                                         @click="removeLayer(index)"
                                                                         class="btn btn-xs btn-danger"><i class="fa fa-trash-alt"></i></button>
@@ -106,8 +107,8 @@
                                                             <div class="col-md-3">
                                                                 <div class="time-input">
                                                                     <div class="row pt-2">
-                                                                        <input type="text" v-model="e.time.from" class="col form-control form-control-sm mx-1" placeholder="00:00:00.00">
-                                                                        <input type="text" v-model="e.time.to" class="col form-control form-control-sm mx-1" placeholder="00:00:00.00">
+                                                                        <input type="text" v-model="e.time.from" class="col form-control form-control-sm mx-1" placeholder="HH:MM:SS.MS">
+                                                                        <input type="text" v-model="e.time.to" class="col form-control form-control-sm mx-1" placeholder="HH:MM:SS.MS">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -136,7 +137,7 @@
                                             data-toggle="tab" 
                                             aria-controls="interactive-panel"
                                             role="tab"
-                                            aria-selected="true">Interactive</a>
+                                            aria-selected="true">Interaction</a>
 
                                         <a 
                                             class="nav-link" 
@@ -177,6 +178,7 @@
                                                     <label class="label col-3" for="">Action</label>
                                                     <div class="col-8">
                                                         <select v-model="interactiveElementData[layerIndex].action" class="form-control">
+                                                            <option value="">-- Select Action --</option>
                                                             <option value="1">Link to external webpage</option>
                                                             <option value="2">Link to specific time</option>
                                                         </select>
@@ -186,19 +188,19 @@
 
                                             <div class="form-group" v-if="interactiveElementData[layerIndex].action == 1">
                                                 <div class="row">
-                                                    <label class="label col-3" for="">Hypertext</label>
+                                                    <label class="label col-3" for="">Web Link</label>
                                                     <div class="col-8">
                                                         <input type="url" v-model="interactiveElementData[layerIndex].href" class="form-control" placeholder="https://vunyx.com">
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div v-else>
+                                            <div v-else-if="interactiveElementData[layerIndex].action == 2">
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <label class="label col-3" for="">From</label>
                                                         <div class="col-8">
-                                                            <input type="url" v-model="interactiveElementData[layerIndex].time.from" class="form-control" placeholder="https://vunyx.com">  
+                                                            <input type="url" v-model="interactiveElementData[layerIndex].time.from" class="form-control" placeholder="HH:MM:SS.MS">  
                                                         </div>
                                                     </div>
                                                 </div>
@@ -207,7 +209,7 @@
                                                     <div class="row">
                                                         <label class="label col-3" for="">To</label>
                                                         <div class="col-8">
-                                                            <input type="url" v-model="interactiveElementData[layerIndex].time.to" class="form-control" placeholder="https://vunyx.com">
+                                                            <input type="url" v-model="interactiveElementData[layerIndex].time.to" class="form-control" placeholder="HH:MM:SS.MS">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -579,8 +581,8 @@
                             type: 'link',
                             title: 'Buy Now Link',
                             text: 'Buy Now',
-                            action: 1,
-                            href: '#',
+                            action: '',
+                            href: '',
                             style: {
                                 top: '2%',
                                 left: '2%',
@@ -607,7 +609,7 @@
                         break;
                 }
             },
-            editIE (index) {
+            editLayer (index) {
                 // Get the index of this.interactiveElementData
                 this.layerIndex = index;
                 // Populate the this.ieStyle data property
@@ -615,10 +617,16 @@
                     this.ieStyle[index] = value.replace(/(px|\%)?$/, '');
                 });
             },
+
+            cloneLayer(index, data) {
+                // data.title = ' - clone'
+                this.interactiveElementData.push(data);
+            },
             removeLayer(index) {
                 this.layerIndex = null;
                 this.interactiveElementData.splice(index, 1);
             },
+
             insertElement() {
                 let instance = new LinkButtonClass({
                     propsData: {
@@ -633,9 +641,11 @@
                 this.$refs.iElement.appendChild(instance.$el);
 
             },
+            
             isLayerExist(index) {
                 // return this.interactiveElementData
             },
+
             getVideoCurrentTime(time){
                 this.video.currentTime = time;
                 //update timeline slider

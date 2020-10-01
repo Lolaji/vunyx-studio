@@ -173,7 +173,7 @@
             playing(){// Triggers when the the video is played by click the video screen
                 this.playerDuration = this.playerInstance.getDuration();
                 this.seekBarValue = this.playerInstance.getCurrentTime();
-                this.timeText.duration = datePlugin.spanTime(this.playerInstance.getDuration()).text;
+                this.timeText.duration = datePlugin.spanTime(this.playerInstance.getDuration()).rand;
                 
                 let playPauseIconClass = this.$refs.playPauseIcon.classList;
                 
@@ -197,10 +197,10 @@
             updateSeekBarTime(update=false){
                 if (update){
                     this.seekBarTimeInterval = setInterval( () => {
-                        let curTime = datePlugin.spanTime(this.playerInstance.getCurrentTime()).text
+                        let curTime = datePlugin.spanTime(this.playerInstance.getCurrentTime())
                         this.seekBarValue = this.playerInstance.getCurrentTime();
-                        this.timeText.current = curTime;
-                        this.$emit( 'get-current-time', curTime);
+                        this.timeText.current = curTime.rand;
+                        this.$emit( 'get-current-time', curTime.text);
                     }, 100);
                 } else {
                     clearInterval(this.seekBarTimeInterval);

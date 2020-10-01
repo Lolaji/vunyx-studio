@@ -321,7 +321,7 @@
     .irs--round .irs-single:before {
         position: absolute;
         display: block;
-    content: "";
+        content: "";
         bottom: -6px;
         left: 50%;
         width: 0;
@@ -340,6 +340,26 @@
     .irs--round .irs-grid-text {
         color: silver;
         font-size: 13px;
+    }
+
+    .vx-timeline.irs--square .irs-handle {
+        &::after {
+            content: "";
+            height: 220px;
+            width: 1px;
+            position: absolute;
+            top: -20px;
+            left: 89.2px;
+            background: black;
+            z-index: 999;
+
+            -webkit-transform: rotate(-45deg);
+                -ms-transform: rotate(-45deg);
+                    transform: rotate(-45deg);
+        }
+        &:hover {
+            cursor: ew-resize;
+        }
     }
 
     .main-footer {

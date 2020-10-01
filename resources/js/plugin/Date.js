@@ -1,7 +1,9 @@
 import { result } from "lodash";
 
 class DateObj {
-    constructor () {}
+    constructor() {
+        this.form = 'authomatic';
+    }
 
     spanTime(time, paramType = 'seconds') {
         let result = {},
@@ -14,16 +16,21 @@ class DateObj {
             h: split[0],
             m: split[1],
             s: split[2],
+            text: timeConv
         }
 
         if (parseInt(result.h) > 0)
             h = result.h+':';
 
 
-        result['text'] = h+result.m+':'+result.s;
+        result['rand'] = h+result.m+':'+result.s;
 
 
         return result;
+    }
+
+    display(form) {
+        this.form = form;
     }
 }
 

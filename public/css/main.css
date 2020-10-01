@@ -40743,17 +40743,17 @@ html.os-html>.os-host>.os-scrollbar{
 
 .interactive-data-section > .interactive-layer-container .layer .time-input .form-control::-moz-placeholder {
   color: #ffffff;
-  /* font-size: 13px; */
+  font-size: 11px;
 }
 
 .interactive-data-section > .interactive-layer-container .layer .time-input .form-control:-ms-input-placeholder {
   color: #ffffff;
-  /* font-size: 13px; */
+  font-size: 11px;
 }
 
 .interactive-data-section > .interactive-layer-container .layer .time-input .form-control::placeholder {
   color: #ffffff;
-  /* font-size: 13px; */
+  font-size: 11px;
 }
 
 .interactive-data-section > .interactive-layer-container .layer:hover .layer-btn {
@@ -40764,6 +40764,10 @@ html.os-html>.os-host>.os-scrollbar{
 .interactive-data-section > .interactive-layer-container .layer.active {
   border-radius: 25px;
   border: 1px solid #dad8d8;
+}
+
+.interactive-data-section .ie-timeline-container {
+  padding: 0 3.4rem;
 }
 
 .interactive-timeline {

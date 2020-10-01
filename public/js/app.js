@@ -4608,6 +4608,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
 
 
 
@@ -4753,8 +4755,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             type: 'link',
             title: 'Buy Now Link',
             text: 'Buy Now',
-            action: 1,
-            href: '#',
+            action: '',
+            href: '',
             style: {
               top: '2%',
               left: '2%',
@@ -4778,7 +4780,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           break;
       }
     },
-    editIE: function editIE(index) {
+    editLayer: function editLayer(index) {
       var _this = this;
 
       // Get the index of this.interactiveElementData
@@ -4791,6 +4793,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
         _this.ieStyle[index] = value.replace(/(px|\%)?$/, '');
       });
+    },
+    cloneLayer: function cloneLayer(index, data) {
+      // data.title = ' - clone'
+      this.interactiveElementData.push(data);
     },
     removeLayer: function removeLayer(index) {
       this.layerIndex = null;
@@ -5496,7 +5502,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // Triggers when the the video is played by click the video screen
       this.playerDuration = this.playerInstance.getDuration();
       this.seekBarValue = this.playerInstance.getCurrentTime();
-      this.timeText.duration = _plugin_Date__WEBPACK_IMPORTED_MODULE_1__["default"].spanTime(this.playerInstance.getDuration()).text;
+      this.timeText.duration = _plugin_Date__WEBPACK_IMPORTED_MODULE_1__["default"].spanTime(this.playerInstance.getDuration()).rand;
       var playPauseIconClass = this.$refs.playPauseIcon.classList;
       playPauseIconClass.remove('fa-play');
       playPauseIconClass.add('fa-pause'); // Changing the volume icon
@@ -5519,11 +5525,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (update) {
         this.seekBarTimeInterval = setInterval(function () {
-          var curTime = _plugin_Date__WEBPACK_IMPORTED_MODULE_1__["default"].spanTime(_this.playerInstance.getCurrentTime()).text;
+          var curTime = _plugin_Date__WEBPACK_IMPORTED_MODULE_1__["default"].spanTime(_this.playerInstance.getCurrentTime());
           _this.seekBarValue = _this.playerInstance.getCurrentTime();
-          _this.timeText.current = curTime;
+          _this.timeText.current = curTime.rand;
 
-          _this.$emit('get-current-time', curTime);
+          _this.$emit('get-current-time', curTime.text);
         }, 100);
       } else {
         clearInterval(this.seekBarTimeInterval);
@@ -5742,7 +5748,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".irs--round {\n  height: 50px;\n}\n.irs--round.irs-with-grid {\n  height: 65px;\n}\n.irs--round .irs-line {\n  top: 36px;\n  height: 4px;\n  background-color: #dee4ec;\n  border-radius: 4px;\n}\n.irs--round .irs-bar {\n  top: 36px;\n  height: 4px;\n  background-color: #e1c238;\n}\n.irs--round .irs-bar--single {\n  border-radius: 4px 0 0 4px;\n}\n.irs--round .irs-shadow {\n  height: 4px;\n  bottom: 21px;\n  background-color: rgba(222, 228, 236, 0.5);\n}\n.irs--round .irs-handle {\n  top: 26px;\n  width: 24px;\n  height: 24px;\n  border: 4px solid #e1c238;\n  background-color: white;\n  border-radius: 24px;\n  box-shadow: 0 1px 3px rgba(0, 0, 255, 0.3);\n}\n.irs--round .irs-handle.state_hover,\n.irs--round .irs-handle:hover {\n  background-color: #f0f6ff;\n}\n.irs--round .irs-min,\n.irs--round .irs-max {\n  color: #333;\n  font-size: 14px;\n  line-height: 1;\n  top: 0;\n  padding: 3px 5px;\n  background-color: rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n}\n.irs--round .irs-from,\n.irs--round .irs-to,\n.irs--round .irs-single {\n  font-size: 14px;\n  line-height: 1;\n  text-shadow: none;\n  padding: 3px 5px;\n  background-color: #e1c238;\n  color: white;\n  border-radius: 4px;\n}\n.irs--round .irs-from:before,\n.irs--round .irs-to:before,\n.irs--round .irs-single:before {\n  position: absolute;\n  display: block;\n  content: \"\";\n  bottom: -6px;\n  left: 50%;\n  width: 0;\n  height: 0;\n  margin-left: -3px;\n  overflow: hidden;\n  border: 3px solid transparent;\n  border-top-color: #e1c238;\n}\n.irs--round .irs-grid {\n  height: 25px;\n}\n.irs--round .irs-grid-pol {\n  background-color: #dedede;\n}\n.irs--round .irs-grid-text {\n  color: silver;\n  font-size: 13px;\n}\n.main-footer {\n  margin-top: 0;\n}", ""]);
+exports.push([module.i, ".irs--round {\n  height: 50px;\n}\n.irs--round.irs-with-grid {\n  height: 65px;\n}\n.irs--round .irs-line {\n  top: 36px;\n  height: 4px;\n  background-color: #dee4ec;\n  border-radius: 4px;\n}\n.irs--round .irs-bar {\n  top: 36px;\n  height: 4px;\n  background-color: #e1c238;\n}\n.irs--round .irs-bar--single {\n  border-radius: 4px 0 0 4px;\n}\n.irs--round .irs-shadow {\n  height: 4px;\n  bottom: 21px;\n  background-color: rgba(222, 228, 236, 0.5);\n}\n.irs--round .irs-handle {\n  top: 26px;\n  width: 24px;\n  height: 24px;\n  border: 4px solid #e1c238;\n  background-color: white;\n  border-radius: 24px;\n  box-shadow: 0 1px 3px rgba(0, 0, 255, 0.3);\n}\n.irs--round .irs-handle.state_hover,\n.irs--round .irs-handle:hover {\n  background-color: #f0f6ff;\n}\n.irs--round .irs-min,\n.irs--round .irs-max {\n  color: #333;\n  font-size: 14px;\n  line-height: 1;\n  top: 0;\n  padding: 3px 5px;\n  background-color: rgba(0, 0, 0, 0.1);\n  border-radius: 4px;\n}\n.irs--round .irs-from,\n.irs--round .irs-to,\n.irs--round .irs-single {\n  font-size: 14px;\n  line-height: 1;\n  text-shadow: none;\n  padding: 3px 5px;\n  background-color: #e1c238;\n  color: white;\n  border-radius: 4px;\n}\n.irs--round .irs-from:before,\n.irs--round .irs-to:before,\n.irs--round .irs-single:before {\n  position: absolute;\n  display: block;\n  content: \"\";\n  bottom: -6px;\n  left: 50%;\n  width: 0;\n  height: 0;\n  margin-left: -3px;\n  overflow: hidden;\n  border: 3px solid transparent;\n  border-top-color: #e1c238;\n}\n.irs--round .irs-grid {\n  height: 25px;\n}\n.irs--round .irs-grid-pol {\n  background-color: #dedede;\n}\n.irs--round .irs-grid-text {\n  color: silver;\n  font-size: 13px;\n}\n.vx-timeline.irs--square .irs-handle::after {\n  content: \"\";\n  height: 220px;\n  width: 1px;\n  position: absolute;\n  top: -20px;\n  left: 89.2px;\n  background: black;\n  z-index: 999;\n  transform: rotate(-45deg);\n}\n.vx-timeline.irs--square .irs-handle:hover {\n  cursor: ew-resize;\n}\n.main-footer {\n  margin-top: 0;\n}", ""]);
 
 // exports
 
@@ -62760,16 +62766,20 @@ var render = function() {
                             },
                             [
                               _c("div", { staticClass: "row mb-3" }, [
-                                _c("div", { staticClass: "col-md-3" }, [
+                                _c("div", { staticClass: "col-md-2" }, [
                                   _vm._v(" ")
                                 ]),
                                 _vm._v(" "),
                                 _c(
                                   "div",
-                                  { staticClass: "col-md-6 pl-0 pr-0" },
+                                  {
+                                    staticClass:
+                                      "col-md-8 ie-timeline-container"
+                                  },
                                   [
                                     _c("ion-slider", {
                                       attrs: {
+                                        "extra-classes": "vx-timeline",
                                         skin: "square",
                                         grid: true,
                                         min: 0,
@@ -62785,7 +62795,7 @@ var render = function() {
                                   1
                                 ),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "col-md-3" }, [
+                                _c("div", { staticClass: "col-md-2" }, [
                                   _vm._v(" ")
                                 ])
                               ]),
@@ -62825,12 +62835,12 @@ var render = function() {
                                                     "button",
                                                     {
                                                       staticClass:
-                                                        "btn btn-xs btn-primary",
+                                                        "btn btn-xs btn-info",
                                                       on: {
                                                         click: function(
                                                           $event
                                                         ) {
-                                                          return _vm.editIE(
+                                                          return _vm.editLayer(
                                                             index
                                                           )
                                                         }
@@ -62840,6 +62850,30 @@ var render = function() {
                                                       _c("i", {
                                                         staticClass:
                                                           "fa fa-pencil-alt"
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "button",
+                                                    {
+                                                      staticClass:
+                                                        "btn btn-xs btn-primary",
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          return _vm.cloneLayer(
+                                                            index,
+                                                            e
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("i", {
+                                                        staticClass:
+                                                          "fa fa-clone"
                                                       })
                                                     ]
                                                   ),
@@ -62953,7 +62987,7 @@ var render = function() {
                                                         attrs: {
                                                           type: "text",
                                                           placeholder:
-                                                            "00:00:00.00"
+                                                            "HH:MM:SS.MS"
                                                         },
                                                         domProps: {
                                                           value: e.time.from
@@ -62993,7 +63027,7 @@ var render = function() {
                                                         attrs: {
                                                           type: "text",
                                                           placeholder:
-                                                            "00:00:00.00"
+                                                            "HH:MM:SS.MS"
                                                         },
                                                         domProps: {
                                                           value: e.time.to
@@ -63055,7 +63089,7 @@ var render = function() {
                                 "aria-selected": "true"
                               }
                             },
-                            [_vm._v("Interactive")]
+                            [_vm._v("Interaction")]
                           ),
                           _vm._v(" "),
                           _c(
@@ -63254,6 +63288,12 @@ var render = function() {
                                           [
                                             _c(
                                               "option",
+                                              { attrs: { value: "" } },
+                                              [_vm._v("-- Select Action --")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
                                               { attrs: { value: "1" } },
                                               [
                                                 _vm._v(
@@ -63283,7 +63323,7 @@ var render = function() {
                                               staticClass: "label col-3",
                                               attrs: { for: "" }
                                             },
-                                            [_vm._v("Hypertext")]
+                                            [_vm._v("Web Link")]
                                           ),
                                           _vm._v(" "),
                                           _c("div", { staticClass: "col-8" }, [
@@ -63329,7 +63369,9 @@ var render = function() {
                                           ])
                                         ])
                                       ])
-                                    : _c("div", [
+                                    : _vm.interactiveElementData[_vm.layerIndex]
+                                        .action == 2
+                                    ? _c("div", [
                                         _c(
                                           "div",
                                           { staticClass: "form-group" },
@@ -63365,8 +63407,7 @@ var render = function() {
                                                     staticClass: "form-control",
                                                     attrs: {
                                                       type: "url",
-                                                      placeholder:
-                                                        "https://vunyx.com"
+                                                      placeholder: "HH:MM:SS.MS"
                                                     },
                                                     domProps: {
                                                       value:
@@ -63435,8 +63476,7 @@ var render = function() {
                                                     staticClass: "form-control",
                                                     attrs: {
                                                       type: "url",
-                                                      placeholder:
-                                                        "https://vunyx.com"
+                                                      placeholder: "HH:MM:SS.MS"
                                                     },
                                                     domProps: {
                                                       value:
@@ -63470,6 +63510,7 @@ var render = function() {
                                           ]
                                         )
                                       ])
+                                    : _vm._e()
                                 ]
                               ),
                               _vm._v(" "),
@@ -96199,6 +96240,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var DateObj = /*#__PURE__*/function () {
   function DateObj() {
     _classCallCheck(this, DateObj);
+
+    this.form = 'authomatic';
   }
 
   _createClass(DateObj, [{
@@ -96212,11 +96255,17 @@ var DateObj = /*#__PURE__*/function () {
       result = {
         h: split[0],
         m: split[1],
-        s: split[2]
+        s: split[2],
+        text: timeConv
       };
       if (parseInt(result.h) > 0) h = result.h + ':';
-      result['text'] = h + result.m + ':' + result.s;
+      result['rand'] = h + result.m + ':' + result.s;
       return result;
+    }
+  }, {
+    key: "display",
+    value: function display(form) {
+      this.form = form;
     }
   }]);
 
