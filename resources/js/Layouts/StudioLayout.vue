@@ -28,7 +28,6 @@
 <script>
     require('../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js');
     require('../../assets/plugins/sparklines/sparkline.js');
-    require('moment');
     require('../../assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js');
     require('../../assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js');
     require('../../assets/dist/js/adminlte.js');
@@ -40,7 +39,7 @@
             NavBar,
         },
         mounted(){
-            
+            $('[data-toggle="tooltip"]').tooltip();
         }
     }
 </script>

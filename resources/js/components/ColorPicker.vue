@@ -5,12 +5,25 @@
                 <slot name="label">Color</slot>
             </label>
             <div class="col-8">
-                <div class="input-group ie my-colorpicker">
-                    <input :value="model" type="text" class="form-control col-5">
+                <div class="row">
+                    <slot name="left-content"></slot>
+                    <div class="col-8">
+                        <div class="input-group ie my-colorpicker">
+                            <input :value="model" type="text" class="form-control">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-square"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <slot name="right-content"></slot>
+                </div>
+                <!-- <slot name="left-content"></slot> -->
+                <!-- <div class="input-group ie my-colorpicker">
+                    <input :value="model" type="text" class="form-control">
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="fas fa-square"></i></span>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

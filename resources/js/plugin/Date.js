@@ -29,8 +29,32 @@ class DateObj {
         return result;
     }
 
-    display(form) {
-        this.form = form;
+    spanTimeWithMillisec(time, type="seconds")
+    {
+        let result= {},
+            hours = 0,
+            minutes = 0,
+            seconds = 0,
+            text = '00:00:00.00';
+        
+        switch (type) {
+            case 'seconds':
+                hours = Math.floor(time / 60 / 60),
+                minutes = Math.floor(time / 60) - (hours * 60),
+                seconds = parseFloat(time % 60).toFixed(2);
+                break;
+        }
+        
+        text = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+
+        result = {
+            h: hours,
+            m: minutes,
+            s: seconds,
+            text: text
+        }
+
+        return result;
     }
 }
 

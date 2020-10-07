@@ -6,6 +6,7 @@ window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('jquery');
+    window.moment = require('moment')
     // require('../assets/plugins/jquery-ui/jquery-ui.min.js');
     // $.widget.bridge('uibutton', $.ui.button);
 

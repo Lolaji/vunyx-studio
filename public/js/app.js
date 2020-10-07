@@ -3008,8 +3008,6 @@ __webpack_require__(/*! ../../assets/plugins/bootstrap/js/bootstrap.bundle.min.j
 
 __webpack_require__(/*! ../../assets/plugins/sparklines/sparkline.js */ "./resources/assets/plugins/sparklines/sparkline.js");
 
-__webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-
 __webpack_require__(/*! ../../assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js */ "./resources/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js");
 
 __webpack_require__(/*! ../../assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js */ "./resources/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js");
@@ -3023,7 +3021,9 @@ __webpack_require__(/*! ../../assets/dist/js/demo.js */ "./resources/assets/dist
   components: {
     NavBar: _components_NavBar__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    $('[data-toggle="tooltip"]').tooltip();
+  }
 });
 
 /***/ }),
@@ -4177,10 +4177,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_IonRangeSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/IonRangeSlider */ "./resources/js/components/IonRangeSlider.vue");
 /* harmony import */ var _components_VideoSec__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/VideoSec */ "./resources/js/components/VideoSec.vue");
 /* harmony import */ var _components_interactive_elements_IElement__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/interactive-elements/IElement */ "./resources/js/components/interactive-elements/IElement.vue");
-/* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/ColorPicker */ "./resources/js/components/ColorPicker.vue");
-/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-range-component/dist/vue-range-slider.css */ "./node_modules/vue-range-component/dist/vue-range-slider.css");
-/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var vue_range_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-range-component */ "./node_modules/vue-range-component/dist/vue-range-slider.esm.js");
+/* harmony import */ var _components_InteractiveLayer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/InteractiveLayer */ "./resources/js/components/InteractiveLayer.vue");
+/* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/ColorPicker */ "./resources/js/components/ColorPicker.vue");
+/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-range-component/dist/vue-range-slider.css */ "./node_modules/vue-range-component/dist/vue-range-slider.css");
+/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var vue_range_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-range-component */ "./node_modules/vue-range-component/dist/vue-range-slider.esm.js");
+/* harmony import */ var _plugin_youtube_data_api_index__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../plugin/youtube-data-api/index */ "./resources/js/plugin/youtube-data-api/index.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4589,27 +4591,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 
 
 
@@ -4631,10 +4614,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     IonSlider: _components_IonRangeSlider__WEBPACK_IMPORTED_MODULE_3__["default"],
     VideoSection: _components_VideoSec__WEBPACK_IMPORTED_MODULE_4__["default"],
     IElement: _components_interactive_elements_IElement__WEBPACK_IMPORTED_MODULE_5__["default"],
-    TextColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_6__["default"],
-    BgColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_6__["default"],
-    VPositionSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_8__["default"],
-    HPositionSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_8__["default"]
+    InteractiveLayer: _components_InteractiveLayer__WEBPACK_IMPORTED_MODULE_6__["default"],
+    TextColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_7__["default"],
+    BgColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_7__["default"],
+    VPositionSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_9__["default"],
+    HPositionSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_9__["default"]
   },
   data: function data() {
     return {
@@ -4680,8 +4664,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           backgroundColor: '#23f6f6'
         },
         time: {
-          from: '00:00:30.00',
-          to: '00:01:30.00'
+          from: '00:00:30.33',
+          to: '00:01:30.40'
         }
       }, {
         type: 'link',
@@ -4702,8 +4686,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           backgroundColor: '#444'
         },
         time: {
-          from: '00:00:30.00',
-          to: '00:02:30.00'
+          from: '00:00:10.00',
+          to: '00:00:40.00'
         }
       }],
       //timeline
@@ -4770,8 +4754,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               backgroundColor: 'transparent'
             },
             time: {
-              from: !_.isEmpty(this.video.currentTime) ? this.video.currentTime : '00:00:00.00',
-              to: !_.isEmpty(this.video.currentTime) ? this.video.currentTime : '00:00:00.00'
+              from: !_.isEmpty(this.video.currentTime) ? _plugin_Date__WEBPACK_IMPORTED_MODULE_0__["default"].spanTimeWithMillisec(this.video.instance.getCurrentTime()).text : '00:00:00.00',
+              to: !_.isEmpty(this.video.currentTime) ? _plugin_Date__WEBPACK_IMPORTED_MODULE_0__["default"].spanTimeWithMillisec(this.video.instance.getCurrentTime() + 10).text : '00:00:00.00'
             }
           });
           break;
@@ -4780,23 +4764,31 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           break;
       }
     },
-    editLayer: function editLayer(index) {
+    editLayer: function editLayer(_ref3) {
       var _this = this;
 
+      var index = _ref3.index,
+          data = _ref3.data;
       // Get the index of this.interactiveElementData
       this.layerIndex = index; // Populate the this.ieStyle data property
 
-      Object.entries(this.interactiveElementData[index].style).forEach(function (_ref3) {
-        var _ref4 = _slicedToArray(_ref3, 2),
-            index = _ref4[0],
-            value = _ref4[1];
+      Object.entries(data.style).forEach(function (_ref4) {
+        var _ref5 = _slicedToArray(_ref4, 2),
+            index = _ref5[0],
+            value = _ref5[1];
 
         _this.ieStyle[index] = value.replace(/(px|\%)?$/, '');
       });
     },
-    cloneLayer: function cloneLayer(index, data) {
+    cloneLayer: function cloneLayer(_ref6) {
+      var index = _ref6.index,
+          data = _ref6.data;
+
       // data.title = ' - clone'
-      this.interactiveElementData.push(data);
+      var clone = _.cloneDeep(data);
+
+      clone.title += ' - duplicate';
+      this.interactiveElementData.push(clone);
     },
     removeLayer: function removeLayer(index) {
       this.layerIndex = null;
@@ -4841,7 +4833,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       return time.text;
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    // YDApi.listVideo();
+    this.$nextTick(function () {
+      $('.ie-body,.interactive-layer-container').overlayScrollbars({
+        autoHide: 'leave'
+      });
+    });
+  }
 });
 
 /***/ }),
@@ -4859,6 +4858,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _assets_plugins_bootstrap_colorpicker_js_bootstrap_colorpicker_min_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_plugins_bootstrap_colorpicker_js_bootstrap_colorpicker_min_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _assets_plugins_bootstrap_colorpicker_css_bootstrap_colorpicker_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css */ "./resources/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css");
 /* harmony import */ var _assets_plugins_bootstrap_colorpicker_css_bootstrap_colorpicker_min_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_assets_plugins_bootstrap_colorpicker_css_bootstrap_colorpicker_min_css__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4911,6 +4923,182 @@ __webpack_require__.r(__webpack_exports__);
 
       _this.$emit('change', event.color.toString());
     });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/InteractiveLayer.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/InteractiveLayer.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    index: {
+      type: Number
+    },
+    data: {
+      type: Object,
+      "default": function _default() {}
+    },
+    classes: {
+      type: [String, Object]
+    },
+    duration: {
+      type: [String, Number]
+    },
+    hasTo: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
+    }
+  },
+  computed: {
+    isToExist: function isToExist() {
+      return this.data.time.to != undefined;
+    }
+  },
+  data: function data() {
+    return {
+      layerIndex: null,
+      from: '',
+      to: ''
+    };
+  },
+  methods: {
+    edit: function edit(index, data) {
+      this.$emit('edit', {
+        index: index,
+        data: data
+      });
+    },
+    clone: function clone(index, data) {
+      this.$emit('clone', {
+        index: index,
+        data: data
+      });
+    },
+    remove: function remove(index) {
+      this.$emit('remove', index);
+    },
+    getFromTo: function getFromTo(ft, data) {
+      console.log(ft + ' : ' + data);
+    },
+    positionElementIndicator: function positionElementIndicator() {
+      var elemPosition = this.$refs.elemPosition; // attrData = $(elemPosition).data();
+
+      var fromArr = this.from.split(':'),
+          toArr = this.to.split(':'),
+          fromSeconds = null,
+          toSeconds = null,
+          startPercent = 0,
+          endPercent = 0,
+          width = 1;
+      fromSeconds = parseInt(fromArr[0]) * 3600 + parseInt(fromArr[1]) * 60 + parseFloat(fromArr[2]);
+      toSeconds = parseInt(toArr[0]) * 3600 + parseInt(toArr[1]) * 60 + parseFloat(toArr[2]);
+
+      if (this.duration > 0) {
+        startPercent = 100 * (fromSeconds / parseFloat(this.duration));
+        endPercent = 100 * (toSeconds / parseFloat(this.duration));
+        width = endPercent - startPercent;
+      }
+
+      elemPosition.style.marginLeft = startPercent + '%';
+
+      if (this.isToExist) {
+        elemPosition.style.width = (width == 0 ? 0.50 : width) + '%';
+      } else {
+        // elemPosition.innerHTML = '<span><i class="fa fa-question"></i></span>';
+        elemPosition.style.width = 20 + 'px';
+      }
+
+      console.log(startPercent);
+      console.log(width);
+    },
+    timeInputUpdate: function timeInputUpdate(type, event) {
+      if (type == 'from') {
+        this.from = event.target.value;
+      } else {
+        this.to = event.target.value;
+      }
+
+      this.positionElementIndicator();
+    }
+  },
+  updated: function updated() {
+    this.from = this.data.time.from;
+    if (this.isToExist) this.to = this.data.time.to;
+    this.positionElementIndicator();
+  },
+  mounted: function mounted() {
+    this.from = this.data.time.from;
+    if (this.isToExist) this.to = this.data.time.to;
+    this.positionElementIndicator();
   }
 });
 
@@ -62813,254 +63001,24 @@ var render = function() {
                                       e,
                                       index
                                     ) {
-                                      return _c(
-                                        "div",
-                                        {
-                                          key: index,
-                                          staticClass: "row layer mb-0 pb-0",
-                                          class: {
+                                      return _c("interactive-layer", {
+                                        key: index,
+                                        attrs: {
+                                          index: index,
+                                          classes: {
                                             active: index == _vm.layerIndex
-                                          }
+                                          },
+                                          data: e,
+                                          duration: _vm.video.duration
                                         },
-                                        [
-                                          _c(
-                                            "div",
-                                            { staticClass: "col-md-3" },
-                                            [
-                                              _c(
-                                                "div",
-                                                { staticClass: "layer-btn" },
-                                                [
-                                                  _c(
-                                                    "button",
-                                                    {
-                                                      staticClass:
-                                                        "btn btn-xs btn-info",
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          return _vm.editLayer(
-                                                            index
-                                                          )
-                                                        }
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "fa fa-pencil-alt"
-                                                      })
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "button",
-                                                    {
-                                                      staticClass:
-                                                        "btn btn-xs btn-primary",
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          return _vm.cloneLayer(
-                                                            index,
-                                                            e
-                                                          )
-                                                        }
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "fa fa-clone"
-                                                      })
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "button",
-                                                    {
-                                                      staticClass:
-                                                        "btn btn-xs btn-danger",
-                                                      on: {
-                                                        click: function(
-                                                          $event
-                                                        ) {
-                                                          return _vm.removeLayer(
-                                                            index
-                                                          )
-                                                        }
-                                                      }
-                                                    },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "fa fa-trash-alt"
-                                                      })
-                                                    ]
-                                                  )
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "layer-name pt-1 pl-1"
-                                                },
-                                                [
-                                                  _c(
-                                                    "span",
-                                                    { staticClass: "icon" },
-                                                    [
-                                                      _c("i", {
-                                                        staticClass:
-                                                          "fa fa-link"
-                                                      })
-                                                    ]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "span",
-                                                    { staticClass: "title" },
-                                                    [_vm._v(_vm._s(e.title))]
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "col-md-6 pt-2" },
-                                            [
-                                              _c(
-                                                "div",
-                                                { staticClass: "row" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    {
-                                                      staticClass:
-                                                        "interactive-timeline interactive-position"
-                                                    },
-                                                    [
-                                                      _c("span", {
-                                                        staticClass:
-                                                          "time-position",
-                                                        staticStyle: {
-                                                          "margin-left": "50%"
-                                                        }
-                                                      })
-                                                    ]
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "col-md-3" },
-                                            [
-                                              _c(
-                                                "div",
-                                                { staticClass: "time-input" },
-                                                [
-                                                  _c(
-                                                    "div",
-                                                    { staticClass: "row pt-2" },
-                                                    [
-                                                      _c("input", {
-                                                        directives: [
-                                                          {
-                                                            name: "model",
-                                                            rawName: "v-model",
-                                                            value: e.time.from,
-                                                            expression:
-                                                              "e.time.from"
-                                                          }
-                                                        ],
-                                                        staticClass:
-                                                          "col form-control form-control-sm mx-1",
-                                                        attrs: {
-                                                          type: "text",
-                                                          placeholder:
-                                                            "HH:MM:SS.MS"
-                                                        },
-                                                        domProps: {
-                                                          value: e.time.from
-                                                        },
-                                                        on: {
-                                                          input: function(
-                                                            $event
-                                                          ) {
-                                                            if (
-                                                              $event.target
-                                                                .composing
-                                                            ) {
-                                                              return
-                                                            }
-                                                            _vm.$set(
-                                                              e.time,
-                                                              "from",
-                                                              $event.target
-                                                                .value
-                                                            )
-                                                          }
-                                                        }
-                                                      }),
-                                                      _vm._v(" "),
-                                                      _c("input", {
-                                                        directives: [
-                                                          {
-                                                            name: "model",
-                                                            rawName: "v-model",
-                                                            value: e.time.to,
-                                                            expression:
-                                                              "e.time.to"
-                                                          }
-                                                        ],
-                                                        staticClass:
-                                                          "col form-control form-control-sm mx-1",
-                                                        attrs: {
-                                                          type: "text",
-                                                          placeholder:
-                                                            "HH:MM:SS.MS"
-                                                        },
-                                                        domProps: {
-                                                          value: e.time.to
-                                                        },
-                                                        on: {
-                                                          input: function(
-                                                            $event
-                                                          ) {
-                                                            if (
-                                                              $event.target
-                                                                .composing
-                                                            ) {
-                                                              return
-                                                            }
-                                                            _vm.$set(
-                                                              e.time,
-                                                              "to",
-                                                              $event.target
-                                                                .value
-                                                            )
-                                                          }
-                                                        }
-                                                      })
-                                                    ]
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
-                                      )
+                                        on: {
+                                          edit: _vm.editLayer,
+                                          clone: _vm.cloneLayer,
+                                          remove: _vm.removeLayer
+                                        }
+                                      })
                                     }),
-                                    0
+                                    1
                                   )
                                 ]
                               )
@@ -64138,11 +64096,67 @@ var render = function() {
                                                     ]
                                                   },
                                                   proxy: true
+                                                },
+                                                {
+                                                  key: "left-content",
+                                                  fn: function() {
+                                                    return [
+                                                      _c(
+                                                        "div",
+                                                        {
+                                                          staticClass:
+                                                            "col-2 pt-2"
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              attrs: {
+                                                                "data-toggle":
+                                                                  "tooltip",
+                                                                "data-placement":
+                                                                  "bottom",
+                                                                title:
+                                                                  "Transparent"
+                                                              }
+                                                            },
+                                                            [
+                                                              _c(
+                                                                "div",
+                                                                {
+                                                                  staticClass:
+                                                                    "icheck-light-yellow d-inline"
+                                                                },
+                                                                [
+                                                                  _c("input", {
+                                                                    attrs: {
+                                                                      type:
+                                                                        "checkbox",
+                                                                      id:
+                                                                        "checkboxPrimary3"
+                                                                    }
+                                                                  }),
+                                                                  _vm._v(" "),
+                                                                  _c("label", {
+                                                                    attrs: {
+                                                                      for:
+                                                                        "checkboxPrimary3"
+                                                                    }
+                                                                  })
+                                                                ]
+                                                              )
+                                                            ]
+                                                          )
+                                                        ]
+                                                      )
+                                                    ]
+                                                  },
+                                                  proxy: true
                                                 }
                                               ],
                                               null,
                                               false,
-                                              1922992853
+                                              4264281444
                                             )
                                           })
                                         ],
@@ -64660,15 +64674,28 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "col-8" }, [
-          _c("div", { staticClass: "input-group ie my-colorpicker" }, [
-            _c("input", {
-              staticClass: "form-control col-5",
-              attrs: { type: "text" },
-              domProps: { value: _vm.model }
-            }),
-            _vm._v(" "),
-            _vm._m(0)
-          ])
+          _c(
+            "div",
+            { staticClass: "row" },
+            [
+              _vm._t("left-content"),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-8" }, [
+                _c("div", { staticClass: "input-group ie my-colorpicker" }, [
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.model }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._t("right-content")
+            ],
+            2
+          )
         ])
       ])
     ]
@@ -64683,6 +64710,134 @@ var staticRenderFns = [
       _c("span", { staticClass: "input-group-text" }, [
         _c("i", { staticClass: "fas fa-square" })
       ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/InteractiveLayer.vue?vue&type=template&id=9ef7730c&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/InteractiveLayer.vue?vue&type=template&id=9ef7730c& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row layer mb-0 pb-0", class: _vm.classes }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "layer-btn" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-xs btn-info",
+              on: {
+                click: function($event) {
+                  return _vm.edit(_vm.index, _vm.data)
+                }
+              }
+            },
+            [_c("i", { staticClass: "fa fa-pencil-alt" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-xs btn-primary",
+              on: {
+                click: function($event) {
+                  return _vm.clone(_vm.index, _vm.data)
+                }
+              }
+            },
+            [_c("i", { staticClass: "fa fa-clone" })]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-xs btn-danger",
+              on: {
+                click: function($event) {
+                  return _vm.remove(_vm.index)
+                }
+              }
+            },
+            [_c("i", { staticClass: "fa fa-trash-alt" })]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "layer-name pt-1 pl-1" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("span", { staticClass: "title" }, [_vm._v(_vm._s(_vm.data.title))])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6 pt-2" }, [
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "interactive-timeline interactive-position" },
+            [_c("span", { ref: "elemPosition", staticClass: "time-position" })]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "time-input" }, [
+          _c("div", { staticClass: "row pt-2" }, [
+            _c("input", {
+              staticClass: "col form-control form-control-sm mx-1",
+              class: {
+                col: _vm.isToExist,
+                "col-6": !_vm.isToExist
+              },
+              attrs: { type: "text", placeholder: "HH:MM:SS.MS" },
+              domProps: { value: _vm.data.time.from },
+              on: {
+                input: function($event) {
+                  return _vm.timeInputUpdate("from", $event)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.isToExist
+              ? _c("input", {
+                  staticClass: "col form-control form-control-sm mx-1",
+                  attrs: { type: "text", placeholder: "HH:MM:SS.MS" },
+                  domProps: { value: _vm.data.time.to },
+                  on: {
+                    input: function($event) {
+                      return _vm.timeInputUpdate("to", $event)
+                    }
+                  }
+                })
+              : _vm._e()
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fa fa-link" })
     ])
   }
 ]
@@ -95687,7 +95842,8 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"); // require('../assets/plugins/jquery-ui/jquery-ui.min.js');
+  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+  window.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"); // require('../assets/plugins/jquery-ui/jquery-ui.min.js');
   // $.widget.bridge('uibutton', $.ui.button);
 } catch (e) {}
 /**
@@ -95779,6 +95935,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_023f0f94___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ColorPicker_vue_vue_type_template_id_023f0f94___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/InteractiveLayer.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/InteractiveLayer.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _InteractiveLayer_vue_vue_type_template_id_9ef7730c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InteractiveLayer.vue?vue&type=template&id=9ef7730c& */ "./resources/js/components/InteractiveLayer.vue?vue&type=template&id=9ef7730c&");
+/* harmony import */ var _InteractiveLayer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InteractiveLayer.vue?vue&type=script&lang=js& */ "./resources/js/components/InteractiveLayer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _InteractiveLayer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _InteractiveLayer_vue_vue_type_template_id_9ef7730c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _InteractiveLayer_vue_vue_type_template_id_9ef7730c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/InteractiveLayer.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/InteractiveLayer.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/InteractiveLayer.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InteractiveLayer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./InteractiveLayer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/InteractiveLayer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InteractiveLayer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/InteractiveLayer.vue?vue&type=template&id=9ef7730c&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/InteractiveLayer.vue?vue&type=template&id=9ef7730c& ***!
+  \*************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InteractiveLayer_vue_vue_type_template_id_9ef7730c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./InteractiveLayer.vue?vue&type=template&id=9ef7730c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/InteractiveLayer.vue?vue&type=template&id=9ef7730c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InteractiveLayer_vue_vue_type_template_id_9ef7730c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InteractiveLayer_vue_vue_type_template_id_9ef7730c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -96263,9 +96488,29 @@ var DateObj = /*#__PURE__*/function () {
       return result;
     }
   }, {
-    key: "display",
-    value: function display(form) {
-      this.form = form;
+    key: "spanTimeWithMillisec",
+    value: function spanTimeWithMillisec(time) {
+      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "seconds";
+      var result = {},
+          hours = 0,
+          minutes = 0,
+          seconds = 0,
+          text = '00:00:00.00';
+
+      switch (type) {
+        case 'seconds':
+          hours = Math.floor(time / 60 / 60), minutes = Math.floor(time / 60) - hours * 60, seconds = parseFloat(time % 60).toFixed(2);
+          break;
+      }
+
+      text = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+      result = {
+        h: hours,
+        m: minutes,
+        s: seconds,
+        text: text
+      };
+      return result;
     }
   }]);
 
@@ -96273,6 +96518,79 @@ var DateObj = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (new DateObj());
+
+/***/ }),
+
+/***/ "./resources/js/plugin/youtube-data-api/index.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/plugin/youtube-data-api/index.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var YoutubeDataApi = /*#__PURE__*/function () {
+  function YoutubeDataApi() {
+    _classCallCheck(this, YoutubeDataApi);
+
+    this.api_key = "AIzaSyCvO7s_VkXajGUv0t1xF8s9zHw66fT8ERE";
+  }
+
+  _createClass(YoutubeDataApi, [{
+    key: "init",
+    value: function init() {
+      var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+      gapi.client.setApiKey(this.api_key);
+      return new Promise(function (resolve, reject) {
+        gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest").then(function () {
+          resolve('Youtube api loaded');
+        }, function (err) {
+          reject(err);
+        });
+      });
+    }
+  }, {
+    key: "load",
+    value: function load() {
+      gapi.load('client', this.init);
+    }
+  }, {
+    key: "listVideo",
+    value: function listVideo() {
+      // delete axios.defaults.headers.common['X-Requested-With'];
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('https://www.googleapis.com/youtube/v3/videos', {
+        params: {
+          api_key: this.api_key,
+          part: 'snippet%2CcontentDetails',
+          id: 'JuVhr422hlc'
+        },
+        headers: {
+          "Accept": 'application/json' // common: {}
+
+        }
+      }).then(function (res) {
+        console.log(res);
+      })["catch"](function (err) {
+        console.error(err);
+      }); // fetch('')
+    }
+  }]);
+
+  return YoutubeDataApi;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new YoutubeDataApi());
 
 /***/ }),
 
