@@ -1,6 +1,10 @@
 
 $vunyxColor: #e1c238;
 
+.bg-transparent {
+  background-color: transparent !important;
+}
+
 .vx-text-color {
   color: $vunyxColor;
 }
@@ -60,17 +64,19 @@ $vunyxColor: #e1c238;
   .ie-header{
     padding: 7px;
     border-bottom: 1px solid #515155;
-  }
-  .ie-header .nav .nav-link {
-    color: #ffffff;
-    padding: 5px 10px;
-    font-size: 14px;
-  }
-  
-  .ie-header .nav .nav-link.active {
-    color: #e1c238;
-    border-radius: 80px;
-    border: 1px solid #e1c238;
+
+    .nav {
+      .nav-link {
+        color: #ffffff;
+        padding: 5px 10px;
+        font-size: 14px;
+      }
+      .nav-link.active {
+        color: #e1c238;
+        border-radius: 80px;
+        border: 1px solid #e1c238;
+      }
+    }
   }
   
   .ie-body {
@@ -97,6 +103,9 @@ $vunyxColor: #e1c238;
       }
       &::placeholder {
         color: #7a7979;
+      }
+      &:disabled {
+        cursor: not-allowed;
       }
     }
 

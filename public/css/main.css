@@ -36109,7 +36109,11 @@ html.os-html>.os-host>.os-scrollbar{
 .os-host-rtl.os-theme-dark>.os-scrollbar-vertical .os-scrollbar-handle:before,.os-host-rtl.os-theme-light>.os-scrollbar-vertical .os-scrollbar-handle:before{
   right:-6px;
   left:-2px
-}.vx-text-color {
+}.bg-transparent {
+  background-color: transparent !important;
+}
+
+.vx-text-color {
   color: #e1c238;
 }
 
@@ -36206,6 +36210,10 @@ html.os-html>.os-host>.os-scrollbar{
 
 .interactive-editor .ie-body .form-control::placeholder {
   color: #7a7979;
+}
+
+.interactive-editor .ie-body .form-control:disabled {
+  cursor: not-allowed;
 }
 
 .interactive-editor .ie-body .list-group {

@@ -4179,10 +4179,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_interactive_elements_IElement__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/interactive-elements/IElement */ "./resources/js/components/interactive-elements/IElement.vue");
 /* harmony import */ var _components_InteractiveLayer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/InteractiveLayer */ "./resources/js/components/InteractiveLayer.vue");
 /* harmony import */ var _components_ColorPicker__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/ColorPicker */ "./resources/js/components/ColorPicker.vue");
-/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-range-component/dist/vue-range-slider.css */ "./node_modules/vue-range-component/dist/vue-range-slider.css");
-/* harmony import */ var vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_range_component_dist_vue_range_slider_css__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var vue_range_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-range-component */ "./node_modules/vue-range-component/dist/vue-range-slider.esm.js");
-/* harmony import */ var _plugin_youtube_data_api_index__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../plugin/youtube-data-api/index */ "./resources/js/plugin/youtube-data-api/index.js");
+/* harmony import */ var _plugin_youtube_data_api_index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../plugin/youtube-data-api/index */ "./resources/js/plugin/youtube-data-api/index.js");
+/* harmony import */ var _components_form_IeRangeSlider__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/form/IeRangeSlider */ "./resources/js/components/form/IeRangeSlider.vue");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4195,6 +4193,24 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4611,14 +4627,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   components: {
     StudioLayout: _Layouts_StudioLayout__WEBPACK_IMPORTED_MODULE_1__["default"],
     InteractiveSidebar: _components_InteractiveSidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
-    IonSlider: _components_IonRangeSlider__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Timeline: _components_IonRangeSlider__WEBPACK_IMPORTED_MODULE_3__["default"],
     VideoSection: _components_VideoSec__WEBPACK_IMPORTED_MODULE_4__["default"],
     IElement: _components_interactive_elements_IElement__WEBPACK_IMPORTED_MODULE_5__["default"],
     InteractiveLayer: _components_InteractiveLayer__WEBPACK_IMPORTED_MODULE_6__["default"],
     TextColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_7__["default"],
     BgColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_7__["default"],
-    VPositionSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_9__["default"],
-    HPositionSlider: vue_range_component__WEBPACK_IMPORTED_MODULE_9__["default"]
+    XPositionSlider: _components_form_IeRangeSlider__WEBPACK_IMPORTED_MODULE_9__["default"],
+    YPositionSlider: _components_form_IeRangeSlider__WEBPACK_IMPORTED_MODULE_9__["default"],
+    BorderRadiusSlider: _components_form_IeRangeSlider__WEBPACK_IMPORTED_MODULE_9__["default"]
   },
   data: function data() {
     return {
@@ -4837,7 +4854,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     // YDApi.listVideo();
     this.$nextTick(function () {
       $('.ie-body,.interactive-layer-container').overlayScrollbars({
-        autoHide: 'leave'
+        autoHide: 'move'
       });
     });
   }
@@ -4888,6 +4905,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4900,12 +4924,37 @@ __webpack_require__.r(__webpack_exports__);
     },
     classes: {
       type: [String, Object]
+    },
+    useTransparent: {
+      type: Boolean,
+      "default": function _default() {
+        return false;
+      }
     }
   },
   data: function data() {
     return {
-      value: ''
+      value: '',
+      isTransparent: false
     };
+  },
+  methods: {
+    onChangeTransparent: function onChangeTransparent(e) {
+      console.log(e.target.value);
+    }
+  },
+  updated: function updated() {
+    var id = '#' + this.id;
+
+    if (this.model) {
+      $(id + ' .my-colorpicker .fa-square').css('color', this.model);
+    }
+
+    if (this.isTransparent) {
+      this.$emit('change', 'transparent');
+      this.model = 'transparent';
+      $(id + ' .my-colorpicker .fa-square').css('color', 'transparent');
+    }
   },
   mounted: function mounted() {
     var _this = this;
@@ -5879,6 +5928,106 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_youtube_iframe_api__WEBPACK_I
     }
   },
   mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/form/IeRangeSlider.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/form/IeRangeSlider.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _IonRangeSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../IonRangeSlider */ "./resources/js/components/IonRangeSlider.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    min: {
+      type: Number,
+      "default": function _default() {
+        return 0.00;
+      }
+    },
+    max: {
+      type: Number,
+      "default": function _default() {
+        return 100.00;
+      }
+    },
+    step: {
+      type: Number,
+      "default": function _default() {
+        return 0.01;
+      }
+    },
+    from: {
+      type: [Number, String],
+      "default": function _default() {
+        return 0.0;
+      }
+    },
+    selectedLayerIndex: {
+      type: Number,
+      "default": function _default() {
+        return null;
+      }
+    }
+  },
+  components: {
+    IeRangeSlider: _IonRangeSlider__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      instance: null,
+      layerIndex: null
+    };
+  },
+  methods: {
+    ieRangeChange: function ieRangeChange(e) {
+      this.$emit('change', e.from);
+    },
+    ieRangeReady: function ieRangeReady(instance) {
+      this.instance = instance;
+    }
+  },
+  updated: function updated() {
+    //checks if the selectedLayerIndex prop is not null
+    //checks the layerIndex data is not equals to selectedLayerIndex prop
+    //initialize layerIndex data with the new selectedLayerIndex prop
+    //and update the slider 
+    if (!_.isNull(this.selectedLayerIndex)) {
+      if (this.layerIndex != this.selectedLayerIndex) {
+        this.layerIndex = this.selectedLayerIndex;
+        this.instance.update({
+          from: this.from
+        });
+      }
+    }
+  },
+  mounted: function mounted() {
+    if (!_.isNull(this.selectedLayerIndex)) {
+      this.layerIndex = this.selectedLayerIndex;
+    }
+  }
 });
 
 /***/ }),
@@ -62965,7 +63114,7 @@ var render = function() {
                                       "col-md-8 ie-timeline-container"
                                   },
                                   [
-                                    _c("ion-slider", {
+                                    _c("timeline", {
                                       attrs: {
                                         "extra-classes": "vx-timeline",
                                         skin: "square",
@@ -63517,216 +63666,71 @@ var render = function() {
                                           attrs: { id: "position" }
                                         },
                                         [
-                                          _c(
-                                            "div",
-                                            { staticClass: "form-group" },
-                                            [
-                                              _c(
-                                                "div",
-                                                { staticClass: "row" },
-                                                [
-                                                  _c(
-                                                    "label",
-                                                    {
-                                                      staticClass:
-                                                        "label col-1 pt-1",
-                                                      attrs: { for: "" }
-                                                    },
-                                                    [_vm._v("X")]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    { staticClass: "col-8" },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "input-group ie"
-                                                        },
-                                                        [
-                                                          _c("input", {
-                                                            directives: [
-                                                              {
-                                                                name: "model",
-                                                                rawName:
-                                                                  "v-model",
-                                                                value:
-                                                                  _vm.ieStyle
-                                                                    .left,
-                                                                expression:
-                                                                  "ieStyle.left"
-                                                              }
-                                                            ],
-                                                            staticClass:
-                                                              "form-control col-4",
-                                                            attrs: {
-                                                              type: "text"
-                                                            },
-                                                            domProps: {
-                                                              value:
-                                                                _vm.ieStyle.left
-                                                            },
-                                                            on: {
-                                                              input: function(
-                                                                $event
-                                                              ) {
-                                                                if (
-                                                                  $event.target
-                                                                    .composing
-                                                                ) {
-                                                                  return
-                                                                }
-                                                                _vm.$set(
-                                                                  _vm.ieStyle,
-                                                                  "left",
-                                                                  $event.target
-                                                                    .value
-                                                                )
-                                                              }
-                                                            }
-                                                          }),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "input-group-append"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "span",
-                                                                {
-                                                                  staticClass:
-                                                                    "input-group-text vx-text-color"
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    _vm._s(
-                                                                      _vm
-                                                                        .measurement
-                                                                        .percent
-                                                                    )
-                                                                  )
-                                                                ]
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
+                                          _c("x-position-slider", {
+                                            attrs: {
+                                              from: _vm.ieStyle.left,
+                                              "selected-layer-index":
+                                                _vm.layerIndex
+                                            },
+                                            on: {
+                                              change: function(from) {
+                                                return (_vm.ieStyle.left = from)
+                                              }
+                                            },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "label",
+                                                  fn: function() {
+                                                    return [
+                                                      _c("i", {
+                                                        staticClass:
+                                                          "fa fa-arrows-alt-h"
+                                                      })
                                                     ]
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          ),
+                                                  },
+                                                  proxy: true
+                                                }
+                                              ],
+                                              null,
+                                              false,
+                                              4194249111
+                                            )
+                                          }),
                                           _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            { staticClass: "form-group" },
-                                            [
-                                              _c(
-                                                "div",
-                                                { staticClass: "row" },
-                                                [
-                                                  _c(
-                                                    "label",
-                                                    {
-                                                      staticClass:
-                                                        "label col-1 pt-1",
-                                                      attrs: { for: "" }
-                                                    },
-                                                    [_vm._v("Y")]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    { staticClass: "col-8" },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "input-group ie"
-                                                        },
-                                                        [
-                                                          _c("input", {
-                                                            directives: [
-                                                              {
-                                                                name: "model",
-                                                                rawName:
-                                                                  "v-model",
-                                                                value:
-                                                                  _vm.ieStyle
-                                                                    .top,
-                                                                expression:
-                                                                  "ieStyle.top"
-                                                              }
-                                                            ],
-                                                            staticClass:
-                                                              "form-control col-4",
-                                                            attrs: {
-                                                              type: "text"
-                                                            },
-                                                            domProps: {
-                                                              value:
-                                                                _vm.ieStyle.top
-                                                            },
-                                                            on: {
-                                                              input: function(
-                                                                $event
-                                                              ) {
-                                                                if (
-                                                                  $event.target
-                                                                    .composing
-                                                                ) {
-                                                                  return
-                                                                }
-                                                                _vm.$set(
-                                                                  _vm.ieStyle,
-                                                                  "top",
-                                                                  $event.target
-                                                                    .value
-                                                                )
-                                                              }
-                                                            }
-                                                          }),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "input-group-append"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "span",
-                                                                {
-                                                                  staticClass:
-                                                                    "input-group-text vx-text-color"
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    _vm._s(
-                                                                      _vm
-                                                                        .measurement
-                                                                        .percent
-                                                                    )
-                                                                  )
-                                                                ]
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
+                                          _c("y-position-slider", {
+                                            attrs: {
+                                              from: _vm.ieStyle.top,
+                                              "selected-layer-index":
+                                                _vm.layerIndex
+                                            },
+                                            on: {
+                                              change: function(from) {
+                                                return (_vm.ieStyle.top = from)
+                                              }
+                                            },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "label",
+                                                  fn: function() {
+                                                    return [
+                                                      _c("i", {
+                                                        staticClass:
+                                                          "fa fa-arrows-alt-v"
+                                                      })
                                                     ]
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          )
-                                        ]
+                                                  },
+                                                  proxy: true
+                                                }
+                                              ],
+                                              null,
+                                              false,
+                                              3955878857
+                                            )
+                                          })
+                                        ],
+                                        1
                                       )
                                     ]),
                                     _vm._v(" "),
@@ -64079,6 +64083,7 @@ var render = function() {
                                           _c("bg-color-picker", {
                                             attrs: {
                                               id: "bgColor",
+                                              "use-transparent": true,
                                               model: _vm.ieStyle.backgroundColor
                                             },
                                             on: {
@@ -64096,67 +64101,11 @@ var render = function() {
                                                     ]
                                                   },
                                                   proxy: true
-                                                },
-                                                {
-                                                  key: "left-content",
-                                                  fn: function() {
-                                                    return [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "col-2 pt-2"
-                                                        },
-                                                        [
-                                                          _c(
-                                                            "span",
-                                                            {
-                                                              attrs: {
-                                                                "data-toggle":
-                                                                  "tooltip",
-                                                                "data-placement":
-                                                                  "bottom",
-                                                                title:
-                                                                  "Transparent"
-                                                              }
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "div",
-                                                                {
-                                                                  staticClass:
-                                                                    "icheck-light-yellow d-inline"
-                                                                },
-                                                                [
-                                                                  _c("input", {
-                                                                    attrs: {
-                                                                      type:
-                                                                        "checkbox",
-                                                                      id:
-                                                                        "checkboxPrimary3"
-                                                                    }
-                                                                  }),
-                                                                  _vm._v(" "),
-                                                                  _c("label", {
-                                                                    attrs: {
-                                                                      for:
-                                                                        "checkboxPrimary3"
-                                                                    }
-                                                                  })
-                                                                ]
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
-                                                      )
-                                                    ]
-                                                  },
-                                                  proxy: true
                                                 }
                                               ],
                                               null,
                                               false,
-                                              4264281444
+                                              1922992853
                                             )
                                           })
                                         ],
@@ -64197,111 +64146,36 @@ var render = function() {
                                           attrs: { id: "border" }
                                         },
                                         [
-                                          _c(
-                                            "div",
-                                            { staticClass: "form-group" },
-                                            [
-                                              _c(
-                                                "div",
-                                                { staticClass: "row" },
-                                                [
-                                                  _c(
-                                                    "label",
-                                                    {
-                                                      staticClass:
-                                                        "label col-4 pt-1",
-                                                      attrs: { for: "" }
-                                                    },
-                                                    [_vm._v("Radius")]
-                                                  ),
-                                                  _vm._v(" "),
-                                                  _c(
-                                                    "div",
-                                                    { staticClass: "col-8" },
-                                                    [
-                                                      _c(
-                                                        "div",
-                                                        {
-                                                          staticClass:
-                                                            "input-group ie"
-                                                        },
-                                                        [
-                                                          _c("input", {
-                                                            directives: [
-                                                              {
-                                                                name: "model",
-                                                                rawName:
-                                                                  "v-model",
-                                                                value:
-                                                                  _vm.ieStyle
-                                                                    .borderRadius,
-                                                                expression:
-                                                                  "ieStyle.borderRadius"
-                                                              }
-                                                            ],
-                                                            staticClass:
-                                                              "form-control col-4",
-                                                            attrs: {
-                                                              type: "text"
-                                                            },
-                                                            domProps: {
-                                                              value:
-                                                                _vm.ieStyle
-                                                                  .borderRadius
-                                                            },
-                                                            on: {
-                                                              input: function(
-                                                                $event
-                                                              ) {
-                                                                if (
-                                                                  $event.target
-                                                                    .composing
-                                                                ) {
-                                                                  return
-                                                                }
-                                                                _vm.$set(
-                                                                  _vm.ieStyle,
-                                                                  "borderRadius",
-                                                                  $event.target
-                                                                    .value
-                                                                )
-                                                              }
-                                                            }
-                                                          }),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "div",
-                                                            {
-                                                              staticClass:
-                                                                "input-group-append"
-                                                            },
-                                                            [
-                                                              _c(
-                                                                "span",
-                                                                {
-                                                                  staticClass:
-                                                                    "input-group-text vx-text-color"
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    _vm._s(
-                                                                      _vm
-                                                                        .measurement
-                                                                        .percent
-                                                                    )
-                                                                  )
-                                                                ]
-                                                              )
-                                                            ]
-                                                          )
-                                                        ]
+                                          _c("border-radius-slider", {
+                                            attrs: {
+                                              from: _vm.ieStyle.borderRadius,
+                                              "selected-layer-index":
+                                                _vm.layerIndex
+                                            },
+                                            on: {
+                                              change: function(from) {
+                                                return (_vm.ieStyle.borderRadius = from)
+                                              }
+                                            },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "label",
+                                                  fn: function() {
+                                                    return [
+                                                      _vm._v(
+                                                        "\n                                                                Curve\n                                                            "
                                                       )
                                                     ]
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          ),
+                                                  },
+                                                  proxy: true
+                                                }
+                                              ],
+                                              null,
+                                              false,
+                                              3871853612
+                                            )
+                                          }),
                                           _vm._v(" "),
                                           _c(
                                             "div",
@@ -64678,13 +64552,77 @@ var render = function() {
             "div",
             { staticClass: "row" },
             [
-              _vm._t("left-content"),
+              _vm.useTransparent
+                ? _c("div", { staticClass: "col-2 pt-2" }, [
+                    _c(
+                      "span",
+                      {
+                        attrs: {
+                          "data-toggle": "tooltip",
+                          "data-placement": "bottom",
+                          title: "Transparent"
+                        }
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "icheck-light-yellow d-inline" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.isTransparent,
+                                  expression: "isTransparent"
+                                }
+                              ],
+                              attrs: {
+                                type: "checkbox",
+                                id: "checkboxPrimary3"
+                              },
+                              domProps: {
+                                checked: Array.isArray(_vm.isTransparent)
+                                  ? _vm._i(_vm.isTransparent, null) > -1
+                                  : _vm.isTransparent
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.isTransparent,
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        (_vm.isTransparent = $$a.concat([$$v]))
+                                    } else {
+                                      $$i > -1 &&
+                                        (_vm.isTransparent = $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1)))
+                                    }
+                                  } else {
+                                    _vm.isTransparent = $$c
+                                  }
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("label", { attrs: { for: "checkboxPrimary3" } })
+                          ]
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _c("div", { staticClass: "col-8" }, [
                 _c("div", { staticClass: "input-group ie my-colorpicker" }, [
                   _c("input", {
                     staticClass: "form-control",
-                    attrs: { type: "text" },
+                    attrs: { disabled: _vm.isTransparent, type: "text" },
                     domProps: { value: _vm.model }
                   }),
                   _vm._v(" "),
@@ -65330,6 +65268,56 @@ var render = function() {
     ],
     1
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/form/IeRangeSlider.vue?vue&type=template&id=b4387cbc&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/form/IeRangeSlider.vue?vue&type=template&id=b4387cbc& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c(
+      "label",
+      { staticClass: "label col-md-2 pt-4" },
+      [_vm._t("label", [_vm._v("Label")])],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "col-md-7", staticStyle: { background: "#353537" } },
+      [
+        _c("ie-range-slider", {
+          attrs: {
+            skin: "round",
+            min: _vm.min,
+            max: _vm.max,
+            step: _vm.step,
+            from: _vm.from,
+            "hide-min-max": true
+          },
+          on: { change: _vm.ieRangeChange, ready: _vm.ieRangeReady }
+        })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -96369,6 +96357,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_YoutubeIframe_vue_vue_type_template_id_76f13868___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_YoutubeIframe_vue_vue_type_template_id_76f13868___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/form/IeRangeSlider.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/form/IeRangeSlider.vue ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _IeRangeSlider_vue_vue_type_template_id_b4387cbc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IeRangeSlider.vue?vue&type=template&id=b4387cbc& */ "./resources/js/components/form/IeRangeSlider.vue?vue&type=template&id=b4387cbc&");
+/* harmony import */ var _IeRangeSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./IeRangeSlider.vue?vue&type=script&lang=js& */ "./resources/js/components/form/IeRangeSlider.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _IeRangeSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _IeRangeSlider_vue_vue_type_template_id_b4387cbc___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _IeRangeSlider_vue_vue_type_template_id_b4387cbc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/form/IeRangeSlider.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/form/IeRangeSlider.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/form/IeRangeSlider.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IeRangeSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./IeRangeSlider.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/form/IeRangeSlider.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_IeRangeSlider_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/form/IeRangeSlider.vue?vue&type=template&id=b4387cbc&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/form/IeRangeSlider.vue?vue&type=template&id=b4387cbc& ***!
+  \***************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IeRangeSlider_vue_vue_type_template_id_b4387cbc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./IeRangeSlider.vue?vue&type=template&id=b4387cbc& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/form/IeRangeSlider.vue?vue&type=template&id=b4387cbc&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IeRangeSlider_vue_vue_type_template_id_b4387cbc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_IeRangeSlider_vue_vue_type_template_id_b4387cbc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

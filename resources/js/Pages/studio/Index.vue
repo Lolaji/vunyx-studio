@@ -53,7 +53,7 @@
                                                         <span class="tick" v-for="i in 99" :key="i" :style="'margin-left:'+i+'%'"></span>
                                                     </div>
                                                 </div> -->
-                                                <ion-slider
+                                                <timeline
                                                     extra-classes="vx-timeline"
                                                     skin="square"
                                                     :grid="true"
@@ -63,7 +63,7 @@
                                                     :from="0"
                                                     :prettify-enabled="true"
                                                     :prettify="prettify"
-                                                    @ready="timelineReady"></ion-slider>
+                                                    @ready="timelineReady"></timeline>
                                             </div>
                                             <div class="col-md-2">&nbsp;</div>
                                         </div>
@@ -204,7 +204,25 @@
                                                     </li>
                                                     <div class="content collapse show" id="position">
 
-                                                        <div class="form-group">
+                                                        <x-position-slider
+                                                            :from="ieStyle.left"
+                                                            :selected-layer-index="layerIndex"
+                                                            @change="(from) => ieStyle.left = from">
+                                                                <template #label>
+                                                                    <i class="fa fa-arrows-alt-h"></i>
+                                                                </template>
+                                                            </x-position-slider>
+
+                                                        <y-position-slider
+                                                            :from="ieStyle.top"
+                                                            :selected-layer-index="layerIndex"
+                                                            @change="(from) => ieStyle.top = from">
+                                                                <template #label>
+                                                                    <i class="fa fa-arrows-alt-v"></i>
+                                                                </template>
+                                                            </y-position-slider>
+
+                                                        <!-- <div class="form-group">
                                                             <div class="row">
                                                                 <label class="label col-1 pt-1" for="">X</label>
                                                                 <div class="col-8">
@@ -230,7 +248,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
 
@@ -286,19 +304,10 @@
                                                         <bg-color-picker
                                                             id="bgColor"
                                                             class=""
+                                                            :use-transparent="true"
                                                             :model="ieStyle.backgroundColor"
                                                             @change="value => { ieStyle.backgroundColor = value}">
                                                                 <template #label>Background</template>
-                                                                <template #left-content>
-                                                                    <div class="col-2 pt-2">
-                                                                        <span data-toggle="tooltip" data-placement="bottom" title="Transparent">
-                                                                            <div class="icheck-light-yellow d-inline">
-                                                                                <input type="checkbox" id="checkboxPrimary3">
-                                                                                <label for="checkboxPrimary3"></label>
-                                                                            </div>
-                                                                        </span>
-                                                                    </div>
-                                                                </template>
                                                         </bg-color-picker>
                                                     </div>
                                                 </div>
@@ -310,7 +319,16 @@
                                                     </li>
                                                     <div class="content collapse" id="border">
 
-                                                        <div class="form-group">
+                                                        <border-radius-slider
+                                                            :from="ieStyle.borderRadius"
+                                                            :selected-layer-index="layerIndex"
+                                                            @change="(from) => ieStyle.borderRadius = from">
+                                                                <template #label>
+                                                                    Curve
+                                                                </template>
+                                                            </border-radius-slider>
+
+                                                        <!-- <div class="form-group">
                                                             <div class="row">
                                                                 <label class="label col-4 pt-1" for="">Radius</label>
                                                                 <div class="col-8">
@@ -322,7 +340,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
 
                                                         <div class="form-group">
                                                             <div class="row">
@@ -401,7 +419,7 @@
     import StudioLayout from '../../Layouts/StudioLayout';
     import InteractiveSidebar from '../../components/InteractiveSidebar';
 
-    import IonSlider from '../../components/IonRangeSlider';
+    import Timeline from '../../components/IonRangeSlider';
     
     import VideoSection from '../../components/VideoSec';
     import IElement from '../../components/interactive-elements/IElement';
@@ -409,11 +427,11 @@
     import TextColorPicker from '../../components/ColorPicker';
     import BgColorPicker from '../../components/ColorPicker';
 
-    import 'vue-range-component/dist/vue-range-slider.css';
-    import VPositionSlider from 'vue-range-component';
-    import HPositionSlider from 'vue-range-component';
-
     import YDApi from '../../plugin/youtube-data-api/index';
+
+    import XPositionSlider from '../../components/form/IeRangeSlider';
+    import YPositionSlider from '../../components/form/IeRangeSlider';
+    import BorderRadiusSlider from '../../components/form/IeRangeSlider';
 
     // import LinkButton from '../../components/interactive-elements/LinkButton';
     // const LinkButtonClass = Vue.extend(LinkButton);
@@ -423,14 +441,15 @@
         components: {
             StudioLayout,
             InteractiveSidebar,
-            IonSlider,
+            Timeline,
             VideoSection,
             IElement,
             InteractiveLayer,
             TextColorPicker,
             BgColorPicker,
-            VPositionSlider,
-            HPositionSlider
+            XPositionSlider,
+            YPositionSlider,
+            BorderRadiusSlider
         },
         data() {
             return {
@@ -665,7 +684,7 @@
 
             this.$nextTick(() => {
                 $('.ie-body,.interactive-layer-container').overlayScrollbars({
-                    autoHide: 'leave'
+                    autoHide: 'move'
                 });
             });
         }
