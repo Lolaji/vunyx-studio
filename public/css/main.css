@@ -36109,7 +36109,84 @@ html.os-html>.os-host>.os-scrollbar{
 .os-host-rtl.os-theme-dark>.os-scrollbar-vertical .os-scrollbar-handle:before,.os-host-rtl.os-theme-light>.os-scrollbar-vertical .os-scrollbar-handle:before{
   right:-6px;
   left:-2px
-}.bg-transparent {
+}@charset "UTF-8";
+
+/*
+Flaticon icon font: Flaticon
+Creation date: 26/08/2020 12:09
+*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url(/fonts/Flaticon.eot?dc3af28295e5414ec677b8b34d7568bd);
+  src: url(/fonts/Flaticon.eot?dc3af28295e5414ec677b8b34d7568bd) format("embedded-opentype"), url(/fonts/Flaticon.woff2?a55159280b171fbd8dc324c7f296d3a1) format("woff2"), url(/fonts/Flaticon.woff?bef0c1aa9bfd9b21a6ca49d4ab3e2bb0) format("woff"), url(/fonts/Flaticon.ttf?e7a98a686dfa254fe98e7e23589d746a) format("truetype"), url(/images/Flaticon.svg?076044e260ffe921c08bf485245c8733) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+@font-face {
+    font-family: "Flaticon";
+    src: url(/images/Flaticon.svg?076044e260ffe921c08bf485245c8733) format("svg");
+}
+}
+
+.fi:before {
+  display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.flaticon-volume:before {
+  content: "\F100";
+}
+
+.flaticon-link:before {
+  content: "\F101";
+}
+
+.flaticon-font:before {
+  content: "\F102";
+}
+
+.flaticon-hardware-hotspot:before {
+  content: "\F103";
+}
+
+.flaticon-picture:before {
+  content: "\F104";
+}
+
+.flaticon-question:before {
+  content: "\F105";
+}
+
+.flaticon-list:before {
+  content: "\F106";
+}
+
+.flaticon-rating:before {
+  content: "\F107";
+}
+
+.flaticon-pause:before {
+  content: "\F108";
+}
+
+.flaticon-hurdle-race:before {
+  content: "\F109";
+}
+
+.bg-transparent {
   background-color: transparent !important;
 }
 
@@ -36188,6 +36265,10 @@ html.os-html>.os-host>.os-scrollbar{
 
 .interactive-editor .ie-body .tab-content .tab-panel.active {
   display: block;
+}
+
+.interactive-editor .ie-body .text-editor-container {
+  color: #2a2929;
 }
 
 .interactive-editor .ie-body .form-control {

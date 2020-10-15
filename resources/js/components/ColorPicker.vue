@@ -9,14 +9,14 @@
                     <div class="col-2 pt-2" v-if="useTransparent">
                         <span data-toggle="tooltip" data-placement="bottom" title="Transparent">
                             <div class="icheck-light-yellow d-inline">
-                                <input type="checkbox" v-model="isTransparent" id="checkboxPrimary3">
+                                <input type="checkbox" v-model="isTransparent" @change="onChangeTransparent" id="checkboxPrimary3">
                                 <label for="checkboxPrimary3"></label>
                             </div>
                         </span>
                     </div>
                     <div class="col-8">
                         <div class="input-group ie my-colorpicker">
-                            <input :value="model" :disabled="isTransparent" type="text" class="form-control">
+                            <input :value="value" :disabled="isTransparent" type="text" class="form-control">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-square"></i></span>
                             </div>
@@ -58,37 +58,52 @@
         data(){
             return {
                 value: '',
+                elem: null,
+                colorPicked: '',
                 isTransparent: false
             }
         },
         methods: {
-            onChangeTransparent(e){
-                console.log(e.target.value)
+            onChangeTransparent(){
+                if (this.isTransparent) {
+                    this.$emit('change', 'transparent');
+                    this.inputColor('transparent');
+                }
+            },
+            inputColor(color=''){
+                this.value = color;
+                $(this.elem+ ' .my-colorpicker .fa-square').css('color', color);
+            },
+            checkInputTransparent (){
+                if ((this.model == 'transparent') && !this.isTransparent) {
+                    this.isTransparent = true;
+                }
             }
         },
         updated(){
-            let id = '#'+this.id;
+            this.elem = '#'+this.id;
             if (this.model) {
-                $(id+ ' .my-colorpicker .fa-square').css('color', this.model);
+                if (!this.isTransparent){
+                    this.colorPicked = this.model;
+                }
+                this.inputColor(this.model);
             }
 
-            if (this.isTransparent) {
-                this.$emit('change', 'transparent');
-                this.model = 'transparent';
-                $(id+ ' .my-colorpicker .fa-square').css('color', 'transparent');
-            }
+            // this.checkInputTransparent();
         },
         mounted() {
-            let id = '#'+this.id;
+            this.elem = '#'+this.id;
             if (this.model) {
-                $(id+ ' .my-colorpicker .fa-square').css('color', this.model);
+                this.inputColor(this.model);
             }
-            console.log(this.model);
-            $(id+ ' .my-colorpicker').colorpicker();
+            // this.checkInputTransparent();
+            
+            $(this.elem+ ' .my-colorpicker').colorpicker();
 
-            $(id+ ' .my-colorpicker').on('colorpickerChange', (event) => {
-                $(id+ ' .my-colorpicker .fa-square').css('color', event.color.toString());
+            $(this.elem+ ' .my-colorpicker').on('colorpickerChange', (event) => {
+                this.colorPicked = event.color.toString();
                 this.$emit('change', event.color.toString());
+                this.inputColor(event.color.toString());
             });
         }
     }

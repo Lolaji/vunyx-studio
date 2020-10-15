@@ -15,7 +15,9 @@
                             class="btn btn-xs btn-danger"><i class="fa fa-trash-alt"></i></button>
                     </div>
                     <div class="layer-name pt-1 pl-1">
-                        <span class="icon"><i class="fa fa-link"></i></span>
+                        <span class="icon">
+                            <ie-icon :type="data.type"></ie-icon>
+                        </span>
                         <span class="title">{{data.title}}</span>
                         <!-- <span class="icon"><i class="fa fa-angle-down"></i></span> -->
                     </div>
@@ -58,6 +60,7 @@
 </template>
 
 <script>
+    import IeIcon from '../components/InteractiveIcon';
     export default {
         props: {
             index: {
@@ -78,6 +81,7 @@
                 default: () => false
             }
         },
+        components: {IeIcon},
         computed: {
             isToExist(){
                 return this.data.time.to != undefined;
@@ -87,7 +91,8 @@
             return {
                 layerIndex: null,
                 from: '',
-                to: ''
+                to: '',
+                type: 'link'
             }
         },
         methods: {
@@ -141,8 +146,9 @@
                 } else {
                     this.to = event.target.value;
                 }
-
                 this.positionElementIndicator();
+
+                this.$emit('input-update', {type, event}, this.index);
             }
         },
         updated(){

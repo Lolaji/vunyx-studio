@@ -16,26 +16,23 @@
                             <!-- Interactive Editing Video Section -->
                             <div class="interactive-main col-md-12">
                                 <video-section
+                                    :seek-to="video.seekTo"
                                     @ready="playerReady"
                                     @get-current-time="getVideoCurrentTime"
-                                    @playing="videoPlaying">
+                                    @playing="videoPlaying"
+                                    @time-change="VideoTimeChange">
                                         <template #interactiveContainer>
-                                            <!-- <a 
-                                                :href="interactiveElementData.buyNow.href"
-                                                class="btn interactive-element" 
-                                                :style="interactiveElementData.buyNow.style">{{interactiveElementData.buyNow.title}}</a> -->
-
-                                                <div ref="iElement" v-for="(ie, key) in interactiveElementData" :key="key">
-                                                    <!-- <link-button v-if="ie.type == 'button'"
-                                                        :href="ie.href"                                                    
-                                                        :style="ie.style"
-                                                        :title="ie.title"></link-button> -->
-
-                                                    <i-element
-                                                        :type="ie.type"
-                                                        :href="ie.href"
-                                                        :styles="ie.style">{{ie.text}}</i-element>
-                                                </div>
+                                            <div ref="iElement" v-for="(ie, key) in interactiveElementData" :key="key">
+                                                <i-element
+                                                    :type="ie.type"
+                                                    :href="ie.href"
+                                                    :styles="ie.style">
+                                                    <template v-if="ie.type=='text'">
+                                                        <div v-html="ie.text"></div>
+                                                    </template>
+                                                    <template v-else>{{ie.text}}</template>
+                                                </i-element>
+                                            </div>
                                         </template>
                                 </video-section>
 
@@ -63,7 +60,8 @@
                                                     :from="0"
                                                     :prettify-enabled="true"
                                                     :prettify="prettify"
-                                                    @ready="timelineReady"></timeline>
+                                                    @ready="timelineReady"
+                                                    @finish="timelineDrag"></timeline>
                                             </div>
                                             <div class="col-md-2">&nbsp;</div>
                                         </div>
@@ -82,7 +80,8 @@
                                                     :duration="video.duration"
                                                     @edit="editLayer"
                                                     @clone="cloneLayer"
-                                                    @remove="removeLayer"></interactive-layer>
+                                                    @remove="removeLayer"
+                                                    @input-update="layerInputUpdate"></interactive-layer>
                                             
                                             </div>
 
@@ -132,12 +131,19 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            
                                             <div class="form-group">
                                                 <div class="row">
                                                     <label class="label col-3" for="">Text</label>
-                                                    <div class="col-8">
-                                                        <input type="text" v-model="interactiveElementData[layerIndex].text" class="form-control">
+                                                    <div class="col-12 text-editor-container" v-if="interactiveElementData[layerIndex].type == 'text'">
+                                                        <text-editor
+                                                            v-model="interactiveElementData[layerIndex].text"
+                                                            ></text-editor>
+                                                    </div>
+                                                    <div class="col-8" v-else>
+                                                        <input 
+                                                            type="text" v-model="interactiveElementData[layerIndex].text" class="form-control">
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -167,36 +173,19 @@
                                             <div v-else-if="interactiveElementData[layerIndex].action == 2">
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        <label class="label col-3" for="">From</label>
+                                                        <label class="label col-3" for="">Link time</label>
                                                         <div class="col-8">
-                                                            <input type="url" v-model="interactiveElementData[layerIndex].time.from" class="form-control" placeholder="HH:MM:SS.MS">  
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <label class="label col-3" for="">To</label>
-                                                        <div class="col-8">
-                                                            <input type="url" v-model="interactiveElementData[layerIndex].time.to" class="form-control" placeholder="HH:MM:SS.MS">
+                                                            <input type="text" v-model="interactiveElementData[layerIndex].linkTime" class="form-control" placeholder="HH:MM:SS.MS">  
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
-                                            <!-- <div class="form-group">
-                                                <div class="icheck-light-yellow d-inline">
-                                                    <input type="radio" id="checkboxPrimary3">
-                                                    <label for="checkboxPrimary3">Primary checkbox</label>
-                                                </div>
-                                            </div> -->
 
-                                        
                                         </div>
 
                                         <div class="tab-panel fade" id="design-panel" role="tabpanel" aria-describedby="design-tab">
                                             <ul class="list-group">
-                                                
+                                                <!-- Position -->
                                                 <div>
                                                     <li class="list-group-item" data-toggle="collapse" data-target="#position">
                                                         Position
@@ -252,6 +241,7 @@
                                                     </div>
                                                 </div>
 
+                                                <!-- Text & Background -->
                                                 <div>
                                                     <li class="list-group-item" data-toggle="collapse" data-target="#background">
                                                         Text &amp; Background
@@ -271,7 +261,7 @@
                                                                 <label for="" class="col-4 label">Size</label>
                                                                 <div class="col-8">
                                                                     <div class="input-group ie">
-                                                                        <input type="text" v-model="ieStyle.fontSize" class="form-control col-4">
+                                                                        <input type="number" v-model="ieStyle.fontSize" class="form-control col-4">
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text vx-text-color">px</span>
                                                                         </div>
@@ -312,6 +302,7 @@
                                                     </div>
                                                 </div>
 
+                                                <!-- Border -->
                                                 <div>
                                                     <li class="list-group-item" data-toggle="collapse" data-target="#border">
                                                         Border
@@ -384,6 +375,68 @@
 
                                                     </div>
                                                 </div>
+
+                                                <!-- Border -->
+                                                <div v-if="interactiveElementData[layerIndex].editContainer">
+                                                    <li class="list-group-item" data-toggle="collapse" data-target="#cca">
+                                                        Container
+                                                        <span class="icon float-right"><i class="fa fa-angle-down"></i></span>
+                                                    </li>
+                                                    <div class="content collapse" id="cca">
+
+                                                        <height-slider
+                                                            :from="ieStyle.height"
+                                                            :selected-layer-index="layerIndex"
+                                                            @change="(from) => ieStyle.height = from">
+                                                                <template #label>
+                                                                    Height
+                                                                </template>
+                                                        </height-slider>
+
+                                                        <width-slider
+                                                            :from="ieStyle.width"
+                                                            :selected-layer-index="layerIndex"
+                                                            @change="(from) => ieStyle.width = from">
+                                                                <template #label>
+                                                                    Width
+                                                                </template>
+                                                        </width-slider>
+
+
+                                                        <!-- <div class="form-group">
+                                                            <div class="row">
+                                                                <label for="" class="col-4 label">Width</label>
+                                                                <div class="col-8">
+                                                                    <div class="input-group ie">
+                                                                        <input type="text" v-model="ieStyle.borderWidth" class="form-control col-4">
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text vx-text-color">px</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+
+                                                        <!-- Border Style -->
+                                                        <!-- <div class="form-group my-2">
+                                                            <div class="row">
+                                                                <label for="" class="col-4 label">Style</label>
+                                                                <div class="col-8">
+                                                                    <div class="input-group ie">
+                                                                        <select v-model="ieStyle.borderStyle" class="form-control col-6">
+                                                                            <option value="">None</option>
+                                                                            <option value="solid">Solid</option>
+                                                                            <option value="dotted">Dotted</option>
+                                                                            <option value="double">Double</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                        <!--/ Border Style -->
+
+                                                    </div>
+                                                </div>
                                                 
                                             </ul>
                                         </div>
@@ -429,6 +482,9 @@
 
     import YDApi from '../../plugin/youtube-data-api/index';
 
+    import TextEditor from '../../components/CkEditor';
+    import HeightSlider from '../../components/form/IeRangeSlider';
+    import WidthSlider from '../../components/form/IeRangeSlider';
     import XPositionSlider from '../../components/form/IeRangeSlider';
     import YPositionSlider from '../../components/form/IeRangeSlider';
     import BorderRadiusSlider from '../../components/form/IeRangeSlider';
@@ -446,7 +502,10 @@
             IElement,
             InteractiveLayer,
             TextColorPicker,
+            TextEditor,
             BgColorPicker,
+            HeightSlider,
+            WidthSlider,
             XPositionSlider,
             YPositionSlider,
             BorderRadiusSlider
@@ -454,9 +513,11 @@
         data() {
             return {
                 layerIndex: null,
+                stopTimelineUpdate: false,
                 video: {
                     instance: null,
                     currentTime: '',
+                    seekTo: '',
                     duration: 0
                 },
                 measurement: {
@@ -464,6 +525,9 @@
                     percent: '%'
                 },
                 ieStyle: {
+                    height: '40',
+                    width: '40',
+
                     top: '20',
                     left: '30',
                     color: '#444',
@@ -475,6 +539,7 @@
 
                     fontSize: '',
                     fontWeight: '',
+                    texAlign: '',
 
                     backgroundColor: '#23f6f6',
                 },
@@ -486,6 +551,7 @@
                         text: 'Buy Now',
                         action: 1,
                         href: '#',
+                        linkTime: '00:00:00.00',
                         style: {
                             top: '20%',
                             left: '30%',
@@ -512,6 +578,7 @@
                         text: 'Go Back',
                         action: 1,
                         href: '#',
+                        linkTime: '00:00:00.00',
                         style: {
                             top: '40%',
                             left: '2%',
@@ -551,6 +618,8 @@
                         Object.entries(selectedIEStyle).forEach(([index, value]) => {
 
                             switch(index){
+                                case 'height':
+                                case 'width':
                                 case 'left':
                                 case 'top':
                                 case 'borderRadius':
@@ -585,13 +654,16 @@
                             text: 'Buy Now',
                             action: '',
                             href: '',
+                            linkTime: '00:00:00.00',
+                            editContainer: false,
                             style: {
                                 top: '2%',
                                 left: '2%',
-                                color: 'red',
+                                color: '#25EB25',
 
                                 fontSize: '15px',
                                 fontWeight: '500',
+                                textAlign: 'center',
                                 
                                 borderWidth: '1px',
                                 borderColor: '#23f6f6',
@@ -606,11 +678,43 @@
                             }
                         })
                         break;
-                    case 'hotsport':
-                        
+                    case 'text':
+                        this.interactiveElementData.push({
+                            type: 'text',
+                            title: 'Text Element',
+                            text: '<p>Welcome to Vunyx studio</p>',
+                            editContainer: true,
+                            style: {
+                                height: '40%',
+                                width: '40%',
+
+                                top: '2%',
+                                left: '2%',
+                                color: '#25EB25',
+
+                                fontSize: '15px',
+                                fontWeight: '500',
+                                // textAlign: 'center',
+
+                                padding: '10px',
+                                
+                                borderWidth: '0px',
+                                borderColor: '#23f6f6',
+                                borderStyle: 'solid',
+                                borderRadius: '0',
+
+                                backgroundColor: 'transparent'
+                            },
+                            time: {
+                                from: (!_.isEmpty (this.video.currentTime))? datePlugin.spanTimeWithMillisec(this.video.instance.getCurrentTime()).text : '00:00:00.00',
+                                to: (!_.isEmpty (this.video.currentTime))? datePlugin.spanTimeWithMillisec(this.video.instance.getCurrentTime()+10).text : '00:00:00.00'
+                            }
+                        });
                         break;
                 }
+
             },
+            //layer methods
             editLayer ({index, data}) {
                 // Get the index of this.interactiveElementData
                 this.layerIndex = index;
@@ -619,7 +723,6 @@
                     this.ieStyle[index] = value.replace(/(px|\%)?$/, '');
                 });
             },
-
             cloneLayer({index, data}) {
                 // data.title = ' - clone'
                 let clone = _.cloneDeep(data);
@@ -630,6 +733,10 @@
             removeLayer(index) {
                 this.layerIndex = null;
                 this.interactiveElementData.splice(index, 1);
+            },
+            layerInputUpdate({type, event}, index){
+                console.log('Input update layer type: '+ type);
+                this.interactiveElementData[index].time[type] = event.target.value;
             },
 
             insertElement() {
@@ -647,19 +754,18 @@
 
             },
             
-            isLayerExist(index) {
-                // return this.interactiveElementData
-            },
-
             getVideoCurrentTime(time){
                 this.video.currentTime = time;
+                //check if to stop timeline update
                 //update timeline slider
-                this.timelineInstance.update({
-                    from: this.video.instance.getCurrentTime(),
-                });
+                if (this.video.instance.getPlayerState() == 1) {
+                    if (!this.stopTimelineUpdate) {
+                        this.updateTimelineProgress(this.video.instance.getCurrentTime());
+                    }
+                }
             },
             playerReady(player) {
-                this.video.instance = player
+                this.video.instance = player;
             },
             videoPlaying(player) {
                 this.video.duration = player.getDuration();
@@ -669,14 +775,43 @@
                     max: player.getDuration(),
                 });
             },
-
+            VideoTimeChange(currentTime) {// video section component method, call when video seekbar is dragged
+                // update timeline from
+                if (this.video.instance.getPlayerState() == 2) {
+                    this.timelineInstance.update({
+                        from: currentTime,
+                    });
+                }
+            },
             // timeline
             timelineReady(instance) {
                 this.timelineInstance = instance;
             },
+            updateTimelineProgress(from){
+                this.timelineInstance.update({
+                    from: from,
+                });
+            },
+            timelineDrag(e) {
+                // this.video.instance.seekTo(e.from);
+                this.video.seekTo = e.from;
+                this.updateTimelineProgress(e.from)
+            },
             prettify (sec) {
                 let time = datePlugin.spanTime(sec);
                 return time.text;
+            },
+            timelineDragOnVideoPlaying(){
+                //.vx-timeline span.irs-handle
+                $('.ie-timeline-container').mousedown( () => {
+                    if (!_.isNull(this.video.instance)){
+                        if (this.video.instance.getPlayerState() == 1){
+                            this.stopTimelineUpdate = true;
+                        }
+                    }
+                }).mouseup(() => {
+                    this.stopTimelineUpdate = false;
+                });
             }
         },
         mounted() {
@@ -684,9 +819,11 @@
 
             this.$nextTick(() => {
                 $('.ie-body,.interactive-layer-container').overlayScrollbars({
-                    autoHide: 'move'
+                    autoHide: 'leave'
                 });
             });
+
+            this.timelineDragOnVideoPlaying();
         }
     }
 </script>

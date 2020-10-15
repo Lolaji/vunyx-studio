@@ -19,44 +19,52 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link" @click.prevent="createElem ('link')">
-                        <i class="nav-icon fas fa-link"></i>
+                        <ie-icon type="link" classes="nav-icon"></ie-icon>
                         <p>Link</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link" @click.prevent="createElem ('text')">
+                        <ie-icon type="text" classes="nav-icon"></ie-icon>
+                        <p>Text</p>
+                    </a>
+                </li>
+
+                <!-- <li class="nav-item">
+                    <a href="#" class="nav-link" @click.prevent="createElem ('image')">
+                        <ie-icon type="image" classes="nav-icon"></ie-icon>
+                        <p>Image</p>
+                    </a>
+                </li>
+                
                 <li class="nav-item">
                     <a href="#" class="nav-link" @click.prevent="createElem ('hotspot')">
-                        <i class="nav-icon fas fa-hubspot"></i>
+                        <ie-icon type="hotspot" classes="nav-icon"></ie-icon>
                         <p>Hotspot</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="#" class="nav-link" @click.prevent="createElem ('question')">
-                        <i class="nav-icon fas fa-question-circle"></i>
-                        <p>Question</p>
+                        <ie-icon type="question" classes="nav-icon"></ie-icon>
+                        <p>Quiz &amp; Poll</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="#" class="nav-link" @click.prevent="createElem ('chapter')">
-                        <i class="nav-icon fas fa-list"></i>
+                        <ie-icon type="chapter" classes="nav-icon"></ie-icon>
                         <p>Chapter</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link" @click.prevent="createElem ('image')">
-                        <i class="nav-icon fas fa-image"></i>
-                        <p>Image</p>
+                    <a href="#" class="nav-link" @click.prevent="createElem ('custom-form')">
+                        <ie-icon type="chapter" classes="nav-icon"></ie-icon>
+                        <p>Custom Form</p>
                     </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link" @click.prevent="createElem ('text')">
-                        <i class="nav-icon fas fa-layers-text"></i>
-                        <p>Text</p>
-                    </a>
-                </li>
+                </li> -->
             
             </ul>
         </nav>
@@ -66,7 +74,9 @@
     </aside>
 </template>
 <script>
+    import IeIcon from '../components/InteractiveIcon';
     export default {
+        components: {IeIcon},
         methods: {
             createElem(elemType){
                 this.$emit('create', elemType);

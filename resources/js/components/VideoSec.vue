@@ -93,6 +93,11 @@
     import YoutubeIframe from "./YoutubeIframe.vue";
 
     export default {
+        props: {
+            seekTo: {
+                type: [Number, String]
+            }
+        },
         components: {
             YoutubeIframe,
             SeekBar,
@@ -101,6 +106,12 @@
         watch: {
             seekBarValue(nData, oData){
                 this.seekToTime = nData;
+            },
+            seekTo(nData, oData){
+                let newTime = parseInt(nData);
+                this.playerInstance.seekTo(nData);
+                this.timeText.current = datePlugin.spanTime(newTime).rand;
+                this.seekBarValue = newTime;
             }
         },
         data(){
@@ -170,7 +181,7 @@
                         break;
                 }
             },
-            playing(){// Triggers when the the video is played by click the video screen
+            playing(){// Triggers when the the video is played by clicking the video screen
                 this.playerDuration = this.playerInstance.getDuration();
                 this.seekBarValue = this.playerInstance.getCurrentTime();
                 this.timeText.duration = datePlugin.spanTime(this.playerInstance.getDuration()).rand;
@@ -187,7 +198,7 @@
 
                 this.$emit('playing', this.playerInstance);
             },
-            paused(){// Triggers when the the video is played by click the video screen
+            paused(){// Triggers when the the video is played by clicking the video screen
                 let playPauseIconClass = this.$refs.playPauseIcon.classList;
                 playPauseIconClass.remove('fa-pause');
                 playPauseIconClass.add('fa-play');
@@ -210,6 +221,7 @@
                 console.log(value);
                 this.seekBarValue = value;
                 clearInterval(this.seekBarTimeInterval);
+                this.$emit('time-change', value);
                 await this.playerInstance.seekTo(value);
 
                 this.updateSeekBarTime(true);
@@ -250,7 +262,6 @@
 
             }
         },
-
     };
 </script>
 

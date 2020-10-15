@@ -170,6 +170,7 @@
         },
         methods: {
             start(data) {
+                console.log('irs drag start')
                 this.$emit('start', data);
             },
             change(data){
@@ -343,6 +344,7 @@
     }
 
     .vx-timeline.irs--square .irs-handle {
+        z-index: 9999;
         &::after {
             content: "";
             height: 220px;
@@ -351,7 +353,6 @@
             top: -20px;
             left: 89.2px;
             background: black;
-            z-index: 999;
 
             -webkit-transform: rotate(-45deg);
                 -ms-transform: rotate(-45deg);
