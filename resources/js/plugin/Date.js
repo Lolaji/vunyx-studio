@@ -56,6 +56,20 @@ class DateObj {
 
         return result;
     }
+
+    spanTimeToSeconds(sp=null, toFixed=null) {
+        if (sp) {
+            let timeArr = sp.split(':'),
+                seconds = '';
+            
+            seconds = (parseInt(timeArr[0]) * 3600) + (parseInt(timeArr[1]) * 60) + parseFloat(timeArr[2]);
+
+            if (toFixed && (typeof toFixed == 'number')) {
+                return parseFloat(seconds).toFixed(toFixed);
+            }
+            return parseFloat(seconds);
+        }
+    }
 }
 
 export default new DateObj();

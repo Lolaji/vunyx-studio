@@ -202,8 +202,8 @@
                 let playPauseIconClass = this.$refs.playPauseIcon.classList;
                 playPauseIconClass.remove('fa-pause');
                 playPauseIconClass.add('fa-play');
-
                 this.updateSeekBarTime(false);
+                this.$emit('paused', this.playerInstance);
             },
             updateSeekBarTime(update=false){
                 if (update){
@@ -212,7 +212,7 @@
                         this.seekBarValue = this.playerInstance.getCurrentTime();
                         this.timeText.current = curTime.rand;
                         this.$emit( 'get-current-time', curTime.text);
-                    }, 100);
+                    }, 0.1);
                 } else {
                     clearInterval(this.seekBarTimeInterval);
                 }

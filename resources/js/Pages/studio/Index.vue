@@ -20,13 +20,19 @@
                                     @ready="playerReady"
                                     @get-current-time="getVideoCurrentTime"
                                     @playing="videoPlaying"
+                                    @paused="videoPaused"
                                     @time-change="VideoTimeChange">
                                         <template #interactiveContainer>
                                             <div ref="iElement" v-for="(ie, key) in interactiveElementData" :key="key">
                                                 <i-element
                                                     :type="ie.type"
                                                     :href="ie.href"
-                                                    :styles="ie.style">
+                                                    :styles="ie.style"
+                                                    :from="ie.time.from"
+                                                    :to="ie.time.to"
+                                                    :video-current-time="video.currentTimeInSeconds"
+                                                    :is-video-playing="video.playing"
+                                                    :on-edit="ie.onEdit">
                                                     <template v-if="ie.type=='text'">
                                                         <div v-html="ie.text"></div>
                                                     </template>
@@ -513,12 +519,15 @@
         data() {
             return {
                 layerIndex: null,
+                lastLayerEditIndex: null,
                 stopTimelineUpdate: false,
                 video: {
                     instance: null,
-                    currentTime: '',
+                    playing: false,
+                    currentTime: null,
                     seekTo: '',
-                    duration: 0
+                    duration: 0,
+                    currentTimeInSeconds: null
                 },
                 measurement: {
                     px: 'px',
@@ -552,6 +561,8 @@
                         action: 1,
                         href: '#',
                         linkTime: '00:00:00.00',
+                        onEdit: false,
+                        editContainer: false,
                         style: {
                             top: '20%',
                             left: '30%',
@@ -579,6 +590,8 @@
                         action: 1,
                         href: '#',
                         linkTime: '00:00:00.00',
+                        onEdit: false,
+                        editContainer: false,
                         style: {
                             top: '40%',
                             left: '2%',
@@ -655,6 +668,7 @@
                             action: '',
                             href: '',
                             linkTime: '00:00:00.00',
+                            onEdit: false,
                             editContainer: false,
                             style: {
                                 top: '2%',
@@ -683,6 +697,7 @@
                             type: 'text',
                             title: 'Text Element',
                             text: '<p>Welcome to Vunyx studio</p>',
+                            onEdit: false,
                             editContainer: true,
                             style: {
                                 height: '40%',
@@ -715,13 +730,29 @@
 
             },
             //layer methods
-            editLayer ({index, data}) {
+            async editLayer ({index, data}) {
+                let fromSec = datePlugin.spanTimeToSeconds(data.time.from);
+
+                await this.video.instance.pauseVideo();
+
+                if (!_.isNull(this.lastLayerEditIndex)){
+                    this.interactiveElementData[this.lastLayerEditIndex].onEdit = false;
+                }
                 // Get the index of this.interactiveElementData
                 this.layerIndex = index;
+                data.onEdit = true;
+                this.lastLayerEditIndex = index;
                 // Populate the this.ieStyle data property
                 Object.entries(data.style).forEach(([index, value]) => {
                     this.ieStyle[index] = value.replace(/(px|\%)?$/, '');
                 });
+
+                // pause video on edit
+
+                await this.video.instance.seekTo(fromSec);
+
+                this.updateTimelineProgress(fromSec);
+                
             },
             cloneLayer({index, data}) {
                 // data.title = ' - clone'
@@ -755,10 +786,12 @@
             },
             
             getVideoCurrentTime(time){
-                this.video.currentTime = time;
-                //check if to stop timeline update
-                //update timeline slider
                 if (this.video.instance.getPlayerState() == 1) {
+                    this.video.currentTime = time;
+                    this.video.currentTimeInSeconds = this.video.instance.getCurrentTime();
+
+                    //check if to stop timeline update
+                    //update timeline slider
                     if (!this.stopTimelineUpdate) {
                         this.updateTimelineProgress(this.video.instance.getCurrentTime());
                     }
@@ -766,14 +799,19 @@
             },
             playerReady(player) {
                 this.video.instance = player;
+                console.log(this.video.instance.getPlayerState());
             },
             videoPlaying(player) {
+                this.video.playing = true;
                 this.video.duration = player.getDuration();
                 
                 //update timeline slider
                 this.timelineInstance.update({
                     max: player.getDuration(),
                 });
+            },
+            videoPaused(player){
+                this.video.playing = false;
             },
             VideoTimeChange(currentTime) {// video section component method, call when video seekbar is dragged
                 // update timeline from
