@@ -40519,6 +40519,11 @@ Creation date: 26/08/2020 12:09
 
 .interactive-editor .ie-body .text-editor-container {
   color: #2a2929;
+  user-select: all;
+  -webkit-user-select: all;
+  -khtml-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
 }
 
 .interactive-editor .ie-body .form-control {
@@ -40698,35 +40703,6 @@ Creation date: 26/08/2020 12:09
   padding: 0;
   margin: 0;
   border-radius: 20px;
-}
-
-.interactive-timeline.ruler {
-  display: flex;
-  background: #3e3f3f;
-}
-
-.interactive-timeline.ruler .slider {
-  width: 1px;
-  height: 50vh;
-  position: absolute;
-  top: -4px;
-  background: #f2372f;
-  z-index: 2;
-}
-
-.interactive-timeline.ruler .slider::before {
-  width: 10px;
-  height: 10px;
-  background: #f2372f;
-  border-radius: 50%;
-  cursor: ew-resize;
-}
-
-.interactive-timeline.ruler .tick {
-  height: 15px;
-  display: block;
-  width: 2px;
-  background: #cdcece;
 }
 
 .interactive-timeline.interactive-position {

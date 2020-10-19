@@ -55,6 +55,7 @@ export default {
                 //     items: ['heading', '|', 'bold', 'italic', 'link', 'fontColor', 
                 //     'bulletedList', 'numberedList', 'blockQuote', 'indent:increase', 'indent:decrease', 'table']
                 // },
+                
                 removePlugins: ['Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed',
                                 'CKFinderUploadAdapter'],
             },

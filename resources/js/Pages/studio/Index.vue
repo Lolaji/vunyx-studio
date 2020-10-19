@@ -30,6 +30,7 @@
                                                     :styles="ie.style"
                                                     :from="ie.time.from"
                                                     :to="ie.time.to"
+                                                    :animate-classes="ie.animateClasses"
                                                     :video-current-time="video.currentTimeInSeconds"
                                                     :is-video-playing="video.playing"
                                                     :on-edit="ie.onEdit">
@@ -49,13 +50,6 @@
                                         <div class="row mb-3">
                                             <div class="col-md-2">&nbsp;</div>
                                             <div class="col-md-8 ie-timeline-container">
-                                                <!-- <div class="row">
-                                                    <div class="interactive-timeline ruler">
-                                                        <div class="slider" style="margin-left: 1%"></div>
-
-                                                        <span class="tick" v-for="i in 99" :key="i" :style="'margin-left:'+i+'%'"></span>
-                                                    </div>
-                                                </div> -->
                                                 <timeline
                                                     extra-classes="vx-timeline"
                                                     skin="square"
@@ -75,20 +69,24 @@
                                         <!-- Interactive Layer -->
                                         <div class="row interactive-layer-container">
 
-                                            <div class="col-md-12">
+                                            <div 
+                                                is="transition-group" 
+                                                class="col-md-12"
+                                                enter-active-class="animate__animated animate__fadeIn"
+                                                leave-active-class="animate__animated animate__fadeOut">
                                                 
-                                                <interactive-layer
-                                                    v-for="(e, index) in interactiveElementData" 
-                                                    :key="index"
-                                                    :index="index"
-                                                    :classes="{active: (index == layerIndex)}"
-                                                    :data="e"
-                                                    :duration="video.duration"
-                                                    @edit="editLayer"
-                                                    @clone="cloneLayer"
-                                                    @remove="removeLayer"
-                                                    @input-update="layerInputUpdate"></interactive-layer>
-                                            
+                                                    <interactive-layer
+                                                        v-for="(e, index) in interactiveElementData" 
+                                                        :key="index"
+                                                        :index="index"
+                                                        :classes="{active: (index == layerIndex)}"
+                                                        :data="e"
+                                                        :duration="video.duration"
+                                                        @edit="editLayer"
+                                                        @clone="cloneLayer"
+                                                        @remove="removeLayer"
+                                                        @input-update="layerInputUpdate"></interactive-layer>
+
                                             </div>
 
                                         </div>
@@ -127,6 +125,7 @@
 
                                     <div class="tab-content" v-if="layerIndex != null">
 
+                                        <!-- Interactive Panel -->
                                         <div class="tab-panel pt-2 fade show active px-3" id="interactive-panel" role="tabpanel" aria-labelledby="interactive-tab">
                                             
                                             <div class="form-group">
@@ -187,8 +186,43 @@
                                                 </div>
                                             </div>
 
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="label col-3" for="enterAnimation">Enter Animation</label>
+                                                    <div class="col-8">
+                                                        <select v-model="interactiveElementData[layerIndex].animateClasses.enter" id="enterAnimation" class="form-control">
+                                                            <option value="">-- Select Action --</option>
+                                                            <option value="animate__animated animate__fadeIn">Fade In</option>
+                                                            <option value="animate__animated animate__fadeOut">Fade Out</option>
+                                                            <option value="animate__animated animate__backInLeft">Back In Left</option>
+                                                            <option value="animate__animated animate__backInRight">Back In Right</option>
+                                                            <option value="animate__animated animate__backOutLeft">Back Out Left</option>
+                                                            <option value="animate__animated animate__backOutRight">Back Out Right</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label class="label col-3" for="leaveAnimation">Leave Animation</label>
+                                                    <div class="col-8">
+                                                        <select v-model="interactiveElementData[layerIndex].animateClasses.leave" id="leaveAnimation" class="form-control">
+                                                            <option value="">-- Select Action --</option>
+                                                            <option value="animate__animated animate__fadeIn">Fade In</option>
+                                                            <option value="animate__animated animate__fadeOut">Fade Out</option>
+                                                            <option value="animate__animated animate__backInLeft">Back In Left</option>
+                                                            <option value="animate__animated animate__backInRight">Back In Right</option>
+                                                            <option value="animate__animated animate__backOutLeft">Back Out Left</option>
+                                                            <option value="animate__animated animate__backOutRight">Back Out Right</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
 
+                                        <!-- Design Panel -->
                                         <div class="tab-panel fade" id="design-panel" role="tabpanel" aria-describedby="design-tab">
                                             <ul class="list-group">
                                                 <!-- Position -->
@@ -408,38 +442,17 @@
                                                                 </template>
                                                         </width-slider>
 
-
-                                                        <!-- <div class="form-group">
-                                                            <div class="row">
-                                                                <label for="" class="col-4 label">Width</label>
-                                                                <div class="col-8">
-                                                                    <div class="input-group ie">
-                                                                        <input type="text" v-model="ieStyle.borderWidth" class="form-control col-4">
-                                                                        <div class="input-group-append">
-                                                                            <span class="input-group-text vx-text-color">px</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
-
-                                                        <!-- Border Style -->
-                                                        <!-- <div class="form-group my-2">
-                                                            <div class="row">
-                                                                <label for="" class="col-4 label">Style</label>
-                                                                <div class="col-8">
-                                                                    <div class="input-group ie">
-                                                                        <select v-model="ieStyle.borderStyle" class="form-control col-6">
-                                                                            <option value="">None</option>
-                                                                            <option value="solid">Solid</option>
-                                                                            <option value="dotted">Dotted</option>
-                                                                            <option value="double">Double</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
-                                                        <!--/ Border Style -->
+                                                        <opacity-slider
+                                                            :from="ieStyle.opacity"
+                                                            :min="0"
+                                                            :max="1"
+                                                            :step="0.01"
+                                                            :selected-layer-index="layerIndex"
+                                                            @change="(from) => ieStyle.opacity = from">
+                                                                <template #label>
+                                                                    Opacity
+                                                                </template>
+                                                        </opacity-slider>
 
                                                     </div>
                                                 </div>
@@ -489,8 +502,10 @@
     import YDApi from '../../plugin/youtube-data-api/index';
 
     import TextEditor from '../../components/CkEditor';
+    // Sliders
     import HeightSlider from '../../components/form/IeRangeSlider';
     import WidthSlider from '../../components/form/IeRangeSlider';
+    import OpacitySlider from '../../components/form/IeRangeSlider';
     import XPositionSlider from '../../components/form/IeRangeSlider';
     import YPositionSlider from '../../components/form/IeRangeSlider';
     import BorderRadiusSlider from '../../components/form/IeRangeSlider';
@@ -512,6 +527,7 @@
             BgColorPicker,
             HeightSlider,
             WidthSlider,
+            OpacitySlider,
             XPositionSlider,
             YPositionSlider,
             BorderRadiusSlider
@@ -540,6 +556,8 @@
                     top: '20',
                     left: '30',
                     color: '#444',
+
+                    opacity: 1,
 
                     borderWidth: '1',
                     borderColor: '#23f6f6',
@@ -581,6 +599,10 @@
                         time: {
                             from: '00:00:30.33',
                             to: '00:01:30.40'
+                        },
+                        animateClasses: {
+                            enter: 'animate__animated animate__fadeIn',
+                            leave: 'animate__animated animate__fadeOut'
                         }
                     },
                     {
@@ -611,6 +633,10 @@
                         time: {
                             from: '00:00:10.00',
                             to: '00:00:40.00'
+                        },
+                        animateClasses: {
+                            enter: 'animate__animated animate__backInLeft',
+                            leave: 'animate__animated animate__backOutRight'
                         }
                     }
                 ],
@@ -655,6 +681,8 @@
         },
         methods: {
             createInteractiveElement (elemType) {
+                let index = null;
+                let data = {};
                 //pause the video if playing
                 if (this.video.instance.getPlayerState() == 1)
                     this.video.instance.pauseVideo();
@@ -689,6 +717,10 @@
                             time: {
                                 from: (!_.isEmpty (this.video.currentTime))? datePlugin.spanTimeWithMillisec(this.video.instance.getCurrentTime()).text : '00:00:00.00',
                                 to: (!_.isEmpty (this.video.currentTime))? datePlugin.spanTimeWithMillisec(this.video.instance.getCurrentTime()+10).text : '00:00:00.00'
+                            },
+                            animateClasses: {
+                                enter: '',
+                                leave: ''
                             }
                         })
                         break;
@@ -712,44 +744,58 @@
                                 // textAlign: 'center',
 
                                 padding: '10px',
+
+                                opacity: 1,
                                 
                                 borderWidth: '0px',
                                 borderColor: '#23f6f6',
                                 borderStyle: 'solid',
                                 borderRadius: '0',
 
-                                backgroundColor: 'transparent'
+                                backgroundColor: 'transparent',
                             },
                             time: {
                                 from: (!_.isEmpty (this.video.currentTime))? datePlugin.spanTimeWithMillisec(this.video.instance.getCurrentTime()).text : '00:00:00.00',
                                 to: (!_.isEmpty (this.video.currentTime))? datePlugin.spanTimeWithMillisec(this.video.instance.getCurrentTime()+10).text : '00:00:00.00'
+                            },
+                            animateClasses: {
+                                enter: '',
+                                leave: ''
                             }
                         });
                         break;
                 }
 
+                index = this.interactiveElementData.length-1;
+                data = this.interactiveElementData[index];
+
+                console.log(data);
+                
+                this.editLayer({index, data});
             },
-            //layer methods
+
+            /**
+             * Layer Methods
+             */
             async editLayer ({index, data}) {
                 let fromSec = datePlugin.spanTimeToSeconds(data.time.from);
 
-                await this.video.instance.pauseVideo();
-
-                if (!_.isNull(this.lastLayerEditIndex)){
-                    this.interactiveElementData[this.lastLayerEditIndex].onEdit = false;
-                }
+                this.deActiveLastLayerEdit();
                 // Get the index of this.interactiveElementData
                 this.layerIndex = index;
                 data.onEdit = true;
                 this.lastLayerEditIndex = index;
                 // Populate the this.ieStyle data property
                 Object.entries(data.style).forEach(([index, value]) => {
-                    this.ieStyle[index] = value.replace(/(px|\%)?$/, '');
+                    this.ieStyle[index] = (typeof(value) == 'string')?value.replace(/(px|\%)?$/, ''): value;
                 });
 
                 // pause video on edit
 
                 await this.video.instance.seekTo(fromSec);
+
+                if (this.video.playing)
+                    await this.video.instance.pauseVideo();
 
                 this.updateTimelineProgress(fromSec);
                 
@@ -768,6 +814,10 @@
             layerInputUpdate({type, event}, index){
                 console.log('Input update layer type: '+ type);
                 this.interactiveElementData[index].time[type] = event.target.value;
+            },
+            deActiveLastLayerEdit() {
+                if (!_.isNull(this.lastLayerEditIndex))
+                    this.interactiveElementData[this.lastLayerEditIndex].onEdit = false;
             },
 
             insertElement() {
@@ -833,6 +883,7 @@
             timelineDrag(e) {
                 // this.video.instance.seekTo(e.from);
                 this.video.seekTo = e.from;
+                this.video.currentTimeInSeconds = this.video.instance.getCurrentTime();
                 this.updateTimelineProgress(e.from)
             },
             prettify (sec) {

@@ -95,6 +95,12 @@ $vunyxColor: #e1c238;
 
     .text-editor-container {
       color: #2a2929;
+
+              user-select: all;
+      -webkit-user-select: all;
+      -khtml-user-select: all;
+      -moz-user-select: all;
+      -ms-user-select: all;
     }
 
     .form-control {
@@ -265,35 +271,6 @@ $vunyxColor: #e1c238;
   padding: 0;
   margin: 0;
   border-radius: 20px;
-  &.ruler {
-    display: flex;  
-    background: #3e3f3f;
-
-    .slider {
-      width: 1px;
-      height: 50vh;
-      position: absolute;
-      top: -4px;
-      background: #f2372f;
-      z-index: 2;
-
-      &::before {
-        width: 10px;
-        height: 10px;
-        // margin-left: 5%;
-        background: #f2372f;
-        border-radius: 50%;
-        cursor: ew-resize;
-      }
-    }
-
-    .tick {
-      height: 15px;
-      display: block;
-      width: 2px;
-      background: #cdcece;
-    }
-  }
 
   &.interactive-position {
     border: 1px solid #e1c238;

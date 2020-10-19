@@ -4707,6 +4707,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4716,6 +4729,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+ // Sliders
 
 
 
@@ -4739,6 +4754,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     BgColorPicker: _components_ColorPicker__WEBPACK_IMPORTED_MODULE_8__["default"],
     HeightSlider: _components_form_IeRangeSlider__WEBPACK_IMPORTED_MODULE_11__["default"],
     WidthSlider: _components_form_IeRangeSlider__WEBPACK_IMPORTED_MODULE_11__["default"],
+    OpacitySlider: _components_form_IeRangeSlider__WEBPACK_IMPORTED_MODULE_11__["default"],
     XPositionSlider: _components_form_IeRangeSlider__WEBPACK_IMPORTED_MODULE_11__["default"],
     YPositionSlider: _components_form_IeRangeSlider__WEBPACK_IMPORTED_MODULE_11__["default"],
     BorderRadiusSlider: _components_form_IeRangeSlider__WEBPACK_IMPORTED_MODULE_11__["default"]
@@ -4766,6 +4782,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         top: '20',
         left: '30',
         color: '#444',
+        opacity: 1,
         borderWidth: '1',
         borderColor: '#23f6f6',
         borderStyle: 'solid',
@@ -4800,6 +4817,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         time: {
           from: '00:00:30.33',
           to: '00:01:30.40'
+        },
+        animateClasses: {
+          enter: 'animate__animated animate__fadeIn',
+          leave: 'animate__animated animate__fadeOut'
         }
       }, {
         type: 'link',
@@ -4825,6 +4846,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         time: {
           from: '00:00:10.00',
           to: '00:00:40.00'
+        },
+        animateClasses: {
+          enter: 'animate__animated animate__backInLeft',
+          leave: 'animate__animated animate__backOutRight'
         }
       }],
       //timeline
@@ -4869,7 +4894,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   },
   methods: {
     createInteractiveElement: function createInteractiveElement(elemType) {
-      //pause the video if playing
+      var index = null;
+      var data = {}; //pause the video if playing
+
       if (this.video.instance.getPlayerState() == 1) this.video.instance.pauseVideo();
 
       switch (elemType) {
@@ -4899,6 +4926,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             time: {
               from: !_.isEmpty(this.video.currentTime) ? _plugin_Date__WEBPACK_IMPORTED_MODULE_1__["default"].spanTimeWithMillisec(this.video.instance.getCurrentTime()).text : '00:00:00.00',
               to: !_.isEmpty(this.video.currentTime) ? _plugin_Date__WEBPACK_IMPORTED_MODULE_1__["default"].spanTimeWithMillisec(this.video.instance.getCurrentTime() + 10).text : '00:00:00.00'
+            },
+            animateClasses: {
+              enter: '',
+              leave: ''
             }
           });
           break;
@@ -4920,6 +4951,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               fontWeight: '500',
               // textAlign: 'center',
               padding: '10px',
+              opacity: 1,
               borderWidth: '0px',
               borderColor: '#23f6f6',
               borderStyle: 'solid',
@@ -4929,12 +4961,27 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             time: {
               from: !_.isEmpty(this.video.currentTime) ? _plugin_Date__WEBPACK_IMPORTED_MODULE_1__["default"].spanTimeWithMillisec(this.video.instance.getCurrentTime()).text : '00:00:00.00',
               to: !_.isEmpty(this.video.currentTime) ? _plugin_Date__WEBPACK_IMPORTED_MODULE_1__["default"].spanTimeWithMillisec(this.video.instance.getCurrentTime() + 10).text : '00:00:00.00'
+            },
+            animateClasses: {
+              enter: '',
+              leave: ''
             }
           });
           break;
       }
+
+      index = this.interactiveElementData.length - 1;
+      data = this.interactiveElementData[index];
+      console.log(data);
+      this.editLayer({
+        index: index,
+        data: data
+      });
     },
-    //layer methods
+
+    /**
+     * Layer Methods
+     */
     editLayer: function editLayer(_ref3) {
       var _this = this;
 
@@ -4946,13 +4993,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               case 0:
                 index = _ref3.index, data = _ref3.data;
                 fromSec = _plugin_Date__WEBPACK_IMPORTED_MODULE_1__["default"].spanTimeToSeconds(data.time.from);
-                _context.next = 4;
-                return _this.video.instance.pauseVideo();
 
-              case 4:
-                if (!_.isNull(_this.lastLayerEditIndex)) {
-                  _this.interactiveElementData[_this.lastLayerEditIndex].onEdit = false;
-                } // Get the index of this.interactiveElementData
+                _this.deActiveLastLayerEdit(); // Get the index of this.interactiveElementData
 
 
                 _this.layerIndex = index;
@@ -4964,16 +5006,25 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
                       index = _ref5[0],
                       value = _ref5[1];
 
-                  _this.ieStyle[index] = value.replace(/(px|\%)?$/, '');
+                  _this.ieStyle[index] = typeof value == 'string' ? value.replace(/(px|\%)?$/, '') : value;
                 }); // pause video on edit
 
-                _context.next = 11;
+                _context.next = 9;
                 return _this.video.instance.seekTo(fromSec);
 
-              case 11:
-                _this.updateTimelineProgress(fromSec);
+              case 9:
+                if (!_this.video.playing) {
+                  _context.next = 12;
+                  break;
+                }
+
+                _context.next = 12;
+                return _this.video.instance.pauseVideo();
 
               case 12:
+                _this.updateTimelineProgress(fromSec);
+
+              case 13:
               case "end":
                 return _context.stop();
             }
@@ -5000,6 +5051,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           event = _ref7.event;
       console.log('Input update layer type: ' + type);
       this.interactiveElementData[index].time[type] = event.target.value;
+    },
+    deActiveLastLayerEdit: function deActiveLastLayerEdit() {
+      if (!_.isNull(this.lastLayerEditIndex)) this.interactiveElementData[this.lastLayerEditIndex].onEdit = false;
     },
     insertElement: function insertElement() {
       var instance = new LinkButtonClass({
@@ -5059,6 +5113,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     timelineDrag: function timelineDrag(e) {
       // this.video.instance.seekTo(e.from);
       this.video.seekTo = e.from;
+      this.video.currentTimeInSeconds = this.video.instance.getCurrentTime();
       this.updateTimelineProgress(e.from);
     },
     prettify: function prettify(sec) {
@@ -6528,6 +6583,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -6547,6 +6603,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     to: {
       type: String
+    },
+    animateClasses: {
+      type: Object
     },
     videoCurrentTime: {
       type: [String, Number]
@@ -6574,10 +6633,30 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      show: false
+      show: false,
+      mainStyle: {},
+      bgStyle: {}
     };
   },
   watch: {
+    styles: {
+      handler: function handler(nData, oData) {
+        this.initStyles(nData);
+
+        switch (this.type) {
+          case 'text':
+            this.bgStyle.opacity = nData.opacity;
+            this.bgStyle.backgroundColor = nData.backgroundColor;
+            this.mainStyle = nData;
+            break;
+
+          default:
+            this.mainStyle = nData;
+            break;
+        }
+      },
+      deep: true
+    },
     videoCurrentTime: function videoCurrentTime(nData, oData) {
       // console.log('Video Current time from IE: '+parseFloat(nData).toFixed(2) +' - '+ nData);
       if (nData >= this.fromSec) {
@@ -6602,6 +6681,26 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     setShow: function setShow(bol) {
       this.show = bol;
+    },
+    initStyles: function initStyles(styleObj) {
+      switch (this.type) {
+        case 'text':
+          this.bgStyle.opacity = styleObj.opacity;
+          this.bgStyle.backgroundColor = styleObj.backgroundColor;
+          this.mainStyle = styleObj;
+          break;
+
+        default:
+          this.mainStyle = styleObj;
+          break;
+      }
+    }
+  },
+  mounted: function mounted() {
+    this.initStyles(this.styles);
+
+    if (this.onEdit) {
+      this.setShow(true);
     }
   }
 });
@@ -6658,7 +6757,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".interactive-element[data-v-67575425] {\n  display: none;\n}\n.interactive-element.show[data-v-67575425] {\n  display: block;\n}\n.interactive-element.show.ie-bounce[data-v-67575425] {\n  -webkit-animation: bounce;\n          animation: bounce;\n  -webkit-animation-duration: 2s;\n          animation-duration: 2s;\n}\n.interactive-element.show.ie-fade-in[data-v-67575425] {\n  -webkit-animation: fadeIn;\n          animation: fadeIn;\n  -webkit-animation-duration: 2s;\n          animation-duration: 2s;\n}\n.interactive-element.ie-fade-out[data-v-67575425] {\n  -webkit-animation: fadeOut;\n          animation: fadeOut;\n  -webkit-animation-duration: 2s;\n          animation-duration: 2s;\n}", ""]);
+exports.push([module.i, ".interactive-element[data-v-67575425] {\n  overflow: hidden;\n}\n.interactive-element.ie-fade-enter-active[data-v-67575425] {\n  -webkit-animation: fadeIn;\n          animation: fadeIn;\n  -webkit-animation-duration: 2s;\n          animation-duration: 2s;\n}\n.interactive-element.ie-fade-leave-active[data-v-67575425] {\n  -webkit-animation: fadeOut;\n          animation: fadeOut;\n  -webkit-animation-duration: 2s;\n          animation-duration: 2s;\n}\n.interactive-element.ie-bounce-enter-active[data-v-67575425] {\n  -webkit-animation: bounceIn;\n          animation: bounceIn;\n  -webkit-animation-duration: 0.5s;\n          animation-duration: 0.5s;\n}\n.interactive-element.ie-bounce-leave-active[data-v-67575425] {\n  -webkit-animation: bounceOut;\n          animation: bounceOut;\n  -webkit-animation-duration: 0.5s;\n          animation-duration: 0.5s;\n}\n.interactive-element.ie-container[data-v-67575425] {\n  opacity: 1 !important;\n  background-color: transparent !important;\n}\n.interactive-element.ie-container .bg[data-v-67575425] {\n  height: 100%;\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index: 1;\n}\n.interactive-element.ie-container .text-content[data-v-67575425] {\n  padding: 0;\n  position: relative;\n  z-index: 9;\n}", ""]);
 
 // exports
 
@@ -63669,6 +63768,8 @@ var render = function() {
                                               styles: ie.style,
                                               from: ie.time.from,
                                               to: ie.time.to,
+                                              "animate-classes":
+                                                ie.animateClasses,
                                               "video-current-time":
                                                 _vm.video.currentTimeInSeconds,
                                               "is-video-playing":
@@ -63752,8 +63853,17 @@ var render = function() {
                                 },
                                 [
                                   _c(
-                                    "div",
-                                    { staticClass: "col-md-12" },
+                                    "transition-group",
+                                    {
+                                      tag: "div",
+                                      staticClass: "col-md-12",
+                                      attrs: {
+                                        "enter-active-class":
+                                          "animate__animated animate__fadeIn",
+                                        "leave-active-class":
+                                          "animate__animated animate__fadeOut"
+                                      }
+                                    },
                                     _vm._l(_vm.interactiveElementData, function(
                                       e,
                                       index
@@ -63778,7 +63888,8 @@ var render = function() {
                                     }),
                                     1
                                   )
-                                ]
+                                ],
+                                1
                               )
                             ]
                           )
@@ -64189,7 +64300,277 @@ var render = function() {
                                           ]
                                         )
                                       ])
-                                    : _vm._e()
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("div", { staticClass: "row" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass: "label col-3",
+                                          attrs: { for: "enterAnimation" }
+                                        },
+                                        [_vm._v("Enter Animation")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "col-8" }, [
+                                        _c(
+                                          "select",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm.interactiveElementData[
+                                                    _vm.layerIndex
+                                                  ].animateClasses.enter,
+                                                expression:
+                                                  "interactiveElementData[layerIndex].animateClasses.enter"
+                                              }
+                                            ],
+                                            staticClass: "form-control",
+                                            attrs: { id: "enterAnimation" },
+                                            on: {
+                                              change: function($event) {
+                                                var $$selectedVal = Array.prototype.filter
+                                                  .call(
+                                                    $event.target.options,
+                                                    function(o) {
+                                                      return o.selected
+                                                    }
+                                                  )
+                                                  .map(function(o) {
+                                                    var val =
+                                                      "_value" in o
+                                                        ? o._value
+                                                        : o.value
+                                                    return val
+                                                  })
+                                                _vm.$set(
+                                                  _vm.interactiveElementData[
+                                                    _vm.layerIndex
+                                                  ].animateClasses,
+                                                  "enter",
+                                                  $event.target.multiple
+                                                    ? $$selectedVal
+                                                    : $$selectedVal[0]
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "option",
+                                              { attrs: { value: "" } },
+                                              [_vm._v("-- Select Action --")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  value:
+                                                    "animate__animated animate__fadeIn"
+                                                }
+                                              },
+                                              [_vm._v("Fade In")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  value:
+                                                    "animate__animated animate__fadeOut"
+                                                }
+                                              },
+                                              [_vm._v("Fade Out")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  value:
+                                                    "animate__animated animate__backInLeft"
+                                                }
+                                              },
+                                              [_vm._v("Back In Left")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  value:
+                                                    "animate__animated animate__backInRight"
+                                                }
+                                              },
+                                              [_vm._v("Back In Right")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  value:
+                                                    "animate__animated animate__backOutLeft"
+                                                }
+                                              },
+                                              [_vm._v("Back Out Left")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  value:
+                                                    "animate__animated animate__backOutRight"
+                                                }
+                                              },
+                                              [_vm._v("Back Out Right")]
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "form-group" }, [
+                                    _c("div", { staticClass: "row" }, [
+                                      _c(
+                                        "label",
+                                        {
+                                          staticClass: "label col-3",
+                                          attrs: { for: "leaveAnimation" }
+                                        },
+                                        [_vm._v("Leave Animation")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "col-8" }, [
+                                        _c(
+                                          "select",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "model",
+                                                rawName: "v-model",
+                                                value:
+                                                  _vm.interactiveElementData[
+                                                    _vm.layerIndex
+                                                  ].animateClasses.leave,
+                                                expression:
+                                                  "interactiveElementData[layerIndex].animateClasses.leave"
+                                              }
+                                            ],
+                                            staticClass: "form-control",
+                                            attrs: { id: "leaveAnimation" },
+                                            on: {
+                                              change: function($event) {
+                                                var $$selectedVal = Array.prototype.filter
+                                                  .call(
+                                                    $event.target.options,
+                                                    function(o) {
+                                                      return o.selected
+                                                    }
+                                                  )
+                                                  .map(function(o) {
+                                                    var val =
+                                                      "_value" in o
+                                                        ? o._value
+                                                        : o.value
+                                                    return val
+                                                  })
+                                                _vm.$set(
+                                                  _vm.interactiveElementData[
+                                                    _vm.layerIndex
+                                                  ].animateClasses,
+                                                  "leave",
+                                                  $event.target.multiple
+                                                    ? $$selectedVal
+                                                    : $$selectedVal[0]
+                                                )
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c(
+                                              "option",
+                                              { attrs: { value: "" } },
+                                              [_vm._v("-- Select Action --")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  value:
+                                                    "animate__animated animate__fadeIn"
+                                                }
+                                              },
+                                              [_vm._v("Fade In")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  value:
+                                                    "animate__animated animate__fadeOut"
+                                                }
+                                              },
+                                              [_vm._v("Fade Out")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  value:
+                                                    "animate__animated animate__backInLeft"
+                                                }
+                                              },
+                                              [_vm._v("Back In Left")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  value:
+                                                    "animate__animated animate__backInRight"
+                                                }
+                                              },
+                                              [_vm._v("Back In Right")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  value:
+                                                    "animate__animated animate__backOutLeft"
+                                                }
+                                              },
+                                              [_vm._v("Back Out Left")]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "option",
+                                              {
+                                                attrs: {
+                                                  value:
+                                                    "animate__animated animate__backOutRight"
+                                                }
+                                              },
+                                              [_vm._v("Back Out Right")]
+                                            )
+                                          ]
+                                        )
+                                      ])
+                                    ])
+                                  ])
                                 ]
                               ),
                               _vm._v(" "),
@@ -65127,6 +65508,40 @@ var render = function() {
                                                   false,
                                                   2389928477
                                                 )
+                                              }),
+                                              _vm._v(" "),
+                                              _c("opacity-slider", {
+                                                attrs: {
+                                                  from: _vm.ieStyle.opacity,
+                                                  min: 0,
+                                                  max: 1,
+                                                  step: 0.01,
+                                                  "selected-layer-index":
+                                                    _vm.layerIndex
+                                                },
+                                                on: {
+                                                  change: function(from) {
+                                                    return (_vm.ieStyle.opacity = from)
+                                                  }
+                                                },
+                                                scopedSlots: _vm._u(
+                                                  [
+                                                    {
+                                                      key: "label",
+                                                      fn: function() {
+                                                        return [
+                                                          _vm._v(
+                                                            "\n                                                                Opacity\n                                                            "
+                                                          )
+                                                        ]
+                                                      },
+                                                      proxy: true
+                                                    }
+                                                  ],
+                                                  null,
+                                                  false,
+                                                  2658837026
+                                                )
                                               })
                                             ],
                                             1
@@ -66013,34 +66428,71 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.type == "link"
-      ? _c(
-          "a",
-          {
-            staticClass: "btn interactive-element ie-fadeIn",
-            class: { show: _vm.show },
-            style: _vm.styles,
-            attrs: { href: _vm.href }
-          },
-          [_vm._t("default")],
-          2
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.type == "text"
-      ? _c(
-          "div",
-          {
-            staticClass: "interactive-element",
-            class: { show: _vm.show },
-            style: _vm.styles
-          },
-          [_vm._t("default")],
-          2
-        )
-      : _vm._e()
-  ])
+  return _c(
+    "div",
+    [
+      _c(
+        "transition",
+        {
+          attrs: {
+            "enter-active-class": _vm.animateClasses.enter,
+            "leave-active-class": _vm.animateClasses.leave
+          }
+        },
+        [
+          _vm.type == "link"
+            ? _c(
+                "a",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.show,
+                      expression: "show"
+                    }
+                  ],
+                  staticClass: "btn interactive-element",
+                  style: _vm.mainStyle,
+                  attrs: { href: _vm.href }
+                },
+                [_vm._t("default")],
+                2
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.type == "text"
+            ? _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.show,
+                      expression: "show"
+                    }
+                  ],
+                  staticClass: "interactive-element ie-container",
+                  style: _vm.mainStyle
+                },
+                [
+                  _c("div", { staticClass: "bg", style: _vm.bgStyle }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "text-content" },
+                    [_vm._t("default")],
+                    2
+                  )
+                ]
+              )
+            : _vm._e()
+        ]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
