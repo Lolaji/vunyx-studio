@@ -1,10 +1,19 @@
 
 import axs from 'axios';
+
+// const google = require('googleapis');
+
 class YoutubeDataApi {
     constructor()
     {
+
+        this.url = '';
         this.api_key = process.env.MIX_YOUTUBE_API_KEY;
     }
+    // authenticate() {
+        
+    // }
+
     init(callback=null)
     {
         gapi.client.setApiKey(this.api_key);
@@ -20,8 +29,6 @@ class YoutubeDataApi {
     }
     listVideo()
     {
-        // delete axios.defaults.headers.common['X-Requested-With'];
-
         axs.get('https://www.googleapis.com/youtube/v3/videos', {
             params: {
                 api_key: this.api_key,

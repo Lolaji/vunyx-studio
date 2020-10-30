@@ -3,8 +3,7 @@
         <!-- Brand Logo -->
         <a href="index3.html" class="col-md-12 brand-link">
             <div class="row justify-content-center">
-                <img src="img/logo.png" alt="vunyx logo" class="brand-image"
-                style="opacity: .8">
+                <logo></logo>
             </div>
         </a>
 
@@ -74,9 +73,13 @@
     </aside>
 </template>
 <script>
-    import IeIcon from '../components/InteractiveIcon';
+    import Logo from './Logo';
+    import IeIcon from './InteractiveIcon';
     export default {
-        components: {IeIcon},
+        components: {
+            Logo,
+            IeIcon
+        },
         methods: {
             createElem(elemType){
                 this.$emit('create', elemType);

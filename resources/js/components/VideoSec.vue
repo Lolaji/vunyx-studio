@@ -4,6 +4,7 @@
             <!-- Video Screen -->
             <div class="video-screen col-md-10 pl-0 pr-0">
                 <youtube-iframe
+                    :url="url"
                     :pause="pause"
                     @ready="onPlayerReady"
                     @playing="playing"
@@ -73,7 +74,7 @@
                     </div>
                     <div class="col-md-3">
                         <img
-                            src="img/logo.png"
+                            src="/img/logo.png"
                             class="image float-right"
                             height="40"
                             width="40" alt="Vunyx logo"/>
@@ -96,6 +97,9 @@
         props: {
             seekTo: {
                 type: [Number, String]
+            },
+            url: {
+                type: String
             }
         },
         components: {

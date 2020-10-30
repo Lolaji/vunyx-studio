@@ -3,7 +3,7 @@
         <youtube-player
             ref="p"
             id="p"
-            :yturl="ytUrl"
+            :yturl="url"
             :width="width"
             :height="height"
             :player-vars="playerVar"
@@ -26,6 +26,9 @@
             pause: {
                 type: Boolean,
                 default: () => false
+            },
+            url: {
+                type: String
             }
         },
         components: {
@@ -44,7 +47,7 @@
                     rel: 0,
                     enablejsapi: 1
                 },
-                ytUrl: 'https://www.youtube.com/watch?v=YKj7NpkQV-I', // 'https://www.youtube.com/watch?v=VdQY7BusJNU', 
+                ytUrl: 'https://www.youtube.com/watch?v=2zbksa_GG9c', // 'https://www.youtube.com/watch?v=VdQY7BusJNU', 
                 width: '100%',
                 height: '300px'
             }

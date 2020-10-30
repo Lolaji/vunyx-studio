@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/studio'; // should be change back to dashboard
+    public const HOME = '/main/projects'; // should be change back to dashboard
 
     /**
      * Define your route model bindings, pattern filters, etc.

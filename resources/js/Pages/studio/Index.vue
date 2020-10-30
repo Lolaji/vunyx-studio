@@ -16,6 +16,7 @@
                             <!-- Interactive Editing Video Section -->
                             <div class="interactive-main col-md-12">
                                 <video-section
+                                    :url="project.video.url"
                                     :seek-to="video.seekTo"
                                     @ready="playerReady"
                                     @get-current-time="getVideoCurrentTime"
@@ -132,7 +133,11 @@
                                                 <div class="row">
                                                     <label class="label col-3" for="">Title</label>
                                                     <div class="col-8">
-                                                        <input type="text" v-model="interactiveElementData[layerIndex].title" class="form-control">
+                                                        <input 
+                                                            type="text" 
+                                                            v-model="interactiveElementData[layerIndex].title" 
+                                                            class="form-control"
+                                                            @change="canSave">
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,11 +148,14 @@
                                                     <div class="col-12 text-editor-container" v-if="interactiveElementData[layerIndex].type == 'text'">
                                                         <text-editor
                                                             v-model="interactiveElementData[layerIndex].text"
-                                                            ></text-editor>
+                                                            @change="canSave"></text-editor>
                                                     </div>
                                                     <div class="col-8" v-else>
                                                         <input 
-                                                            type="text" v-model="interactiveElementData[layerIndex].text" class="form-control">
+                                                            type="text" 
+                                                            v-model="interactiveElementData[layerIndex].text" 
+                                                            class="form-control"
+                                                            @change="canSave">
 
                                                     </div>
                                                 </div>
@@ -157,7 +165,7 @@
                                                 <div class="row">
                                                     <label class="label col-3" for="">Action</label>
                                                     <div class="col-8">
-                                                        <select v-model="interactiveElementData[layerIndex].action" class="form-control">
+                                                        <select v-model="interactiveElementData[layerIndex].action" class="form-control" @change="canSave">
                                                             <option value="">-- Select Action --</option>
                                                             <option value="1">Link to external webpage</option>
                                                             <option value="2">Link to specific time</option>
@@ -170,7 +178,12 @@
                                                 <div class="row">
                                                     <label class="label col-3" for="">Web Link</label>
                                                     <div class="col-8">
-                                                        <input type="url" v-model="interactiveElementData[layerIndex].href" class="form-control" placeholder="https://vunyx.com">
+                                                        <input 
+                                                            type="url" 
+                                                            v-model="interactiveElementData[layerIndex].href" 
+                                                            class="form-control" 
+                                                            placeholder="https://vunyx.com"
+                                                            @change="canSave">
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,7 +193,12 @@
                                                     <div class="row">
                                                         <label class="label col-3" for="">Link time</label>
                                                         <div class="col-8">
-                                                            <input type="text" v-model="interactiveElementData[layerIndex].linkTime" class="form-control" placeholder="HH:MM:SS.MS">  
+                                                            <input 
+                                                                type="text" 
+                                                                v-model="interactiveElementData[layerIndex].linkTime" 
+                                                                class="form-control" 
+                                                                placeholder="HH:MM:SS.MS"
+                                                                @change="canSave">  
                                                         </div>
                                                     </div>
                                                 </div>
@@ -190,7 +208,7 @@
                                                 <div class="row">
                                                     <label class="label col-3" for="enterAnimation">Enter Animation</label>
                                                     <div class="col-8">
-                                                        <select v-model="interactiveElementData[layerIndex].animateClasses.enter" id="enterAnimation" class="form-control">
+                                                        <select v-model="interactiveElementData[layerIndex].animateClasses.enter" id="enterAnimation" class="form-control" @change="canSave">
                                                             <option value="">-- Select Action --</option>
                                                             <option value="animate__animated animate__fadeIn">Fade In</option>
                                                             <option value="animate__animated animate__fadeOut">Fade Out</option>
@@ -207,7 +225,7 @@
                                                 <div class="row">
                                                     <label class="label col-3" for="leaveAnimation">Leave Animation</label>
                                                     <div class="col-8">
-                                                        <select v-model="interactiveElementData[layerIndex].animateClasses.leave" id="leaveAnimation" class="form-control">
+                                                        <select v-model="interactiveElementData[layerIndex].animateClasses.leave" id="leaveAnimation" class="form-control" @change="canSave">
                                                             <option value="">-- Select Action --</option>
                                                             <option value="animate__animated animate__fadeIn">Fade In</option>
                                                             <option value="animate__animated animate__fadeOut">Fade Out</option>
@@ -250,34 +268,6 @@
                                                                     <i class="fa fa-arrows-alt-v"></i>
                                                                 </template>
                                                             </y-position-slider>
-
-                                                        <!-- <div class="form-group">
-                                                            <div class="row">
-                                                                <label class="label col-1 pt-1" for="">X</label>
-                                                                <div class="col-8">
-                                                                    <div class="input-group ie">
-                                                                        <input type="text" v-model="ieStyle.left" class="form-control col-4">
-                                                                        <div class="input-group-append">
-                                                                            <span class="input-group-text vx-text-color">{{measurement.percent}}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <div class="row">
-                                                                <label class="label col-1 pt-1" for="">Y</label>
-                                                                <div class="col-8">
-                                                                    <div class="input-group ie">
-                                                                        <input type="text" v-model="ieStyle.top" class="form-control col-4">
-                                                                        <div class="input-group-append">
-                                                                            <span class="input-group-text vx-text-color">{{measurement.percent}}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
                                                     </div>
                                                 </div>
 
@@ -469,8 +459,23 @@
                                 <div class="ie-footer">
                                     <div class="col-md-12">
                                         <div class="row justify-content-between">
-                                            <button class="btn btn-sm btn-link text-danger">Cancel</button>
-                                            <button class="btn btn-sm btn-link text-white">Save</button>
+                                            <button 
+                                                :disabled="layerIndex === null"
+                                                @click="cancel"
+                                                class="btn btn-sm btn-link text-danger">CANCEL</button>
+                                            <button 
+                                                :disabled="layerIndex === null"
+                                                @click="save(layerIndex)"
+                                                class="btn btn-sm btn-link text-white">
+                                                    <transition 
+                                                        enter-active-class="animate__animated animate__fadeIn"
+                                                        leave-active-class="animate__animated animate__fadeOut">
+                                                        <span v-if="saving">
+                                                            <i class="fa fa-spinner fa-spin"></i>
+                                                        </span>
+                                                    </transition> 
+                                                    SAVE
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -487,6 +492,7 @@
 <script>
     
     import datePlugin from '../../plugin/Date';
+    import swalAlert from '../../plugin/vue-swal';
 
     import StudioLayout from '../../Layouts/StudioLayout';
     import InteractiveSidebar from '../../components/InteractiveSidebar';
@@ -514,7 +520,7 @@
     // const LinkButtonClass = Vue.extend(LinkButton);
 
     export default {
-        props:['page_title'],
+        props:['page_title', 'project', 'elements'],
         components: {
             StudioLayout,
             InteractiveSidebar,
@@ -534,6 +540,7 @@
         },
         data() {
             return {
+                saving: false,
                 layerIndex: null,
                 lastLayerEditIndex: null,
                 stopTimelineUpdate: false,
@@ -572,73 +579,77 @@
                 },
                 //Interactive element Styles
                 interactiveElementData: [
-                    {
-                        type: 'link',
-                        title: 'Buy Now Link',
-                        text: 'Buy Now',
-                        action: 1,
-                        href: '#',
-                        linkTime: '00:00:00.00',
-                        onEdit: false,
-                        editContainer: false,
-                        style: {
-                            top: '20%',
-                            left: '30%',
-                            color: '#444',
+                    // {
+                    //     id: null,
+                    //     type: 'link',
+                    //     title: 'Buy Now Link',
+                    //     text: 'Buy Now',
+                    //     action: 1,
+                    //     href: '#',
+                    //     linkTime: '00:00:00.00',
+                    //     onEdit: false,
+                    //     canSave: true,
+                    //     editContainer: false,
+                    //     style: {
+                    //         top: '20%',
+                    //         left: '30%',
+                    //         color: '#444',
 
-                            fontSize: '15px',
-                            fontWeight: '500',
+                    //         fontSize: '15px',
+                    //         fontWeight: '500',
 
-                            borderWidth: '1px',
-                            borderColor: '#23f6f6',
-                            borderStyle: 'solid',
-                            borderRadius: '0',
+                    //         borderWidth: '1px',
+                    //         borderColor: '#23f6f6',
+                    //         borderStyle: 'solid',
+                    //         borderRadius: '0',
 
-                            backgroundColor: '#23f6f6',
-                        },
-                        time: {
-                            from: '00:00:30.33',
-                            to: '00:01:30.40'
-                        },
-                        animateClasses: {
-                            enter: 'animate__animated animate__fadeIn',
-                            leave: 'animate__animated animate__fadeOut'
-                        }
-                    },
-                    {
-                        type: 'link',
-                        title: 'Back Link',
-                        text: 'Go Back',
-                        action: 1,
-                        href: '#',
-                        linkTime: '00:00:00.00',
-                        onEdit: false,
-                        editContainer: false,
-                        style: {
-                            top: '40%',
-                            left: '2%',
-                            color: '#fff',
+                    //         backgroundColor: '#23f6f6',
+                    //     },
+                    //     time: {
+                    //         from: '00:00:30.33',
+                    //         to: '00:01:30.40'
+                    //     },
+                    //     animateClasses: {
+                    //         enter: 'animate__animated animate__fadeIn',
+                    //         leave: 'animate__animated animate__fadeOut'
+                    //     }
+                    // },
+                    // {
+                    //     id: null,
+                    //     type: 'link',
+                    //     title: 'Back Link',
+                    //     text: 'Go Back',
+                    //     action: 1,
+                    //     href: '#',
+                    //     linkTime: '00:00:00.00',
+                    //     onEdit: false,
+                    //     canSave: true,
+                    //     editContainer: false,
+                    //     style: {
+                    //         top: '40%',
+                    //         left: '2%',
+                    //         color: '#fff',
 
-                            fontSize: '15px',
-                            fontWeight: '500',
+                    //         fontSize: '15px',
+                    //         fontWeight: '500',
                             
-                            borderWidth: '',
-                            borderColor: '',
-                            borderStyle: '',
-                            borderRadius: '40%',
+                    //         borderWidth: '',
+                    //         borderColor: '',
+                    //         borderStyle: '',
+                    //         borderRadius: '40%',
 
-                            backgroundColor: '#444',
+                    //         backgroundColor: '#444',
 
-                        },
-                        time: {
-                            from: '00:00:10.00',
-                            to: '00:00:40.00'
-                        },
-                        animateClasses: {
-                            enter: 'animate__animated animate__backInLeft',
-                            leave: 'animate__animated animate__backOutRight'
-                        }
-                    }
+                    //     },
+                    //     time: {
+                    //         from: '00:00:10.00',
+                    //         to: '00:00:40.00'
+                    //     },
+                    //     animateClasses: {
+                    //         enter: 'animate__animated animate__backInLeft',
+                    //         leave: 'animate__animated animate__backOutRight'
+                    //     }
+                    // }
                 ],
 
                 //timeline
@@ -649,7 +660,8 @@
             ieStyle: {
                 handler(nData, oData){
                     if ( ! _.isNull(this.layerIndex) ) {
-
+                        this.interactiveElementData[this.layerIndex].canSave = true; //determines if the element should be save in the database
+                        
                         let selectedIEStyle = this.interactiveElementData[this.layerIndex].style,
                             px = this.measurement.px,
                             percent = this.measurement.percent;
@@ -690,6 +702,7 @@
                 switch(elemType){
                     case 'link':
                         this.interactiveElementData.push({
+                            id: null,
                             type: 'link',
                             title: 'Buy Now Link',
                             text: 'Buy Now',
@@ -697,6 +710,7 @@
                             href: '',
                             linkTime: '00:00:00.00',
                             onEdit: false,
+                            canSave: true,
                             editContainer: false,
                             style: {
                                 top: '2%',
@@ -726,10 +740,12 @@
                         break;
                     case 'text':
                         this.interactiveElementData.push({
+                            id: null,
                             type: 'text',
                             title: 'Text Element',
                             text: '<p>Welcome to Vunyx studio</p>',
                             onEdit: false,
+                            canSave: true,
                             editContainer: true,
                             style: {
                                 height: '40%',
@@ -766,12 +782,67 @@
                         break;
                 }
 
-                index = this.interactiveElementData.length-1;
-                data = this.interactiveElementData[index];
+                // index = this.interactiveElementData.length-1;
+                // data = this.interactiveElementData[index];
+                // this.editLayer({index, data});
+            },
+            save(index){
+                console.log(index);
+                this.saving = true;
+                if (!_.isNull(index)) {
+                    let element = this.interactiveElementData[index],
+                        id = element.id,
+                        data = {
+                            type: element.type,
+                            title: element.title,
+                            text: element.text,
+                            action: element.action,
+                            href: element.href,
+                            link_time: element.linkTime,
+                            style: JSON.stringify(element.style),
+                            from_time: element.time.from,
+                            to_time: element.time.to,
+                            enter_animate_class: element.animateClasses.enter,
+                            leave_animate_class: element.animateClasses.leave
+                        };
 
-                console.log(data);
-                
-                this.editLayer({index, data});
+                    if (element.canSave){
+                        this.$store.dispatch('element/save', {id, data}).then(res => {
+                            console.log(res);
+                            if (res.success){
+                                if (!_.isNull(res.id)){
+                                    element.id = res.id;
+                                }
+                                element.canSave = false;
+                                this.saving = false;
+                                swalAlert.setTitle(res.message)
+                                    .setIcon('success')
+                                    .setPosition('top-right')
+                                    .toast();
+                            }
+                        });
+                    } else {
+                        this.saving = false;
+                        swalAlert.setTitle('Element already saved')
+                                .setIcon('warning')
+                                .setPosition('top-right')
+                                .toast();
+                    }
+                } else {
+                    this.saving = false;
+                    swalAlert.setTitle('No layer selected')
+                                .setIcon('warning')
+                                .setPosition('top-right')
+                                .toast();
+                }
+
+            },
+            canSave(){//update when form is changed
+                this.interactiveElementData[this.layerIndex].canSave = true; //determin if the element should be save to database
+            },
+            cancel(){
+                this.interactiveElementData[this.layerIndex].onEdit = false;
+                this.layerIndex = null;
             },
 
             /**
@@ -818,6 +889,21 @@
             deActiveLastLayerEdit() {
                 if (!_.isNull(this.lastLayerEditIndex))
                     this.interactiveElementData[this.lastLayerEditIndex].onEdit = false;
+            },
+            /**
+             * Determin if the element has a container
+             * 
+             * -- NOTE --: This method should be updated when new interactive is added to the platform
+             */
+            isElementHasContainer(type){
+                switch(type) {
+                    case 'link':
+                        return false;
+                        break;
+                    case 'text':
+                        return true;
+                        break;
+                }
             },
 
             insertElement() {
@@ -901,7 +987,44 @@
                 }).mouseup(() => {
                     this.stopTimelineUpdate = false;
                 });
+            },
+            setIframeUrl(platform, url){//--Unused method
+                switch(platform){
+                    case 'youtube':
+                        let src = url.split('/');
+                        console.log(`https://www.youtube.com/watch?v=${src[4]}`);
+                        return `https://www.youtube.com/watch?v=${src[4]}`;
+                        break;
+                }
             }
+        },
+        created(){
+            this.$store.commit('element/SET_PROJECT_ID', this.project.id);
+
+            Object.entries(this.project.elements).forEach(([index, value]) => {
+                this.interactiveElementData.push({
+                    id: value.id,
+                    type: value.type,
+                    title: value.title,
+                    text: value.text,
+                    action: value.action,
+                    href: value.href,
+                    linkTime: value.link_time,
+                    onEdit: false,
+                    canSave: false,
+                    editContainer: this.isElementHasContainer(value.type),
+                    style: JSON.parse(value.style),
+                    time: {
+                        from: value.from_time,
+                        to: value.to_time
+                    },
+                    animateClasses: {
+                        enter: value.enter_animate_class,
+                        leave: value.leave_animate_class
+                    }
+                });
+            });
+            console.log(this.project)
         },
         mounted() {
             // YDApi.listVideo();

@@ -40449,6 +40449,22 @@ Creation date: 26/08/2020 12:09
   background: #e1c238;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
+.vx-link {
+  color: #414141;
+}
+
+.vx-link:hover {
+  color: #e1c238;
+}
+
+.vx-link.no-icon.dropdown-toggle::after {
+  display: none;
+}
+
 .input-group.ie .form-control:focus + .input-group-append .input-group-text {
   border: 1px solid #e1c238;
 }

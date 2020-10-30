@@ -9,7 +9,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            
+            <slot name="ContentHeader"></slot>
             <!-- Main content -->
             <slot name="mcontent"></slot>
             <!-- /.content -->

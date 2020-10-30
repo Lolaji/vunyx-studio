@@ -14,6 +14,23 @@ $vunyxColor: #e1c238;
   background: $vunyxColor;
 }
 
+button:disabled{
+  cursor: not-allowed;
+}
+
+.vx-link {
+  color: #414141;
+
+  &:hover {
+    color: $vunyxColor;
+  }
+  &.no-icon{
+    &.dropdown-toggle::after{
+      display: none;
+    }
+  }
+}
+
 .input-group {
   &.ie {
       .form-control {

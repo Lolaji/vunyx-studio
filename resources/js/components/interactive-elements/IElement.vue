@@ -6,6 +6,7 @@
             <a 
                 v-if="type == 'link'"
                 :href="href"
+                target="__blank"
                 class="btn interactive-element" 
                 v-show="show"
                 :style="mainStyle"><slot></slot></a>
@@ -80,18 +81,6 @@
             styles: {
                 handler(nData, oData) {
                     this.initStyles(nData);
-                    switch(this.type){
-                        case 'text':
-                            this.bgStyle.opacity = nData.opacity;
-                            this.bgStyle.backgroundColor = nData.backgroundColor;
-                            
-                            this.mainStyle = nData;
-                            break;
-
-                        default:
-                            this.mainStyle = nData
-                            break;
-                    }
                 },
                 deep: true
             },
@@ -103,6 +92,10 @@
                 }
 
                 if (nData >= this.toSec){
+                    this.setShow(false);
+                }
+
+                if (nData <= this.fromSec){
                     this.setShow(false);
                 }
             },
