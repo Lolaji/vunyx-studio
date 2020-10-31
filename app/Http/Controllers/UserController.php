@@ -60,7 +60,7 @@ class UserController extends Controller
     {
         
     }
-
+    
     public function vxAuth (Request $request)
     {
         $id = $request->query('uid');
