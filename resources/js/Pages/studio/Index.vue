@@ -12,7 +12,6 @@
                     <div class="row">
 
                         <div class="interactive-container col-md-8">
-
                             <!-- Interactive Editing Video Section -->
                             <div class="interactive-main col-md-12">
                                 <video-section
@@ -27,14 +26,17 @@
                                             <div ref="iElement" v-for="(ie, key) in interactiveElementData" :key="key">
                                                 <i-element
                                                     :type="ie.type"
+                                                    :action="ie.action"
                                                     :href="ie.href"
+                                                    :link-time="ie.linkTime"
                                                     :styles="ie.style"
                                                     :from="ie.time.from"
                                                     :to="ie.time.to"
                                                     :animate-classes="ie.animateClasses"
                                                     :video-current-time="video.currentTimeInSeconds"
                                                     :is-video-playing="video.playing"
-                                                    :on-edit="ie.onEdit">
+                                                    :on-edit="ie.onEdit"
+                                                    @on-link-time="elementClick">
                                                     <template v-if="ie.type=='text'">
                                                         <div v-html="ie.text"></div>
                                                     </template>
@@ -75,7 +77,6 @@
                                                 class="col-md-12"
                                                 enter-active-class="animate__animated animate__fadeIn"
                                                 leave-active-class="animate__animated animate__fadeOut">
-                                                
                                                     <interactive-layer
                                                         v-for="(e, index) in interactiveElementData" 
                                                         :key="index"
@@ -288,10 +289,10 @@
 
                                                         <div class="form-group">
                                                             <div class="row">
-                                                                <label for="" class="col-4 label">Size</label>
+                                                                <label for="size" class="col-4 label">Size</label>
                                                                 <div class="col-8">
                                                                     <div class="input-group ie">
-                                                                        <input type="number" v-model="ieStyle.fontSize" class="form-control col-4">
+                                                                        <input type="number" v-model="ieStyle.fontSize" id="size" class="form-control col-4">
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text vx-text-color">px</span>
                                                                         </div>
@@ -464,7 +465,7 @@
                                                 @click="cancel"
                                                 class="btn btn-sm btn-link text-danger">CANCEL</button>
                                             <button 
-                                                :disabled="layerIndex === null"
+                                                :disabled="layerIndex === null || saving"
                                                 @click="save(layerIndex)"
                                                 class="btn btn-sm btn-link text-white">
                                                     <transition 
@@ -541,6 +542,11 @@
         data() {
             return {
                 saving: false,
+                removing: {//unused yet
+                    status: false,
+                    index: null
+                },
+
                 layerIndex: null,
                 lastLayerEditIndex: null,
                 stopTimelineUpdate: false,
@@ -613,42 +619,6 @@
                     //         enter: 'animate__animated animate__fadeIn',
                     //         leave: 'animate__animated animate__fadeOut'
                     //     }
-                    // },
-                    // {
-                    //     id: null,
-                    //     type: 'link',
-                    //     title: 'Back Link',
-                    //     text: 'Go Back',
-                    //     action: 1,
-                    //     href: '#',
-                    //     linkTime: '00:00:00.00',
-                    //     onEdit: false,
-                    //     canSave: true,
-                    //     editContainer: false,
-                    //     style: {
-                    //         top: '40%',
-                    //         left: '2%',
-                    //         color: '#fff',
-
-                    //         fontSize: '15px',
-                    //         fontWeight: '500',
-                            
-                    //         borderWidth: '',
-                    //         borderColor: '',
-                    //         borderStyle: '',
-                    //         borderRadius: '40%',
-
-                    //         backgroundColor: '#444',
-
-                    //     },
-                    //     time: {
-                    //         from: '00:00:10.00',
-                    //         to: '00:00:40.00'
-                    //     },
-                    //     animateClasses: {
-                    //         enter: 'animate__animated animate__backInLeft',
-                    //         leave: 'animate__animated animate__backOutRight'
-                    //     }
                     // }
                 ],
 
@@ -713,8 +683,8 @@
                             canSave: true,
                             editContainer: false,
                             style: {
-                                top: '2%',
-                                left: '2%',
+                                top: '50%',
+                                left: '45%',
                                 color: '#25EB25',
 
                                 fontSize: '15px',
@@ -751,8 +721,8 @@
                                 height: '40%',
                                 width: '40%',
 
-                                top: '2%',
-                                left: '2%',
+                                top: '45%',
+                                left: '45%',
                                 color: '#25EB25',
 
                                 fontSize: '15px',
@@ -782,9 +752,9 @@
                         break;
                 }
 
-                // index = this.interactiveElementData.length-1;
-                // data = this.interactiveElementData[index];
-                // this.editLayer({index, data});
+                index = this.interactiveElementData.length-1;
+                data = this.interactiveElementData[index];
+                this.editLayer({index, data});
             },
             save(index){
                 console.log(index);
@@ -823,7 +793,7 @@
                         });
                     } else {
                         this.saving = false;
-                        swalAlert.setTitle('Element already saved')
+                        swalAlert.setTitle('No changes made')
                                 .setIcon('warning')
                                 .setPosition('top-right')
                                 .toast();
@@ -843,6 +813,16 @@
             cancel(){
                 this.interactiveElementData[this.layerIndex].onEdit = false;
                 this.layerIndex = null;
+            },
+
+            /**
+             * Interactive Element Methods
+             */
+            elementClick(data){
+                let sec = datePlugin.spanTimeToSeconds(data);
+                this.video.seekTo = sec;
+                this.updateTimelineProgress(sec);
+                this.video.instance.seekTo(sec);
             },
 
             /**
@@ -879,11 +859,37 @@
                 this.interactiveElementData.push(clone);
             },
             removeLayer(index) {
-                this.layerIndex = null;
-                this.interactiveElementData.splice(index, 1);
+                let element = this.interactiveElementData[index];
+                if (!_.isNull(element.id)){
+                    this.$store.dispatch('element/remove', element.id).then(res => {
+                        if (res.success){
+                            this.layerIndex = null;
+                            this.interactiveElementData.splice(index, 1);
+
+                            swalAlert.setTitle(res.message)
+                                        .setIcon('success')
+                                        .toast();
+                        } else {
+                            swalAlert.setTitle(res.message)
+                                        .setIcon('error')
+                                        .toast();
+                        }
+                        //set lastLayerEditIndex to null if it
+                        // matches the index parameter that was remove/deleted
+                        // from the interactiveElementData Object
+                        if (index === this.lastLayerEditIndex){
+                            this.lastLayerEditIndex = null;
+                        }
+                    });
+                } else {
+                    this.layerIndex = null;
+                    this.interactiveElementData.splice(index, 1);
+
+                    this.removing.stutus = true;
+                    this.removing.index = null;
+                }
             },
             layerInputUpdate({type, event}, index){
-                console.log('Input update layer type: '+ type);
                 this.interactiveElementData[index].time[type] = event.target.value;
             },
             deActiveLastLayerEdit() {
@@ -906,7 +912,7 @@
                 }
             },
 
-            insertElement() {
+            insertElement() {//This method is unused
                 let instance = new LinkButtonClass({
                     propsData: {
                         title: this.interactiveElementData.buyNow.title,
@@ -935,7 +941,6 @@
             },
             playerReady(player) {
                 this.video.instance = player;
-                console.log(this.video.instance.getPlayerState());
             },
             videoPlaying(player) {
                 this.video.playing = true;
@@ -988,15 +993,6 @@
                     this.stopTimelineUpdate = false;
                 });
             },
-            setIframeUrl(platform, url){//--Unused method
-                switch(platform){
-                    case 'youtube':
-                        let src = url.split('/');
-                        console.log(`https://www.youtube.com/watch?v=${src[4]}`);
-                        return `https://www.youtube.com/watch?v=${src[4]}`;
-                        break;
-                }
-            }
         },
         created(){
             this.$store.commit('element/SET_PROJECT_ID', this.project.id);
@@ -1024,7 +1020,6 @@
                     }
                 });
             });
-            console.log(this.project)
         },
         mounted() {
             // YDApi.listVideo();

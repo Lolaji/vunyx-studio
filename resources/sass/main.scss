@@ -8,9 +8,10 @@
 @import 'variables';
 // @import '~bootstrap/scss/bootstrap';
 @import '~animate.css/animate.min.css';
-@import '../assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css';
 @import '../assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
-@import '../assets/plugins/jqvmap/jqvmap.min.css';
+// @import '../assets/plugins/jqvmap/jqvmap.min.css';
+@import '../assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css';
+@import '../assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css';
+@import '~vue-range-slider/dist/vue-range-slider.scss';
 @import '../assets/dist/css/adminlte.css';
 @import 'custom';
-@import '../assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css';

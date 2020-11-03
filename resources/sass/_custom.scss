@@ -214,6 +214,15 @@ button:disabled{
            -moz-transition: .4s;
         -webkit-transition: .4s;
 
+        &.loader::after {
+          content: '';
+          position: absolute;
+          display: block;
+          top: 0;
+          left: 0;
+          background: rgba($color: $vunyxColor, $alpha: .1);
+        }
+
         .layer-btn {
           position: absolute;
           left: 65%;
@@ -325,3 +334,35 @@ button:disabled{
   border-color: #e1c238;
 }
 
+//Range slider css
+.range-slider {
+  &.player-volume {
+    .range-slider-rail {
+        height: 4px;
+        background: #5a5959;
+    }
+    .range-slider-fill {
+      height: 4px;
+      background-color: $vunyxColor;
+    }
+    .range-slider-knob {
+        background: $vunyxColor;
+    }
+  }
+  &.seekbar {
+    width: 100%;
+    height: 0;
+    padding: 0;
+    .range-slider-rail {
+      height: 2px;
+      background: #5a5959;
+    }
+    .range-slider-fill {
+      height: 2px;
+      background-color: $vunyxColor;
+    }
+    .range-slider-knob {
+        background: $vunyxColor;
+    }
+  }
+}

@@ -18,17 +18,12 @@
             <div class="col-md-10 seek-bar-container">
                 <seek-bar
                     ref="seekBar"
+                    class="seekbar"
                     v-model="seekBarValue"
-                    :height="2"
-                    :dot-size="10"
                     :min="0.0"
                     :max="playerDuration"
                     :step="0.01"
-                    :tooltip="false"
-                    :bg-style="seekBarSetting.bgStyle"
-                    :slider-style="seekBarSetting.sliderStyle"
-                    :process-style="seekBarSetting.processStyle"
-                    @slide-end="seekbarDragEnd"
+                    @change="seekbarDragEnd"
                 ></seek-bar>
             </div>
 
@@ -53,16 +48,11 @@
                             <div class="col-sm-4 volume-bar-container">
                                 <volume-slider
                                     ref="volumeSlider"
+                                    class="player-volume"
                                     v-model="volume.value"
-                                    :height="4"
                                     :min="0"
                                     :max="playerVolume"
-                                    :dot-size="10"
-                                    :tooltip="false"
-                                    :bg-style="bgStyle"
-                                    :slider-style="sliderStyle"
-                                    :process-style="processStyle"
-                                    @drag-end="volumeDragEnd"
+                                    @change="volumeDragEnd"
                                 ></volume-slider>
 
                             </div>
@@ -88,9 +78,10 @@
 <script>
 
     import datePlugin from '../plugin/Date';
-    import 'vue-range-component/dist/vue-range-slider.css';
-    import VolumeSlider from 'vue-range-component';
-    import SeekBar from 'vue-range-component';
+
+    import VolumeSlider from 'vue-range-slider';
+    import SeekBar from 'vue-range-slider';
+    // import 'vue-range-component/dist/vue-range-slider.css';
     import YoutubeIframe from "./YoutubeIframe.vue";
 
     export default {
@@ -127,29 +118,7 @@
                 seekBarTimeInterval: null,
                 seekToTime: 0,
                 seekBarValue: 0,
-                seekBarSetting: {
-                    bgStyle: {
-                        backgroundColor: '#f9e691',//'#2a2929',
-                        boxShadow: 'inset 0.5px 0.5px 3px 1px rgba(0,0,0,.36)'
-                    },
-                    processStyle: {
-                        backgroundColor: '#e1c238',
-                    },
-                    sliderStyle: {
-                        backgroundColor: '#e1c238',
-                    }
-                },
-                bgStyle: {
-                    // backgroundColor: '#e1c238',
-                    boxShadow: 'inset 0.5px 0.5px 3px 1px rgba(0,0,0,.36)'
-                },
-                processStyle: {
-                    backgroundColor: '#e1c238',
-                },
-                sliderStyle: {
-                    backgroundColor: '#e1c238',
-                },
-
+                stopSeeking: false,
                 pause: false,
                 playerInstance:{},
                 playerDuration: 0,
@@ -166,6 +135,7 @@
             onPlayerReady(player) {
                 this.playerInstance = player;
                 this.$emit('ready', player);
+                console.log('Player Duration: '+player.getDuration());
             },
             playPause() {
                 let playPauseIconClass = this.$refs.playPauseIcon.classList;
@@ -213,7 +183,9 @@
                 if (update){
                     this.seekBarTimeInterval = setInterval( () => {
                         let curTime = datePlugin.spanTime(this.playerInstance.getCurrentTime())
-                        this.seekBarValue = this.playerInstance.getCurrentTime();
+                        if (!this.stopSeeking) {
+                            this.seekBarValue = this.playerInstance.getCurrentTime();
+                        }
                         this.timeText.current = curTime.rand;
                         this.$emit( 'get-current-time', curTime.text);
                     }, 0.1);
@@ -222,20 +194,28 @@
                 }
             },
             async seekbarDragEnd(value){
-                console.log(value);
                 this.seekBarValue = value;
+                this.stopSeeking = true;
                 clearInterval(this.seekBarTimeInterval);
                 this.$emit('time-change', value);
                 await this.playerInstance.seekTo(value);
 
-                this.updateSeekBarTime(true);
+                await this.updateSeekBarTime(true);
+                this.stopSeeking = false;
             },
             volumeDragEnd(){
                 // console.log(currentVolume)
                 this.changeVolumeIcon()
             },
+
+            seekBarOnDrag(){
+                $('.range-slider.seekbar .range-slider-knob').mousedown(() => {
+                    this.stopSeeking = true;
+                }).mouseup(() => {
+                    this.stopSeeking = false;
+                });
+            },
             ended() {
-                console.log('Video end');
                 clearInterval(this.seekBarTimeInterval);
                 let playPauseIconClass = this.$refs.playPauseIcon.classList;
                 playPauseIconClass.remove('fa-pause');
@@ -244,7 +224,7 @@
 
             changeVolumeIcon(){
                 let volumeIcon = this.$refs.volumeIcon.classList;
-
+                console.log(this.volume.value);
                 this.playerInstance.setVolume(this.volume.value);
 
                 if (this.volume.value > 70) {
@@ -266,21 +246,28 @@
 
             }
         },
+        mounted(){
+            this.seekBarOnDrag();
+        }
     };
 </script>
 
 <style lang="scss">
     .seek-bar-container {
         padding: 0;
-        margin-top: -6px;
+        margin-left: -10px;
+        margin-right: -10px;
+        margin-top: -19px;
         width: 100%;
-        height: 0px;
-        background: #2a2929;
+        height: 0;
+        // background: #2a2929;
+
+        z-index: 999;
     }
     .volume-indicator {
         color: #e1c238;
         padding-left: 8px;
-        padding-top: 7px;
+        padding-top: 8px;
     }
     .btn-play-pause {
         color: #e1c238;
@@ -289,7 +276,7 @@
         }
     }
     .volume-bar-container {
-        padding-top: 13px;
+        padding-top: 10px;
     }
     .time-text{
         padding-top: 10px;

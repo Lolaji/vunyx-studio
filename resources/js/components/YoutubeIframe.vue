@@ -43,8 +43,9 @@
             return {
                 playerVar: {
                     controls: 0,
-                    origin: 'http://localhost',
+                    origin: window.location.origin,
                     rel: 0,
+                    modestbranding: 1,
                     enablejsapi: 1
                 },
                 ytUrl: 'https://www.youtube.com/watch?v=2zbksa_GG9c', // 'https://www.youtube.com/watch?v=VdQY7BusJNU', 

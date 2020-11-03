@@ -51,3 +51,7 @@ Route::middleware(['auth:sanctum', 'verified'])
 Route::middleware(['auth:sanctum', 'verified'])
         ->post('/projects/{project}/elements/{id?}', [ElementController::class, 'save'])
         ->name('upsert-element');
+
+Route::middleware(['auth:sanctum', 'verified'])
+        ->delete('/projects/{project}/elements/{id}', [ElementController::class, 'remove'])
+        ->name('upsert-element');

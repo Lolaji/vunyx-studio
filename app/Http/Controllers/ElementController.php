@@ -50,4 +50,18 @@ class ElementController extends Controller
         }
         return $response;
     }
+
+    public function remove(Project $project, $id)
+    {
+        $response = ['success'=>false, 'message'=>''];
+
+        if ($project->elements()->findOrFail($id)->delete()){
+            $response['success'] = true;
+            $response['message'] = 'Removed';
+        } else {
+            $response['success'] = false;
+            $response['message'] = 'Unable to remove element due to system error. Please, try again.';
+        }
+        return $response;
+    }
 }

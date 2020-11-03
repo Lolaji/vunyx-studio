@@ -32,6 +32,17 @@ export default {
                     reject('Project ID must be set');
                 }
             })
+        },
+        remove({ state, commit }, id) {
+            return new Promise((resolve, reject) => {
+                axios.delete(`/projects/${state.project_id}/elements/${id}`).then(res => {
+                    resolve(res.data);
+                }).catch(err => {
+                    reject(err);
+                    if (err.response)
+                        console.error(err.response.data.message);
+                });
+            });
         }
     }
 }

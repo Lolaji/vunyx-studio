@@ -9,13 +9,15 @@
                 target="__blank"
                 class="btn interactive-element" 
                 v-show="show"
-                :style="mainStyle"><slot></slot></a>
+                :style="mainStyle"
+                @click.prevent="doAction"><slot></slot></a>
 
             <div 
                 v-if="type == 'text'"
                 class="interactive-element ie-container"
                 v-show="show"
-                :style="mainStyle">
+                :style="mainStyle"
+                @click="doAction">
                 <div class="bg" :style="bgStyle"></div>
                 <div class="text-content">
                     <slot></slot>
@@ -35,7 +37,13 @@
 
                 // }
             },
+            action: {
+                type: [Number, String]
+            },
             href: {
+                type: String
+            },
+            linkTime: {
                 type: String
             },
             styles: {
@@ -125,6 +133,17 @@
 
                     default:
                         this.mainStyle = styleObj
+                        break;
+                }
+            },
+            doAction(){
+                let action = parseInt(this.action);
+                switch (action){
+                    case 1:
+                        window.open(this.href);
+                        break;
+                    case 2:
+                        this.$emit('on-link-time', this.linkTime);
                         break;
                 }
             }
