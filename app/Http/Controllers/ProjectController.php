@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\StudioAccessKey;
 use App\Models\User;
 use App\Models\VxUser;
+use App\Models\VxVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -42,6 +43,9 @@ class ProjectController extends Controller
                 if (!is_null($user)) {
                     if ($project = $user->user->projects()->create($data)) {
                         if ($project->video()->create($request->video)) {
+                            if ($request->vx_video_id){
+                                VxVideo::find($request->vx_video_id)->update(['iv_uuid'=> $project->uuid]);
+                            }
                             $response['success'] = true;
                             $response['message'] = 'Project created';
                             $response['uuid'] = $project->uuid;

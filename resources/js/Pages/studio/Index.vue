@@ -677,7 +677,7 @@
                             title: 'Buy Now Link',
                             text: 'Buy Now',
                             action: '',
-                            href: '',
+                            href: "",
                             linkTime: '00:00:00.00',
                             onEdit: false,
                             canSave: true,
