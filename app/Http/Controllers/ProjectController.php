@@ -38,7 +38,7 @@ class ProjectController extends Controller
 
             
             if (!$validate->fails()){
-                $data = $request->only('title', 'description');
+                $data = $request->only('title', 'description'); 
                 $data['uuid'] = Str::uuid();
                 if (!is_null($user)) {
                     if ($project = $user->user->projects()->create($data)) {
