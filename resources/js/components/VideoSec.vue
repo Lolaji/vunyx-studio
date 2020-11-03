@@ -135,7 +135,6 @@
             onPlayerReady(player) {
                 this.playerInstance = player;
                 this.$emit('ready', player);
-                console.log('Player Duration: '+player.getDuration());
             },
             playPause() {
                 let playPauseIconClass = this.$refs.playPauseIcon.classList;
@@ -204,7 +203,6 @@
                 this.stopSeeking = false;
             },
             volumeDragEnd(){
-                // console.log(currentVolume)
                 this.changeVolumeIcon()
             },
 
@@ -224,7 +222,6 @@
 
             changeVolumeIcon(){
                 let volumeIcon = this.$refs.volumeIcon.classList;
-                console.log(this.volume.value);
                 this.playerInstance.setVolume(this.volume.value);
 
                 if (this.volume.value > 70) {

@@ -12,14 +12,17 @@
                     <div ref="iElement" v-for="(ie, key) in interactiveElementData" :key="key">
                         <i-element
                             :type="ie.type"
+                            :action="ie.action"
                             :href="ie.href"
+                            :link-time="ie.linkTime"
                             :styles="ie.style"
                             :from="ie.time.from"
                             :to="ie.time.to"
                             :animate-classes="ie.animateClasses"
                             :video-current-time="video.currentTimeInSeconds"
                             :is-video-playing="video.playing"
-                            :on-edit="ie.onEdit">
+                            :on-edit="ie.onEdit"
+                            @on-link-time="elementClick">
                             <template v-if="ie.type=='text'">
                                 <div v-html="ie.text"></div>
                             </template>
@@ -32,6 +35,8 @@
 </template>
 
 <script>
+import datePlugin from '../plugin/Date';
+
 import VideoSection from '../components/VideoSec';
 import IElement from '../components/interactive-elements/IElement';
 export default {
@@ -54,6 +59,15 @@ export default {
         }
     },
     methods: {
+        /**
+         * Interactive Element Methods
+         */
+        elementClick(data){
+            let sec = datePlugin.spanTimeToSeconds(data);
+            this.video.seekTo = sec;
+            this.video.instance.seekTo(sec);
+        },
+
         getVideoCurrentTime(time){
             if (this.video.instance.getPlayerState() == 1) {
                 this.video.currentTime = time;
@@ -80,11 +94,8 @@ export default {
             .removeClass('sidebar-mini')
             .removeClass('layout-fixed')
             .addClass('login-page');
-
-        console.log($('body'));
     },
     created(){
-        console.log(this.project);
         Object.entries(this.project.elements).forEach(([index, value]) => {
             this.interactiveElementData.push({
                 id: value.id,
