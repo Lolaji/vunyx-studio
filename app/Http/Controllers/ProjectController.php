@@ -43,7 +43,7 @@ class ProjectController extends Controller
                 if (!is_null($user)) {
                     if ($project = $user->user->projects()->create($data)) {
                         if ($project->video()->create($request->video)) {
-                            if ($request->vx_video_id){
+                            if (!is_null($request->vx_video_id)){
                                 VxVideo::find($request->vx_video_id)->update(['iv_uuid'=> $project->uuid]);
                             }
                             $response['success'] = true;
