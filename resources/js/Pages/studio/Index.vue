@@ -855,7 +855,8 @@
                 // data.title = ' - clone'
                 let clone = _.cloneDeep(data);
 
-                clone.title += ' - duplicate'
+                clone.id = null;
+                clone.title += ' - duplicate';
                 this.interactiveElementData.push(clone);
             },
             removeLayer(index) {
