@@ -2,7 +2,8 @@
 <template>
     <studio-layout>
         <template #leftSideBar>
-            <main-sidebar></main-sidebar>
+            <main-sidebar
+                :username="username"></main-sidebar>
         </template>
 
         <template #ContentHeader>
@@ -145,7 +146,7 @@ import StudioLayout from '../Layouts/StudioLayout';
 import MainSidebar from "../components/MainSidebar.vue";
 import ContentHeader from "../components/ContentHeader.vue";
 export default {
-    props:['page_title', 'projects'],
+    props:['page_title', 'username', 'projects'],
     components: {
         StudioLayout,
         MainSidebar,
@@ -208,6 +209,7 @@ export default {
         }
     },
     created(){
+        $('title').html(`${this.page_title} | Vunyx`);
         this.interactiveProjects = _.cloneDeep(this.projects);
     }
 }

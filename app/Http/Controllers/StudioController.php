@@ -11,7 +11,7 @@ class StudioController extends Controller
 {
     public function index (Request $request, Project $project) 
     {
-        $data['page_title'] = 'Studio';
+        $data['page_title'] = 'Interaction Studio | Vunyx';
 
         $data['project'] = $project->load('video', 'elements');
 

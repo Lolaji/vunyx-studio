@@ -857,6 +857,7 @@
 
                 clone.id = null;
                 clone.title += ' - duplicate';
+                clone.canSave = true;
                 this.interactiveElementData.push(clone);
             },
             removeLayer(index) {
@@ -996,6 +997,7 @@
             },
         },
         created(){
+            $('title').html(this.page_title);
             this.$store.commit('element/SET_PROJECT_ID', this.project.id);
 
             Object.entries(this.project.elements).forEach(([index, value]) => {

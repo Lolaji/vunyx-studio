@@ -22,6 +22,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 // Plugins
 // import EssentialsPlugin from '@ckeditor/ckeditor5-vue';
 // import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+// import FontFamily from '@ckeditor/ckeditor5-font/src/fontfamily';
+// import FontSize from '@ckeditor/ckeditor5-font/src/fontSize'
 
 
 export default {
@@ -50,14 +52,29 @@ export default {
         return {
             model: '<p></p>',
             config: {
-                // plugins: [],
-                // toolbar: {
-                //     items: ['heading', '|', 'bold', 'italic', 'link', 'fontColor', 
-                //     'bulletedList', 'numberedList', 'blockQuote', 'indent:increase', 'indent:decrease', 'table']
-                // },
-                
+                // plugins: [FontFamily, FontSize],
                 removePlugins: ['Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed',
                                 'CKFinderUploadAdapter'],
+                fontFamily: {
+                    options: [
+                        // 'default',
+                        // 'Ubuntu, Arial, sans-serif',
+                        // 'Ubuntu Mono, Courier New, Courier, monospace'
+                    ],
+                     supportAllValues: true
+                },
+                fontSize: {
+                    options: ['default',2,4,6,8,10,15,20]
+                },
+                heading: {
+                    options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                    ]
+                }
+                // toolbar: ['heading', '|', 'bold', 'italic', 'link', 'fontFamily', 'fontSize', 
+                //     'bulletedList', 'numberedList', 'blockQuote', 'indent', 'outdent', 'table'],
             },
             buildParckage: ClassicEditor,
         }

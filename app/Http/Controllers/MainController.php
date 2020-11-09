@@ -20,6 +20,7 @@ class MainController extends Controller
         }
         
         $data['page_title'] = ucfirst($page);
+        $data['username'] = Auth::user()->name;
         if ($page == 'project') {
             $data['projects'] = Auth::user()->projects()->with('video')->get();
         }

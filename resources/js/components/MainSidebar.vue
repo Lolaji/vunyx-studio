@@ -14,7 +14,7 @@
                     <img src="" class="img-circle elevation-2" alt="User Image">
                 </div> -->
                 <div class="info">
-                    <a href="#" class="d-block">Ajibola Salam</a>
+                    <a href="#" class="d-block">{{username}}</a>
                 </div>
             </div>
             <!-- Sidebar Menu -->
@@ -59,6 +59,7 @@
 import Logo from './Logo';
     import IeIcon from './InteractiveIcon';
     export default {
+        props:['username'],
         components: {
             Logo,
             IeIcon
