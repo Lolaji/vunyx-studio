@@ -96,6 +96,7 @@ export default {
             .addClass('login-page');
     },
     created(){
+        $('title').html(`${this.project.title} | Vunyx`);
         Object.entries(this.project.elements).forEach(([index, value]) => {
             this.interactiveElementData.push({
                 id: value.id,
