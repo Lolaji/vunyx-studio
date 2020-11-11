@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller
 {
-    public function index($page='projects')
+    public function index($page='projects', $param1=null)
     {
         $filename = ucfirst($page);
         if (Str::contains($page, '-')) {
@@ -21,6 +21,7 @@ class MainController extends Controller
         
         $data['page_title'] = ucfirst($page);
         $data['username'] = Auth::user()->name;
+        
         if ($page == 'project') {
             $data['projects'] = Auth::user()->projects()->with('video')->get();
         }
@@ -28,6 +29,14 @@ class MainController extends Controller
         if  ($page == 'vx-videos') {
             $data['page_title'] = 'My Vunyx Videos';
             $data['vxVideos'] = Auth::user()->vx->videos;
+        }
+
+        if ( $page == 'settings' ) {
+            if (!is_null($param1)) {
+                $data['project'] = Project::findBy($param1)->load('video', 'elements');
+            } else {
+                abort(404);
+            }
         }
 
         return Inertia::render($filename, $data);

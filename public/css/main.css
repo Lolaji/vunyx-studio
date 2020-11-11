@@ -40614,8 +40614,8 @@ button:disabled {
 }
 
 .video-section {
-  max-height: 50%;
-  padding: 4px 0;
+  max-height: 100%;
+  padding: 0;
 }
 
 .video-section .video-screen {
@@ -40645,7 +40645,7 @@ button:disabled {
 }
 
 .interactive-data-section > .interactive-layer-container {
-  height: 25.6vh;
+  height: 25vh;
   /* padding: 2px; */
   overflow-y: auto;
   /* background: #e1c238 */
@@ -40675,12 +40675,12 @@ button:disabled {
 }
 
 .interactive-data-section > .interactive-layer-container .layer .layer-btn button {
-  font-size: 8px;
+  font-size: 6px;
 }
 
 .interactive-data-section > .interactive-layer-container .layer .layer-name {
   padding: 15px 0 10px;
-  font-size: 14px;
+  font-size: 12px;
   overflow-x: hidden;
 }
 
@@ -40795,6 +40795,7 @@ button:disabled {
   width: 100%;
   height: 0;
   padding: 0;
+  background-color: #ffffff;
 }
 
 .range-slider.seekbar .range-slider-rail {
@@ -40809,5 +40810,11 @@ button:disabled {
 
 .range-slider.seekbar .range-slider-knob {
   background: #e1c238;
+}
+
+.range-slider.seekbar .range-slider-rail,
+.range-slider.seekbar .range-slider-fill,
+.range-slider.seekbar .range-slider-knob {
+  margin-top: -17px;
 }
 

@@ -29,6 +29,14 @@
             },
             url: {
                 type: String
+            },
+            height: {
+                type: String,
+                default: () => '300px'
+            },
+            width: {
+                type: String,
+                default: () => '100%'
             }
         },
         components: {
@@ -49,8 +57,6 @@
                     enablejsapi: 1
                 },
                 ytUrl: 'https://www.youtube.com/watch?v=2zbksa_GG9c', // 'https://www.youtube.com/watch?v=VdQY7BusJNU', 
-                width: '100%',
-                height: '300px'
             }
         },
         methods: {

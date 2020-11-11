@@ -14,38 +14,43 @@
                         <div class="interactive-container col-md-8">
                             <!-- Interactive Editing Video Section -->
                             <div class="interactive-main col-md-12">
-                                <video-section
-                                    :url="project.video.url"
-                                    :seek-to="video.seekTo"
-                                    @ready="playerReady"
-                                    @get-current-time="getVideoCurrentTime"
-                                    @playing="videoPlaying"
-                                    @paused="videoPaused"
-                                    @time-change="VideoTimeChange">
-                                        <template #interactiveContainer>
-                                            <div ref="iElement" v-for="(ie, key) in interactiveElementData" :key="key">
-                                                <i-element
-                                                    :type="ie.type"
-                                                    :action="ie.action"
-                                                    :href="ie.href"
-                                                    :link-time="ie.linkTime"
-                                                    :styles="ie.style"
-                                                    :from="ie.time.from"
-                                                    :to="ie.time.to"
-                                                    :animate-classes="ie.animateClasses"
-                                                    :video-current-time="video.currentTimeInSeconds"
-                                                    :is-video-playing="video.playing"
-                                                    :on-edit="ie.onEdit"
-                                                    @on-link-time="elementClick">
-                                                    <template v-if="ie.type=='text'">
-                                                        <div v-html="ie.text"></div>
-                                                    </template>
-                                                    <template v-else>{{ie.text}}</template>
-                                                </i-element>
-                                            </div>
-                                        </template>
-                                </video-section>
-
+                                <div class="row justify-content-center pt-1">
+                                    <div class="col-md-10">
+                                        <video-section
+                                            :url="project.video.url"
+                                            height="280px"
+                                            :seek-to="video.seekTo"
+                                            @ready="playerReady"
+                                            @get-current-time="getVideoCurrentTime"
+                                            @playing="videoPlaying"
+                                            @paused="videoPaused"
+                                            @time-change="VideoTimeChange">
+                                                <template #interactiveContainer>
+                                                    <div ref="iElement" v-for="(ie, key) in interactiveElementData" :key="key">
+                                                        <i-element
+                                                            :type="ie.type"
+                                                            :action="ie.action"
+                                                            :href="ie.href"
+                                                            :link-time="ie.linkTime"
+                                                            :styles="ie.style"
+                                                            :from="ie.time.from"
+                                                            :to="ie.time.to"
+                                                            :animate-classes="ie.animateClasses"
+                                                            :video-current-time="video.currentTimeInSeconds"
+                                                            :is-video-playing="video.playing"
+                                                            :on-edit="ie.onEdit"
+                                                            @on-link-time="elementClick">
+                                                            <template v-if="ie.type=='text'">
+                                                                <div v-html="ie.text"></div>
+                                                            </template>
+                                                            <template v-else>{{ie.text}}</template>
+                                                        </i-element>
+                                                    </div>
+                                                </template>
+                                        </video-section>
+                                    </div>
+                                </div>
+                                
                                 <!-- Interactive Data Section -->
                                 <div class="row">
                                     <div class="interactive-data-section col-md-12">
@@ -74,7 +79,7 @@
 
                                             <div 
                                                 is="transition-group" 
-                                                class="col-md-12"
+                                                class="col-12"
                                                 enter-active-class="animate__animated animate__fadeIn"
                                                 leave-active-class="animate__animated animate__fadeOut">
                                                     <interactive-layer

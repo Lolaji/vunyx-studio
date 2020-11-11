@@ -11,6 +11,11 @@ class Project extends Model
 
     protected $guarded=[];
 
+    public static function findBy($uuid, $field='uuid') 
+    {
+        return self::where($field, $uuid)->firstOrFail();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

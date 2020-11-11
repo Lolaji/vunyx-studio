@@ -1,10 +1,14 @@
 <template>
     <div class="video-section">
-        <div class="row justify-content-center">
+        
             <!-- Video Screen -->
-            <div class="video-screen col-md-10 pl-0 pr-0">
+            <div 
+                class="video-screen col-md-12 pl-0 pr-0"
+                :style="{height: height}">
                 <youtube-iframe
                     :url="url"
+                    :height="height"
+                    :width="width"
                     :pause="pause"
                     @ready="onPlayerReady"
                     @playing="playing"
@@ -15,22 +19,27 @@
                     <slot name="interactiveContainer"></slot>
             </div>
 
-            <div class="col-md-10 seek-bar-container">
-                <seek-bar
-                    ref="seekBar"
-                    class="seekbar"
-                    v-model="seekBarValue"
-                    :min="0.0"
-                    :max="playerDuration"
-                    :step="0.01"
-                    @change="seekbarDragEnd"
-                ></seek-bar>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="seek-bar-container">
+                        <seek-bar
+                            ref="seekBar"
+                            class="seekbar"
+                            v-model="seekBarValue"
+                            :min="0.0"
+                            :max="playerDuration"
+                            :step="0.01"
+                            @change="seekbarDragEnd"
+                        ></seek-bar>
+                    </div>
+                </div>
+                    
             </div>
 
             <!-- Video controls -->
-            <div class="video-control col-md-10">
+            <div class="video-control col-md-12">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-9">
                         <div class="row control text-white">
                             <div class="col-1">
                                 <button
@@ -45,7 +54,7 @@
                                     <i ref="volumeIcon" class="fa fa-volume-down"></i>
                                 </div>
                             </div>
-                            <div class="col-sm-4 volume-bar-container">
+                            <div class="col-4 volume-bar-container">
                                 <volume-slider
                                     ref="volumeSlider"
                                     class="player-volume"
@@ -56,13 +65,13 @@
                                 ></volume-slider>
 
                             </div>
-                            <div class="col-md-4 time-text">
+                            <div class="col-4 time-text">
                                 <span class="currentTime">{{timeText.current}}</span> /
                                 <span class="duration">{{timeText.duration}}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-3">
                         <img
                             src="/img/logo.png"
                             class="image float-right"
@@ -71,7 +80,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </template>
 
@@ -91,6 +99,14 @@
             },
             url: {
                 type: String
+            },
+            height: {
+                type: String,
+                default: () => '300px'
+            },
+            width: {
+                type: String,
+                default: () => '100%'
             }
         },
         components: {
@@ -243,6 +259,9 @@
 
             }
         },
+        created(){
+
+        },
         mounted(){
             this.seekBarOnDrag();
         }
@@ -251,13 +270,10 @@
 
 <style lang="scss">
     .seek-bar-container {
-        padding: 0;
-        margin-left: -10px;
-        margin-right: -10px;
-        margin-top: -19px;
+        padding: 0 2px;
         width: 100%;
-        height: 0;
-        // background: #2a2929;
+        height: 2px;
+        // display: none;
 
         z-index: 999;
     }

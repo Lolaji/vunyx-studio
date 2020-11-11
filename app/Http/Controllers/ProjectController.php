@@ -39,7 +39,7 @@ class ProjectController extends Controller
             
             if (!$validate->fails()){
                 $data = $request->only('title', 'description'); 
-                $data['uuid'] = Str::uuid();
+                $data['uuid'] = (string) Str::uuid();
                 if (!is_null($user)) {
                     if ($project = $user->user->projects()->create($data)) {
                         if ($project->video()->create($request->video)) {

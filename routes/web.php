@@ -31,14 +31,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])
-        ->get('/main/{page}', [MainController::class, 'index'])
+        ->get('/main/{page}/{param1?}', [MainController::class, 'index'])
         ->name('main');
 
 Route::middleware(['auth:sanctum', 'verified'])
         ->get('/studio/{project:uuid}', [StudioController::class, 'index'])
         ->name('studio');
 
-Route::get('/player/{project:uuid}', [PlayerController::class, 'index'])
+Route::get('/{page}/{project:uuid}', [PlayerController::class, 'index'])
         ->name('player');
 
 

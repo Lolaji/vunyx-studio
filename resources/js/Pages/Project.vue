@@ -95,7 +95,9 @@
                                                             target="__blank" 
                                                             :href="`/player/${project.uuid}`"> <i class="fa fa-eye"></i> Preview</a>
                                                         <!-- <a class="dropdown-item text-muted" href="#"> <i class="fa fa-share"></i> Share</a> -->
-                                                        <a class="dropdown-item text-muted" href="#"> <i class="fa fa-cogs"></i> Settings</a>
+                                                        <a 
+                                                            class="dropdown-item text-muted" 
+                                                            :href="`/main/settings/${project.uuid}`"> <i class="fa fa-cogs"></i> Settings</a>
 
                                                         <div class="dropdown-divider"></div>
 
@@ -135,7 +137,7 @@
                 <!-- /.card -->
             </section>
         </template>
-    </studio-layout>    
+    </studio-layout>
 </template>
 
 <script>

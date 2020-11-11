@@ -3,7 +3,7 @@
         <div 
             class="row layer mb-0 pb-0" :class="classes">
                 
-                <div class="col-md-3">
+                <div class="col-3">
                     <div class="layer-btn">
                         <button 
                             @click="edit(index, data)"
@@ -23,7 +23,7 @@
                         <!-- <span class="icon"><i class="fa fa-angle-down"></i></span> -->
                     </div>
                 </div>
-                <div class="col-md-6 pt-2">
+                <div class="col-6 pt-2">
                     <div class="row">
                         <div class="interactive-timeline interactive-position">
                             <span 
@@ -32,7 +32,7 @@
                         </div>
                     </div>                          
                 </div>
-                <div class="col-md-3">
+                <div class="col-3">
                     <div class="time-input">
                         <div class="row pt-2">
                             <input 
@@ -51,7 +51,7 @@
                                 type="text" 
                                 :value="data.time.to" 
                                 @input="timeInputUpdate('to', $event)" 
-                                class="col form-control form-control-sm mx-1" 
+                                class="col form-control form-control-sm mr-1" 
                                 placeholder="HH:MM:SS.MS">
                         </div>
                     </div>
