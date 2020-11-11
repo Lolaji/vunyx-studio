@@ -270,10 +270,11 @@
 
 <style lang="scss">
     .seek-bar-container {
-        padding: 0 2px;
+        padding: 0;
         width: 100%;
         height: 2px;
-        // display: none;
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, #e1c238 0%, #5a5959 52%, #5a5959 100%);
 
         z-index: 999;
     }
