@@ -33,7 +33,7 @@ class PlayerController extends Controller
                 $domain = $referer_scheme.'://'.$referer_host;
 
                 if (! $project->canEmbed($domain) ) {
-                    if (($domain != 'https://vunyx.com') || ($domain != 'https://www.vunyx.com')) {
+                    if (($domain != 'https://vunyx.com') && ($domain != 'https://www.vunyx.com')) {
                         abort(404);
                     }
                 }
