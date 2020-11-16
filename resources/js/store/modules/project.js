@@ -1,11 +1,13 @@
 import video from './video';
 import element from './element';
+import setting from './setting';
 
 export default {
     namespaced: true,
     modules: {
         video,
-        element
+        element,
+        setting
     },
     state: () => ({
         projets: []
@@ -20,6 +22,46 @@ export default {
         addInteractive({ commit, dispatch }, {user_id, data}) {
             return new Promise((resolve, reject) => {
                 axios.post(`/api/projects/${user_id}`, data).then(res => {
+                    resolve(res.data);
+                }).catch(err => {
+                    if (err.response)
+                        console.error(err.response.data.message);
+                });
+            });
+        },
+        addViewer({ commit }, { project_id, data }) {
+            return new Promise((resolve, reject) => {
+                axios.post(`/projects/${project_id}/viewers`, data).then(res => {
+                    resolve(res.data);
+                }).catch(err => {
+                    if (err.response)
+                        console.error(err.response.data.message);
+                })
+            });
+        },
+        addDomain({ commit }, { project_id, data }) {
+            return new Promise((resolve, reject) => { 
+                axios.post(`/projects/${project_id}/domains`, data).then(res => {
+                    resolve(res.data);
+                }).catch(err => {
+                    if (err)
+                        console.log(err.response.data.message);
+                });
+            });
+        },
+        removeViewer({ commit }, id) {
+            return new Promise((resolve, reject) => {
+                axios.delete(`/projects/viewers/${id}`).then(res => {
+                    resolve(res.data);
+                }).catch(err => {
+                    if (err.response)
+                        console.log(err.response.data.message);
+                });
+            });
+        },
+        removeDomain({ commit }, domain_id) {
+            return new Promise((resolve, reject) => {
+                axios.delete(`/projects/domains/${domain_id}`).then(res => {
                     resolve(res.data);
                 }).catch(err => {
                     if (err.response)

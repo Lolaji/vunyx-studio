@@ -102,11 +102,22 @@ export default {
             .removeClass('layout-fixed');
             // .addClass('login-page');
     },
+    updated(){
+        console.log(window.innerHeight);
+    },
     created(){
         $('title').html(`${this.project.title} | Vunyx`);
 
         this.embedContainerStyle.height = (! _.isNull(this.height)?this.height : (window.innerHeight-42)+'px');
         this.embedContainerStyle.width = (! _.isNull(this.height)?this.width : (window.innerWidth)+'px');
+
+        this.$nextTick(()=> {
+            window.onresize = () => {
+                console.log('Height changed to: '+window.innerHeight);
+                this.embedContainerStyle.height = (! _.isNull(this.height)?this.height : (window.innerHeight-42)+'px');
+                this.embedContainerStyle.width = (! _.isNull(this.height)?this.width : (window.innerWidth)+'px');
+            }
+        });
 
         Object.entries(this.project.elements).forEach(([index, value]) => {
             this.interactiveElementData.push({

@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/user', [UserController::class, 'create']);
 Route::middleware('auth:sanctum')->get('/projects', [ProjectController::class, 'fetch']);
+Route::post('/projects/{project}/domains', [ProjectController::class, 'addDomain']);
 Route::post('/projects/{id?}', [ProjectController::class, 'create']);
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'vxAuthentication']);

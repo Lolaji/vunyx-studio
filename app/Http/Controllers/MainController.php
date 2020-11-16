@@ -32,8 +32,11 @@ class MainController extends Controller
         }
 
         if ( $page == 'settings' ) {
+            $p = Project::findBy($param1);
+            $this->authorize('update', $p);
+
             if (!is_null($param1)) {
-                $data['project'] = Project::findBy($param1)->load('video', 'elements');
+                $data['project'] = $p->load('video', 'elements', 'setting', 'watch_users', 'embed_domains');
             } else {
                 abort(404);
             }

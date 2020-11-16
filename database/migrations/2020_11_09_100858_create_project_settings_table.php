@@ -15,7 +15,13 @@ class CreateProjectSettingsTable extends Migration
     {
         Schema::create('project_settings', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('project_id');
+            $table->tinyInteger('watch_access')->default(1);
+            $table->tinyInteger('embed_access')->default(1);
             $table->timestamps();
+
+            
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 

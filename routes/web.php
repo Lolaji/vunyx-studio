@@ -5,7 +5,9 @@ use App\Http\Controllers\StudioController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectSettingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WatchUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,8 +46,28 @@ Route::get('/{page}/{project:uuid}', [PlayerController::class, 'index'])
 
 // Project Route
 Route::middleware(['auth:sanctum', 'verified'])
+        ->post('/projects/{project}/viewers', [WatchUserController::class, 'create'])
+        ->name('add-project-watch-users');
+
+Route::middleware(['auth:sanctum', 'verified'])
+        ->post('/projects/{project}/domains', [ProjectController::class, 'addDomain'])
+        ->name('add-project-domain');
+
+Route::middleware(['auth:sanctum', 'verified'])
+        ->patch('/projects/{project}/settings', [ProjectSettingController::class, 'save'])
+        ->name('project-settings');
+
+Route::middleware(['auth:sanctum', 'verified'])
         ->delete('/projects/{project}', [ProjectController::class, 'delete'])
         ->name('delete-project');
+
+Route::middleware(['auth:sanctum', 'verified'])
+        ->delete('/projects/viewers/{watchUser}', [WatchUserController::class, 'delete'])
+        ->name('remove-viewer');
+
+Route::middleware(['auth:sanctum', 'verified'])
+        ->delete('/projects/domains/{domain}', [ProjectController::class, 'removeDomain'])
+        ->name('remove-domain');
 
 // Element Router
 Route::middleware(['auth:sanctum', 'verified'])

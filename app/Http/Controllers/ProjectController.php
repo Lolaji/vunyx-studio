@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EmbedDomain;
 use App\Models\Project;
 use App\Models\StudioAccessKey;
 use App\Models\User;
 use App\Models\VxUser;
 use App\Models\VxVideo;
+use App\Models\WatchUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -43,6 +45,7 @@ class ProjectController extends Controller
                 if (!is_null($user)) {
                     if ($project = $user->user->projects()->create($data)) {
                         if ($project->video()->create($request->video)) {
+                            $project->setting()->create();
                             $response['success'] = true;
                             $response['message'] = 'Project created';
                             $response['uuid'] = $project->uuid;
@@ -85,6 +88,53 @@ class ProjectController extends Controller
         $response['success'] = true;
         $response['message'] = Project::all();
 
+        return $response;
+    }
+
+    public function addDomain (Request $request, Project $project)
+    {
+        $response = ['success'=>false, 'result'=>null, 'message'=>[]];
+        
+        $message = [
+            'domain.unique' => 'Domain already added.',
+            'domain.required' => 'This field is required.'
+        ];
+
+        $validate = Validator::make($request->all(), [
+            'domain'=>'required'
+        ], $message);
+        
+        
+        if (! $validate->fails()) {
+            $cred = $request->only('domain');
+            if ($domain = $project->embed_domains()->create($cred)){
+                $response['success'] = true;
+                $response['result'] = $domain;
+                $response['message'] = 'Domain added successfully';
+            } else {
+                $response['success'] = false;
+                $response['message'] = 'Unable to add domain';
+            }
+        } else {
+            $response['success'] = false;
+            foreach($request->all() as $key => $value) {
+                $response['message'][$key] = $validate->errors()->first($key);
+            }
+        }
+        return $response;
+    }
+
+    public function removeDomain (Request $request, EmbedDomain $domain)
+    {
+        $response = ['success'=> false, 'message'=>''];
+
+        if ($domain->delete()) {
+            $response['success'] = true;
+            $response['message'] = 'Domain removed';
+        } else {
+            $response['success'] = false;
+            $response['message'] = 'Unable to remove domain due to system error. Please try agaib';
+        }
         return $response;
     }
 
