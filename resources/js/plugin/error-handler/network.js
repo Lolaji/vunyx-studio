@@ -8,10 +8,12 @@ class NetworkErrorHandler
     }
 
     handle(error) {
+        console.log(error);
+
         if (error.response) {
             return error.response.data.message;
         } else {
-            return 'Something went wrong'
+            return 'Something went wrong.';
         }
     }
 }
