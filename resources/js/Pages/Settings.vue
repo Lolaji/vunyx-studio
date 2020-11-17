@@ -292,8 +292,6 @@ export default {
                 }
             }
 
-            console.log(data);
-
             this.$store.dispatch('project/setting/save', data).then(res => {
                 console.log(res);
                 if (res.success) {
@@ -303,10 +301,14 @@ export default {
                 }
                 this.load.setting = false;
             }).catch(error => {
-                let errorMsg = NetworkErrorHandler.handle(error);
-                swal.setTitle(errorMsg).setIcon('error').toast();
-
-                this.load.setting = false;
+                let err = NetworkErrorHandler.handle(error);
+                if (err.unauthorized()) {
+                    window.location = '/login';
+                } else {
+                    swal.setTitle(err.message()).setIcon('error').toast();
+                    console.log(err.responseMessage());
+                    this.load.setting = false;
+                }
             });
         },
         addViewer(){
