@@ -14,8 +14,7 @@ export default {
                 axios.patch(`/projects/${project_id}/settings`, data).then(res => {
                     resolve(res.data);
                 }).catch(err => {
-                    if (err.response)
-                        console.error(err.response.data.message);
+                    reject(err);
                 });
             });
         }

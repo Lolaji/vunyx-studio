@@ -246,6 +246,7 @@
 
 <script>
 import swal from '../plugin/vue-swal';
+import NetworkErrorHandler from '../plugin/error-handler/network';
 
 import StudioLayout from '../Layouts/StudioLayout';
 import MainSidebar from "../components/MainSidebar.vue";
@@ -300,6 +301,11 @@ export default {
                 } else {
                     swal.setTitle(res.message).setIcon('error').toast();
                 }
+                this.load.setting = false;
+            }).catch(error => {
+                let errorMsg = NetworkErrorHandler.handle(error);
+                swal.setTitle(errorMsg).setIcon('error').toast();
+
                 this.load.setting = false;
             });
         },

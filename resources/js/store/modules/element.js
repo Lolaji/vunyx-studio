@@ -25,8 +25,7 @@ export default {
                     axios.post(`/projects/${state.project_id}/elements${(!_.isNull(id))? '/'+id : ''}`, data).then(res => {
                         resolve(res.data);
                     }).catch(err => {
-                        if (err.response)
-                            console.error(err.response.data.message);
+                        reject(err);
                     });
                 } else {
                     reject('Project ID must be set');
@@ -39,8 +38,6 @@ export default {
                     resolve(res.data);
                 }).catch(err => {
                     reject(err);
-                    if (err.response)
-                        console.error(err.response.data.message);
                 });
             });
         }

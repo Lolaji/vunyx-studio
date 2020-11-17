@@ -34,8 +34,7 @@ export default {
                 axios.post(`/projects/${project_id}/viewers`, data).then(res => {
                     resolve(res.data);
                 }).catch(err => {
-                    if (err.response)
-                        console.error(err.response.data.message);
+                    reject(err);
                 })
             });
         },
@@ -44,8 +43,7 @@ export default {
                 axios.post(`/projects/${project_id}/domains`, data).then(res => {
                     resolve(res.data);
                 }).catch(err => {
-                    if (err)
-                        console.log(err.response.data.message);
+                    reject(err);
                 });
             });
         },
@@ -54,8 +52,7 @@ export default {
                 axios.delete(`/projects/viewers/${id}`).then(res => {
                     resolve(res.data);
                 }).catch(err => {
-                    if (err.response)
-                        console.log(err.response.data.message);
+                    reject(err);
                 });
             });
         },
@@ -64,8 +61,7 @@ export default {
                 axios.delete(`/projects/domains/${domain_id}`).then(res => {
                     resolve(res.data);
                 }).catch(err => {
-                    if (err.response)
-                        console.error(err.response.data.message);
+                    reject(err);
                 });
             });
         },
@@ -74,8 +70,7 @@ export default {
                 axios.delete(`/projects/${id}`).then(res => {
                     resolve(res.data);
                 }).catch(err => {
-                    if (err)
-                        console.log(err.response.data.message);
+                    reject(err);
                 })
             });
         }
