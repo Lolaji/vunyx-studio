@@ -7,9 +7,10 @@ class NetworkErrorHandler
         this.status = null;
         this.statusText = '';
         this.resMsg = '';
+        this.loginUrl = '/login';
     }
 
-    handle(error) {
+    set(error) {
         if (error.response) {
             this.status = error.response.status;
             this.responseMsg = error.response.data.message;
@@ -21,12 +22,24 @@ class NetworkErrorHandler
                     this.statusText = 'Unauthorized.';
                     break;
                 case 500:
-                    this.statusText = 'Unable to process the your request due to system error. Please try again later.';
+                    this.statusText = 'Unable to process your request due to system error. Please try again later.';
                     break;
             }
         } else {
-            this.statusText = 'Network Error. Please check your network.';
+            this.statusText = 'Network Error. Please check your network and try again.';
         }
+        return this;
+    }
+    handle (callback=null)
+    {
+        if (this.unauthorized()) {
+            window.location = this.loginUrl;
+        } else {
+            callback(this.message());
+        }
+    }
+    setLoginUrl(login_url) {
+        this.loginUrl = url;
         return this;
     }
     unauthorized()

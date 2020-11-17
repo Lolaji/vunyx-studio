@@ -247,12 +247,14 @@
 <script>
 import swal from '../plugin/vue-swal';
 import NetworkErrorHandler from '../plugin/error-handler/network';
+import ErrorHandlerReusable from '../plugin/reusable/error';
 
 import StudioLayout from '../Layouts/StudioLayout';
 import MainSidebar from "../components/MainSidebar.vue";
 import ContentHeader from "../components/ContentHeader.vue";
 export default {
     props: ["page_title", "username", 'project'],
+    mixins: [ErrorHandlerReusable],
     components: {
         StudioLayout,
         MainSidebar,
@@ -301,14 +303,8 @@ export default {
                 }
                 this.load.setting = false;
             }).catch(error => {
-                let err = NetworkErrorHandler.handle(error);
-                if (err.unauthorized()) {
-                    window.location = '/login';
-                } else {
-                    swal.setTitle(err.message()).setIcon('error').toast();
-                    console.log(err.responseMessage());
-                    this.load.setting = false;
-                }
+                this.handleNetworkError(error);
+                this.load.setting = false;
             });
         },
         addViewer(){
@@ -334,6 +330,8 @@ export default {
                         swal.setTitle(res.message).setIcon('error').toast();
                     }
                 }
+            }).catch(error => {
+                this.handleNetworkError(error);
             });
         },
         addDomain(){
@@ -359,6 +357,8 @@ export default {
                         swal.setTitle(res.message).setIcon('error').toast();
                     }
                 }
+            }).catch(error => {
+                this.handleNetworkError(error);
             });
         },
         removeViewer(id, index) {
@@ -369,6 +369,8 @@ export default {
                 } else {
                     swal.setTitle(res.message).setIcon('error').toast();
                 }
+            }).catch(error => {
+                this.hamdleNetworkError(error);
             })
         },
         removeDomain(id, index) {
@@ -380,6 +382,8 @@ export default {
                 } else {
                     swal.setTitle(res.message).setIcon('error').toast();
                 }
+            }).catch(error => {
+                this.handleNetworkError(error);
             });
         },
 
