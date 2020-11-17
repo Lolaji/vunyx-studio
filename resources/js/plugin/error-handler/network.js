@@ -18,8 +18,11 @@ class NetworkErrorHandler
                 case 400:
                     this.statusText = "Not found";
                     break;
+                case 401: {
+                    this.statusText = 'Unauthenticated';
+                }
                 case 419:
-                    this.statusText = 'Unauthorized.';
+                    this.statusText = 'Unauthorized';
                     break;
                 case 500:
                     this.statusText = 'Unable to process your request due to system error. Please try again later.';
@@ -32,7 +35,7 @@ class NetworkErrorHandler
     }
     handle (callback=null)
     {
-        if (this.unauthorized()) {
+        if (this.unauthorized() || this.unauthenticated()) {
             window.location = this.loginUrl;
         } else {
             callback(this.message());
@@ -45,6 +48,12 @@ class NetworkErrorHandler
     unauthorized()
     {
         if (this.status === 419) {
+            return true;
+        }
+        return false;
+    }
+    unauthenticated() {
+        if (this.status === 401) {
             return true;
         }
         return false;
