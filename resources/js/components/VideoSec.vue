@@ -123,7 +123,8 @@
                 this.playerInstance.seekTo(nData);
                 this.timeText.current = datePlugin.spanTime(newTime).rand;
                 this.seekBarValue = newTime;
-            }
+            },
+            height(nData, oData){}
         },
         data(){
             return {

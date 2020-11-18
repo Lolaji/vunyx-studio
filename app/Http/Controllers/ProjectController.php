@@ -122,7 +122,7 @@ class ProjectController extends Controller
         
         if (! $validate->fails()) {
             $cred = $request->only('domain');
-            if ($domain = $project->embed_domains()->create($cred)){
+            if ($domain = $project->embed_domains()->create($cred)) {
                 $response['success'] = true;
                 $response['result'] = $domain;
                 $response['message'] = 'Domain added successfully';

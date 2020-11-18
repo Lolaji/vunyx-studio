@@ -65,6 +65,9 @@ export default {
             }
         }
     },
+    watch:{
+        embedContainerStyle(newData, oldData){}
+    },
     methods: {
         /**
          * Interactive Element Methods
@@ -114,8 +117,12 @@ export default {
         this.$nextTick(()=> {
             window.onresize = () => {
                 console.log('Height changed to: '+window.innerHeight);
+                let iframe = document.getElementsByTagName('iframe')[0];
+
                 this.embedContainerStyle.height = (! _.isNull(this.height)?this.height : (window.innerHeight-42)+'px');
                 this.embedContainerStyle.width = (! _.isNull(this.height)?this.width : (window.innerWidth)+'px');
+
+                iframe.height = (! _.isNull(this.height)?this.height : (window.innerHeight-42)+'px');
             }
         });
 
