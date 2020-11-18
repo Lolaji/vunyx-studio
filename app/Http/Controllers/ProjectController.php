@@ -76,6 +76,21 @@ class ProjectController extends Controller
         return $response;
     }
 
+    public function update(Request $request, Project $project)
+    {
+        $response = ['success'=>false, 'message'=>''];
+        $cred = $request->only('title', 'description');
+        if ($project->update($cred)){
+            $response['success'] = true;
+            $response['message'] = 'Saved';
+        } else {
+            $response['success'] = false;
+            $response['message'] = 'Failed to save setting due to system error. please, try again later.';
+        }
+
+        return $response;
+    }
+
     public function fetch(Request $request)
     {
         $response = ['success'=> false, 'message'=>[]];

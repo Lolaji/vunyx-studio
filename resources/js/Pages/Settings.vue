@@ -19,7 +19,8 @@
                                         <a
                                             class="nav-link active"
                                             href="#publish"
-                                            data-toggle="tab">
+                                            data-toggle="tab"
+                                            @click="tabSwitch('publish')">
                                                 Publish
                                         </a>
                                     </li>
@@ -27,7 +28,8 @@
                                         <a
                                             class="nav-link"
                                             href="#general"
-                                            data-toggle="tab">
+                                            data-toggle="tab"
+                                            @click="tabSwitch('general')">
                                                 General
                                         </a>
                                     </li>
@@ -207,7 +209,27 @@
                                     <!-- /.tab-pane -->
 
                                     <div class="tab-pane" id="general">
-                                        General
+                                        <div class="row pb-2">
+                                            <div class="col-2 font-weight-bold">Title</div>
+                                            <div class="col-6">
+                                                <input 
+                                                    type="text" 
+                                                    v-model="project_data.title"
+                                                    id="title" 
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row pb-2">
+                                            <div class="col-2 font-weight-bold">Description</div>
+                                            <div class="col-6">
+                                                <textarea 
+                                                    v-model="project_data.description"
+                                                    class="form-control" 
+                                                    id="description" 
+                                                    cols="30" 
+                                                    rows="3"></textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- /.tab-pane -->
                                 </div>
@@ -262,6 +284,7 @@ export default {
     },
     data(){
         return {
+            tab_name: 'publish',
             video_url: '',
             embed_code: '',
             watch_access: 0,
@@ -270,6 +293,10 @@ export default {
             embed_domains: [],
             viewer_username: '',
             domain_name: '',
+            project_data: {
+                title: '',
+                description: ''
+            },
             load: {
                 setting: false
             },
@@ -284,8 +311,22 @@ export default {
         }
     },
     methods: {
+        tabSwitch(tab_name){
+            this.tab_name = tab_name;
+        },
         save(){
             this.load.setting = true;
+            
+            switch(this.tab_name){
+                case 'publish':
+                    this.publishSave();
+                    break;
+                case 'general':
+                    this.generalSave();
+                    break;
+            }
+        },
+        publishSave(){
             let data = {
                 project_id: this.project.id,
                 data: {
@@ -306,6 +347,23 @@ export default {
                 this.handleNetworkError(error);
                 this.load.setting = false;
             });
+        },
+        generalSave(){
+            this.$store.dispatch('project/update', {
+                project_id: this.project.id,
+                data: this.project_data
+            }).then(res => {
+                console.log(res);
+                if (res.success){
+                    swal.setTitle(res.message).setIcon('success').toast();
+                } else {
+                    swal.setTitle(res.message).setIcon('error').toast();
+                }
+                this.load.setting = false;
+            }).catch(error => {
+                this.handleNetworkError(error);
+                this.load.setting = false;
+            })
         },
         addViewer(){
             this.clearFormError('username');
@@ -412,6 +470,10 @@ export default {
         this.embed_domains = _.cloneDeep(this.project.embed_domains);
 
         this.embed_code = `<iframe src="${window.location.origin+'/embed/'+this.project.uuid}" frameborder="0" height="500" width="320"></iframe>`;
+
+        Object.entries(this.project_data).forEach(([index, value]) => {
+            this.project_data[index] = this.project[index];
+        });
     }
 };
 </script>

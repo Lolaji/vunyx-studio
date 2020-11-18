@@ -47,6 +47,15 @@ export default {
                 });
             });
         },
+        update({ commit }, { project_id, data }) {
+            return new Promise((resolve, reject) => {
+                axios.patch(`/projects/${project_id}`, data).then(res => {
+                    resolve(res.data);
+                }).catch(err => {
+                    reject(err);
+                })
+            });
+        },
         removeViewer({ commit }, id) {
             return new Promise((resolve, reject) => {
                 axios.delete(`/projects/viewers/${id}`).then(res => {

@@ -46,6 +46,10 @@ Route::get('/{page}/{project:uuid}', [PlayerController::class, 'index'])
 
 // Project Route
 Route::middleware(['auth:sanctum', 'verified'])
+        ->patch('/projects/{project}', [ProjectController::class, 'update'])
+        ->name('project-update');
+        
+Route::middleware(['auth:sanctum', 'verified'])
         ->post('/projects/{project}/viewers', [WatchUserController::class, 'create'])
         ->name('add-project-watch-users');
 
