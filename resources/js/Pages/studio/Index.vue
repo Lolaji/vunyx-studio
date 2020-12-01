@@ -212,16 +212,13 @@
 
                                             <div class="form-group">
                                                 <div class="row">
-                                                    <label class="label col-3" for="enterAnimation">Enter Animation</label>
+                                                    <label class="label col-3" for="enterAnimation">Enterance</label>
                                                     <div class="col-8">
                                                         <select v-model="interactiveElementData[layerIndex].animateClasses.enter" id="enterAnimation" class="form-control" @change="canSave">
-                                                            <option value="">-- Select Action --</option>
+                                                            <option value="">-- Select Animation --</option>
                                                             <option value="animate__animated animate__fadeIn">Fade In</option>
-                                                            <option value="animate__animated animate__fadeOut">Fade Out</option>
-                                                            <option value="animate__animated animate__backInLeft">Back In Left</option>
-                                                            <option value="animate__animated animate__backInRight">Back In Right</option>
-                                                            <option value="animate__animated animate__backOutLeft">Back Out Left</option>
-                                                            <option value="animate__animated animate__backOutRight">Back Out Right</option>
+                                                            <option value="animate__animated animate__backInLeft">Fly In Left</option>
+                                                            <option value="animate__animated animate__backInRight">Fly In Right</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -229,16 +226,13 @@
 
                                             <div class="form-group">
                                                 <div class="row">
-                                                    <label class="label col-3" for="leaveAnimation">Leave Animation</label>
+                                                    <label class="label col-3" for="leaveAnimation">Exist</label>
                                                     <div class="col-8">
                                                         <select v-model="interactiveElementData[layerIndex].animateClasses.leave" id="leaveAnimation" class="form-control" @change="canSave">
-                                                            <option value="">-- Select Action --</option>
-                                                            <option value="animate__animated animate__fadeIn">Fade In</option>
+                                                            <option value="">-- Select Animation --</option>
                                                             <option value="animate__animated animate__fadeOut">Fade Out</option>
-                                                            <option value="animate__animated animate__backInLeft">Back In Left</option>
-                                                            <option value="animate__animated animate__backInRight">Back In Right</option>
-                                                            <option value="animate__animated animate__backOutLeft">Back Out Left</option>
-                                                            <option value="animate__animated animate__backOutRight">Back Out Right</option>
+                                                            <option value="animate__animated animate__backOutLeft">Fly Out Left</option>
+                                                            <option value="animate__animated animate__backOutRight">Fly Out Right</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -355,26 +349,12 @@
                                                                 </template>
                                                             </border-radius-slider>
 
-                                                        <!-- <div class="form-group">
-                                                            <div class="row">
-                                                                <label class="label col-4 pt-1" for="">Radius</label>
-                                                                <div class="col-8">
-                                                                    <div class="input-group ie">
-                                                                        <input type="text" v-model="ieStyle.borderRadius" class="form-control col-4">
-                                                                        <div class="input-group-append">
-                                                                            <span class="input-group-text vx-text-color">{{measurement.percent}}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
-
                                                         <div class="form-group">
                                                             <div class="row">
                                                                 <label for="" class="col-4 label">Width</label>
                                                                 <div class="col-8">
                                                                     <div class="input-group ie">
-                                                                        <input type="text" v-model="ieStyle.borderWidth" class="form-control col-4">
+                                                                        <input type="number" v-model="ieStyle.borderWidth" class="form-control col-4">
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text vx-text-color">px</span>
                                                                         </div>
@@ -896,8 +876,9 @@
                     this.removing.index = null;
                 }
             },
-            layerInputUpdate({type, event}, index){
-                this.interactiveElementData[index].time[type] = event.target.value;
+            layerInputUpdate({type, value}, index){
+                this.interactiveElementData[index].time[type] = value;
+                this.interactiveElementData[index].canSave = true;
             },
             deActiveLastLayerEdit() {
                 if (!_.isNull(this.lastLayerEditIndex))

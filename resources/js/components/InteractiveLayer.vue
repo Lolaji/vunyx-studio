@@ -25,10 +25,12 @@
                 </div>
                 <div class="col-6 pt-2">
                     <div class="row">
-                        <div class="interactive-timeline interactive-position">
-                            <span 
-                                ref="elemPosition"
-                                class="time-position"></span>
+                        <div 
+                            ref="timelineContainer"
+                            class="interactive-timeline interactive-position">
+                                <span 
+                                    ref="elemPosition"
+                                    class="time-position"></span>
                         </div>
                     </div>                          
                 </div>
@@ -61,7 +63,10 @@
 </template>
 
 <script>
+    import datePlugin from '../plugin/Date';
     import IeIcon from '../components/InteractiveIcon';
+    import 'jquery-ui/themes/base/all.css'
+
     export default {
         props: {
             index: {
@@ -84,7 +89,7 @@
         },
         components: {IeIcon},
         computed: {
-            isToExist(){
+            isToExist(){//check this.to exists
                 return this.data.time.to != undefined;
             }
         },
@@ -111,6 +116,7 @@
             },
             positionElementIndicator() {
                 let elemPosition = this.$refs.elemPosition;
+                let timelineContainerRect = this.$refs.timelineContainer.getBoundingClientRect();
                     // attrData = $(elemPosition).data();
                 
                 let fromArr = this.from.split(':'),
@@ -130,9 +136,11 @@
                     width = endPercent - startPercent;
                 }
 
-                elemPosition.style.marginLeft = startPercent + '%';
-                if (this.isToExist) {
-                    elemPosition.style.width = ((width == 0)? 0.50 : width) + '%';
+
+                elemPosition.style.left = (startPercent/100)*timelineContainerRect.width + 'px';
+                // elemPosition.style.marginLeft = startPercent + '%';
+                if (this.isToExist) {//checks this.to exists
+                    elemPosition.style.width = ((width == 0)? (0.50/100)*timelineContainerRect.width : (width/100)*timelineContainerRect.width) + 'px';
                 } else {
                     // elemPosition.innerHTML = '<span><i class="fa fa-question"></i></span>';
                     elemPosition.style.width = 20 + 'px';
@@ -142,14 +150,54 @@
                 console.log(width);
             },
             timeInputUpdate (type, event) {
+                let value = event.target.value;
                 if (type == 'from'){
-                    this.from = event.target.value;
+                    this.from = value;
                 } else {
-                    this.to = event.target.value;
+                    this.to = value;
                 }
                 this.positionElementIndicator();
 
-                this.$emit('input-update', {type, event}, this.index);
+                this.$emit('input-update', {type, value}, this.index);
+            },
+
+            //Time Position resizing and draging
+            resize (e, ui) {
+                console.log(e.target.style.left, ui);
+                let left = parseFloat(e.target.style.left.replace(/px?$/, ''));
+                let width = ui.size.width;
+
+                this.updateTime(left, width);
+            },
+            draggable (e, ui) {
+                if (ui.position.left < 0) {
+                    console.log('Left less than 0')
+                    this.$refs.elemPosition.style.left = '0px';
+                }
+                console.log(e.target.style.width, ui.position);
+                let left = ui.position.left;
+                let width = parseFloat(e.target.style.width.replace(/px?$/, ''));
+
+                this.updateTime(left, width);
+            },
+            updateTime(left, width) {
+                let containerWidth = this.$refs.timelineContainer.getBoundingClientRect().width;
+                let duration = parseFloat(this.duration);
+
+                let leftPercent = (left/containerWidth)*100;
+                let widthPercent = (width/containerWidth)*100;
+
+                let startSec = (leftPercent/100)*duration;
+                let endSec = ((widthPercent/100)*duration)+startSec;
+
+                let enterTime = datePlugin.spanTimeWithMillisec(startSec).text;
+                let leaveTime = datePlugin.spanTimeWithMillisec(endSec).text;
+
+                this.from = enterTime;
+                this.to = leaveTime;
+
+                this.$emit('input-update', {type: 'from', value:enterTime}, this.index);
+                this.$emit('input-update', {type: 'to', value:leaveTime}, this.index);
             }
         },
         updated(){
@@ -161,10 +209,28 @@
         },
         mounted(){
             this.from = this.data.time.from;
-            if (this.isToExist)
+            if (this.isToExist) //check this.to exists
                 this.to = this.data.time.to;
 
             this.positionElementIndicator();
+
+            $(this.$refs.elemPosition).resizable({
+                handles: 'e,w',
+                minHeight: 14,
+                containment: 'parent',
+                resize: (e, ui) => {
+                    this.resize(e, ui);
+                }
+            });
+
+            $(this.$refs.elemPosition).draggable({
+                axis: 'x',
+                containment: 'parent',
+                drag: (e, ui) => {
+                    this.draggable(e, ui);
+                }
+            })
+
         }
     }
 </script>

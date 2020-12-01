@@ -30,27 +30,15 @@
                                                     type="text" 
                                                     ref="titleForm"
                                                     class="form-control title-form text-muted" 
-                                                    :disabled="!editTitle" 
-                                                    :value="project.title"
-                                                    v-on:blur="saveVideoTitle">
+                                                    :disabled="true" 
+                                                    :value="project.title">
                                             </div>
-
                                             <div class="col-1 p-0">
-                                                <a 
-                                                    v-if="!editTitle"
-                                                    href="javascript:void(0)" 
-                                                    class="vx-link float-right"
-                                                    @click.prevent="editVideoTitle(project.video.video_id)">
+                                                <inertia-link 
+                                                    :href="`/studio/${project.uuid}`" 
+                                                    class="vx-link float-right">
                                                     <i class="fas fa-pencil-alt"></i>
-                                                </a>
-
-                                                <a 
-                                                    v-else
-                                                    href="javascript:void(0)" 
-                                                    class="vx-link float-right"
-                                                    @click.prevent="cancelEditVideoTitle">
-                                                    <i class="fas fa-times"></i>
-                                                </a>
+                                                </inertia-link>
 
                                             </div>
                                         </div>
@@ -158,7 +146,6 @@ export default {
         return {
             action: null,
             p_index: null,
-            editTitle: false,
             video_id: null,
             interactiveProjects:[]
         }
@@ -167,23 +154,6 @@ export default {
         saveVideoTitle() {
             console.log(this.video_id);
             this.editTitle = false
-        },
-        editVideoTitle(id) {
-            this.video_id = id;
-            this.editTitle = true;
-
-            this.$nextTick(() => {
-                $('.title-form').focus();
-            })
-        },
-        cancelEditVideoTitle(){
-            this.video_id = null;
-            this.$nextTick(() => {
-                // $('.title-form').blur();
-                this.$refs.titleForm.blur();
-            });
-            
-            // this.editTitle = false
         },
         deleteProject(index, id){
             swal.setTitle('Are you sure?')

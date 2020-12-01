@@ -40645,16 +40645,16 @@ button:disabled {
 }
 
 .interactive-data-section > .interactive-layer-container {
-  height: 25vh;
-  /* padding: 2px; */
+  height: 28vh;
   overflow-y: auto;
   /* background: #e1c238 */
 }
 
 .interactive-data-section > .interactive-layer-container .layer {
-  transition: 0.4s;
-  -moz-transition: 0.4s;
-  -webkit-transition: 0.4s;
+  transition: 0.5s;
+  -moz-transition: 0.5s;
+  -webkit-transition: 0.5s;
+  border: 1px solid #fff;
 }
 
 .interactive-data-section > .interactive-layer-container .layer.loader::after {
@@ -40680,7 +40680,7 @@ button:disabled {
 
 .interactive-data-section > .interactive-layer-container .layer .layer-name {
   padding: 15px 0 10px;
-  font-size: 12px;
+  font-size: 13px;
   overflow-x: hidden;
 }
 
@@ -40723,16 +40723,19 @@ button:disabled {
 
 .interactive-data-section > .interactive-layer-container .layer:hover .layer-btn {
   opacity: 1;
+  -webkit-animation: zoomIn 0.2s;
+          animation: zoomIn 0.2s;
 }
 
 .interactive-data-section > .interactive-layer-container .layer:hover,
 .interactive-data-section > .interactive-layer-container .layer.active {
   border-radius: 25px;
   border: 1px solid #dad8d8;
+  background-color: #eeeded;
 }
 
 .interactive-data-section .ie-timeline-container {
-  padding: 0 3.4rem;
+  padding: 0 3.5rem;
 }
 
 .interactive-timeline {
@@ -40750,9 +40753,20 @@ button:disabled {
 
 .interactive-timeline.interactive-position span.time-position {
   padding: 0 0 2px;
-  height: 14px;
-  display: block;
+  min-height: 14px;
+  display: flex;
+  cursor: pointer;
+  justify-content: space-between;
+  overflow: hidden;
   background-color: #e1c238;
+}
+
+.interactive-timeline.interactive-position span.time-position span.resizer {
+  display: flex;
+  border: 1px solid red;
+  height: inherit;
+  width: 2px;
+  cursor: ew-resize;
 }
 
 .interactive-timeline.interactive-position span.time-position span {

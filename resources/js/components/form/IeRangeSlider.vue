@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <label class="label col-md-2 pt-4"><slot name="label">Label</slot></label>
+        <label class="label col-md-3 pt-4"><slot name="label">Label</slot></label>
         <div class="col-md-7" style="background: #353537">
             <ie-range-slider
                 skin="round"
