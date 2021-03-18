@@ -76,7 +76,7 @@
                             src="/img/logo.png"
                             class="image float-right"
                             height="40"
-                            width="40" alt="Vunyx logo"/>
+                            width="40" alt="Vunyx Studio Logo"/>
                     </div>
                 </div>
             </div>
